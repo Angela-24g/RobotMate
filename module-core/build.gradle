@@ -1,0 +1,3 @@
+// 설정 부분
+bootJar {enabled = false}
+jar {enabled = true}
