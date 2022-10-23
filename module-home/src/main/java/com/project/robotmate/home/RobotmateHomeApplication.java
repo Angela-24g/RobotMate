@@ -1,4 +1,4 @@
-package com.project.robotmate;
+package com.project.robotmate.home;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
