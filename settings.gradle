@@ -1,0 +1,4 @@
+rootProject.name = 'robotmate'
+include 'module-core'
+include 'module-home'
+
