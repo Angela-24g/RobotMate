@@ -1,6 +1,3 @@
 # RobotMate
 
-## 시작하기
-
-seoha
-ij
+2022-11-12 dev env setting & db relation setting working start 
