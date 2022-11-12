@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.7.5'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id 'java'
+	id 'war' // jsp 사용시 필수 요소
 }
 
 repositories {
@@ -31,7 +32,6 @@ subprojects {
 	dependencies {
 		compileOnly 'org.projectlombok:lombok'
 		annotationProcessor 'org.projectlombok:lombok'
-
 		implementation 'org.springframework.boot:spring-boot-starter-web'
 
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
