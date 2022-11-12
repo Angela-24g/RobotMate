@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.persistence.EntityManager;
 
@@ -23,5 +24,16 @@ public class RobotmateHomeApplication {
 	public JPAQueryFactory queryFactory(EntityManager em) {
 		return new JPAQueryFactory(em);
 	}
+
+//	@Bean
+//
+//	public InternalResourceViewResolver setupViewResolver() {
+////		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+////		resolver.setPrefix("/WEB-INF/");
+////		resolver.setSuffix(".jsp");
+//
+////		return resolver;
+//
+//	}
 
 }
