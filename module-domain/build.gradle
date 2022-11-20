@@ -15,6 +15,8 @@ dependencies {
 
     api "com.querydsl:querydsl-jpa:${queryDslVersion}"
     api "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+    implementation project(':module-core')
 }
 
 //querydsl 추가 시작
