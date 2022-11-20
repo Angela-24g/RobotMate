@@ -10,8 +10,8 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "RM_BBS")
-public class Board {
+@Table(name = "RM_GALLERY")
+public class Gallery {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,15 +21,6 @@ public class Board {
     private String title;
 
     private String contents;
-
-    @Column(name = "view_cnt")
-    private Integer viewCount;
-
-    @Column(name = "pbc_yn")
-    private String publicYn;
-
-    @Column(name = "bbs_type")
-    private BoardType type;
 
     @Column(name = "del_yn")
     private String delYn;
