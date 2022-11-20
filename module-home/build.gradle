@@ -1,5 +1,7 @@
 version = '1.0.0'
 
+apply plugin: 'war'
+
 springBoot {
     buildInfo()
 }
@@ -9,7 +11,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
 
 
-    implementation 'org.springframework.boot:spring-boot-starter-tomcat' // jsp 사용시 필수 요소
+    implementation 'org.springframework.boot:spring-boot-starter-tomcat'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     implementation 'javax.servlet:jstl'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'

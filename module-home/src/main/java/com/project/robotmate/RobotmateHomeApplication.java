@@ -27,15 +27,5 @@ public class RobotmateHomeApplication {
 		return new JPAQueryFactory(em);
 	}
 
-//	@Bean
-//
-//	public InternalResourceViewResolver setupViewResolver() {
-////		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-////		resolver.setPrefix("/WEB-INF/");
-////		resolver.setSuffix(".jsp");
-//
-////		return resolver;
-//
-//	}
 
 }
