@@ -42,6 +42,9 @@ public class User extends BaseEntity{
     @Column(name = "use_yn", length = 1)
     private String useYn;
 
+    @Column(name = "sms_recv_yn", length = 1)
+    private String smsReceiveYn;
+
     @Column(name = "user_pwd_fail_cnt")
     private int passwordFailCount;
 

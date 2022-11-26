@@ -41,6 +41,9 @@ public class Pageable {
     }
 
     public int getOffset() {
-        return this.page - 1;
+        if (this.page - 1 == 0) {
+            return 0;
+        }
+        return ((this.page - 1) * this.pageSize) + 1;
     }
 }
