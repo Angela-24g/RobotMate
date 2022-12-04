@@ -2,9 +2,7 @@ package com.project.robotmate.domain.entity;
 
 import com.project.robotmate.core.types.BoardType;
 import com.project.robotmate.core.types.TargetType;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "RM_FILE")
+@ToString
 public class File extends BaseEntity{
 
     @Id
@@ -39,6 +38,23 @@ public class File extends BaseEntity{
     @Column(name = "target_id")
     private Long targetId;
 
+    @Column(name = "display_order")
+    private int displayOrder;
+
     @Column(name = "del_yn")
     private String delYn;
+
+    @Builder
+    public File(Long id, TargetType type, String bucket, String originalFileName, String name, String fileFormat, int size, Long targetId, int displayOrder, String delYn) {
+        this.id = id;
+        this.type = type;
+        this.bucket = bucket;
+        this.originalFileName = originalFileName;
+        this.name = name;
+        this.fileFormat = fileFormat;
+        this.size = size;
+        this.targetId = targetId;
+        this.displayOrder = displayOrder;
+        this.delYn = delYn;
+    }
 }
