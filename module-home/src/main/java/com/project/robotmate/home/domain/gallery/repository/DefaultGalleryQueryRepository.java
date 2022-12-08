@@ -21,22 +21,25 @@ public class DefaultGalleryQueryRepository implements GalleryQueryRepository {
     @Override
     public List<Gallery> findAll(Pageable pageable) {
         return queryFactory.selectFrom(gallery)
+                .where(notDelete())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
     }
 
+
     @Override
     public Long countAll() {
         return queryFactory.select(gallery.count())
                 .from(gallery)
+                .where(notDelete())
                 .fetchOne();
     }
 
     @Override
     public List<Gallery> findAllBySearchable(Pageable pageable, Searchable searchable) {
         return queryFactory.selectFrom(gallery)
-                .where(typeEq(searchable.getType()), yearEq(searchable.getYear()))
+                .where(typeEq(searchable.getType()), yearEq(searchable.getYear()), notDelete())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -45,7 +48,7 @@ public class DefaultGalleryQueryRepository implements GalleryQueryRepository {
     @Override
     public Long countAllBySearchable(Searchable searchable) {
         return queryFactory.select(gallery.count())
-                .where(typeEq(searchable.getType()), yearEq(searchable.getYear()))
+                .where(typeEq(searchable.getType()), yearEq(searchable.getYear()), notDelete())
                 .from(gallery)
                 .fetchOne();
     }
@@ -64,4 +67,7 @@ public class DefaultGalleryQueryRepository implements GalleryQueryRepository {
         return gallery.year.eq(year);
     }
 
+    private BooleanExpression notDelete() {
+        return gallery.delYn.eq("N");
+    }
 }

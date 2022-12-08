@@ -40,4 +40,5 @@ public class DefaultFileService implements FileService {
         return fileQueryRepository.findInTargetIdAndType(targetIds, type)
                 .stream().map(FileData::new).collect(Collectors.toList());
     }
+
 }

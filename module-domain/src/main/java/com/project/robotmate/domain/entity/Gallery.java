@@ -31,16 +31,19 @@ public class Gallery extends BaseEntity{
 
     @Column(name = "year")
     private String year;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "admin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Admin admin;
 
     @Builder
-    public Gallery(String title, String contents, String delYn, GalleryType type, Admin admin) {
+    public Gallery(Long id, String title, String contents, String delYn, GalleryType type, String year, Admin admin) {
+        this.id = id;
         this.title = title;
         this.contents = contents;
         this.delYn = delYn;
         this.type = type;
+        this.year = year;
         this.admin = admin;
     }
 }

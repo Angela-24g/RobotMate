@@ -2,6 +2,7 @@ package com.project.robotmate.domain.entity;
 
 import com.project.robotmate.core.types.BoardType;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +21,7 @@ public class Notice extends BaseEntity{
     @Column(length = 1000)
     private String title;
 
+    @Column(columnDefinition = "TEXT")
     private String contents;
 
     @Column(name = "view_cnt")
@@ -28,13 +30,21 @@ public class Notice extends BaseEntity{
     @Column(name = "pbc_yn")
     private String publicYn;
 
-    @Column(name = "bbs_type")
-    private BoardType type;
-
     @Column(name = "del_yn")
     private String delYn;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "admin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Admin admin;
+
+    @Builder
+    public Notice(Long id, String title, String contents, Integer viewCount, String publicYn, String delYn, Admin admin) {
+        this.id = id;
+        this.title = title;
+        this.contents = contents;
+        this.viewCount = viewCount;
+        this.publicYn = publicYn;
+        this.delYn = delYn;
+        this.admin = admin;
+    }
 }
