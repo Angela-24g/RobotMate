@@ -29,7 +29,6 @@ public class NoticeResponse {
         this.contents = notice.getContents();
         this.viewCount = notice.getViewCount();
         this.publicYn = notice.getPublicYn();
-        this.type = notice.getType();
         this.admin = new AdminResponse(notice.getAdmin());
     }
 }
