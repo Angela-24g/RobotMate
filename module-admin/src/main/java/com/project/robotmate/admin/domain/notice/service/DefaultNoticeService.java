@@ -31,7 +31,6 @@ public class DefaultNoticeService implements NoticeService{
                 .title(request.getTitle())
                 .contents(request.getContents())
                 .publicYn(request.getPublicYn())
-                .type(BoardType.NOTICE)
                 .admin(admin)
                 .build();
         noticeRepository.save(notice);

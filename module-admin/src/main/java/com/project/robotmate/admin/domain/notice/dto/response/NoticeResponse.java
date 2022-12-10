@@ -19,7 +19,6 @@ public class NoticeResponse {
     private String contents;
     private Integer viewCount;
     private String publicYn;
-    private BoardType type;
     private AdminResponse admin;
 
     private LocalDateTime createDate;
@@ -30,7 +29,6 @@ public class NoticeResponse {
         this.contents = notice.getContents();
         this.viewCount = notice.getViewCount();
         this.publicYn = notice.getPublicYn();
-        this.type = notice.getType();
         if (admin != null){
             this.admin = new AdminResponse(notice.getAdmin());
         }
