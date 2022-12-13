@@ -2,7 +2,6 @@ package com.project.robotmate.home.domain.gallery.service;
 
 import com.project.robotmate.core.types.TargetType;
 import com.project.robotmate.domain.entity.Gallery;
-import com.project.robotmate.domain.repository.gallery.GalleryRepository;
 import com.project.robotmate.home.domain.file.dto.FileData;
 import com.project.robotmate.home.domain.file.service.FileService;
 import com.project.robotmate.home.domain.gallery.dto.response.GalleryResponse;

@@ -1,6 +1,6 @@
-package com.project.robotmate.admin.domain.notice.repository;
+package com.project.robotmate.domain.notice.repository;
 
-import com.project.robotmate.admin.global.dto.response.Pageable;
+import com.project.robotmate.domain.common.dto.Pageable;
 import com.project.robotmate.domain.entity.Notice;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;

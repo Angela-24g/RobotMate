@@ -1,6 +1,5 @@
 package com.project.robotmate.domain.entity;
 
-import com.project.robotmate.core.types.BoardType;
 import com.project.robotmate.core.types.TargetType;
 import lombok.*;
 
@@ -33,7 +32,7 @@ public class File extends BaseEntity{
     @Column(name = "file_format", length = 50)
     private String fileFormat;
 
-    private int size;
+    private Long size;
 
     @Column(name = "target_id")
     private Long targetId;
@@ -45,7 +44,7 @@ public class File extends BaseEntity{
     private String delYn;
 
     @Builder
-    public File(Long id, TargetType type, String bucket, String originalFileName, String name, String fileFormat, int size, Long targetId, int displayOrder, String delYn) {
+    public File(Long id, TargetType type, String bucket, String originalFileName, String name, String fileFormat, Long size, Long targetId, int displayOrder, String delYn) {
         this.id = id;
         this.type = type;
         this.bucket = bucket;
@@ -57,4 +56,5 @@ public class File extends BaseEntity{
         this.displayOrder = displayOrder;
         this.delYn = delYn;
     }
+
 }

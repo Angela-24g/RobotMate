@@ -2,7 +2,7 @@ package com.project.robotmate.home.domain.file.service;
 
 import com.project.robotmate.core.types.TargetType;
 import com.project.robotmate.domain.entity.File;
-import com.project.robotmate.domain.repository.file.FileRepository;
+import com.project.robotmate.domain.file.repository.FileRepository;
 import com.project.robotmate.home.domain.file.repository.FileQueryRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional

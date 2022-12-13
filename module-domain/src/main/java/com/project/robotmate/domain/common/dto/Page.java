@@ -1,4 +1,4 @@
-package com.project.robotmate.admin.global.dto.response;
+package com.project.robotmate.domain.common.dto;
 
 import lombok.Getter;
 
