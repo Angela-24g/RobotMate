@@ -1,7 +1,6 @@
 package com.project.robotmate.admin.domain.notice.dto.response;
 
 import com.project.robotmate.admin.domain.admin.dto.response.AdminResponse;
-import com.project.robotmate.core.types.BoardType;
 import com.project.robotmate.domain.entity.Notice;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+<!-- Content -->
+<div layout:fragment="content">
+  <table  class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>이미지</th>
+        <th>제목</th>
+        <th>작성일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="gallery : ${galleries}" th:object="${gallery}">
+        <td th:text="${gallery?.id}"></td>
+        <td>
+          <img th:src="${gallery?.imageUri}" alt="thumbnail"/>
+        </td>
+        <td th:text="${gallery?.title}"></td>
+        <td th:text="${gallery?.createDate}"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</html>

@@ -1,6 +1,5 @@
 package com.project.robotmate.domain.entity;
 
-import com.project.robotmate.core.types.BoardType;
 import com.project.robotmate.core.types.GalleryType;
 import lombok.*;
 
@@ -29,7 +28,7 @@ public class Gallery extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private GalleryType type;
 
-    @Column(name = "year")
+    @Column(name = "gall_year")
     private String year;
 
     @ManyToOne(fetch = FetchType.LAZY)

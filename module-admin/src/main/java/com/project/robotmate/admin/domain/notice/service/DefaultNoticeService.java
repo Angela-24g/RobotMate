@@ -2,13 +2,12 @@ package com.project.robotmate.admin.domain.notice.service;
 
 import com.project.robotmate.admin.domain.notice.dto.request.NoticeRequest;
 import com.project.robotmate.admin.domain.notice.dto.response.NoticeResponse;
-import com.project.robotmate.admin.domain.notice.repository.NoticeQueryRepository;
-import com.project.robotmate.admin.global.dto.response.Page;
-import com.project.robotmate.admin.global.dto.response.Pageable;
-import com.project.robotmate.core.types.BoardType;
+import com.project.robotmate.domain.common.dto.Page;
+import com.project.robotmate.domain.common.dto.Pageable;
+import com.project.robotmate.domain.notice.repository.NoticeQueryRepository;
 import com.project.robotmate.domain.entity.Admin;
 import com.project.robotmate.domain.entity.Notice;
-import com.project.robotmate.domain.repository.notice.NoticeRepository;
+import com.project.robotmate.domain.notice.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

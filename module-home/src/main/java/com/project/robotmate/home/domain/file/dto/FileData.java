@@ -15,7 +15,7 @@ public class FileData {
     private String originalFileName;
     private String name;
     private String fileFormat;
-    private int size;
+    private Long size;
     private Long targetId;
     private int displayOrder;
 

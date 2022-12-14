@@ -2,7 +2,7 @@ package com.project.robotmate.admin.domain.notice.controller;
 
 import com.project.robotmate.admin.domain.notice.dto.response.NoticeResponse;
 import com.project.robotmate.admin.domain.notice.service.NoticeService;
-import com.project.robotmate.admin.global.dto.response.Page;
+import com.project.robotmate.domain.common.dto.Page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -3,4 +3,5 @@ include 'module-core'
 include 'module-home'
 include 'module-domain'
 include 'module-admin'
+include 'module-s3upload'
 

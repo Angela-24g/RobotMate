@@ -2,9 +2,9 @@ package com.project.robotmate.home.domain.file.service;
 
 import com.project.robotmate.core.types.TargetType;
 import com.project.robotmate.domain.entity.File;
-import com.project.robotmate.domain.repository.file.FileRepository;
+import com.project.robotmate.domain.file.repository.FileQueryRepository;
+import com.project.robotmate.domain.file.repository.FileRepository;
 import com.project.robotmate.home.domain.file.dto.FileData;
-import com.project.robotmate.home.domain.file.repository.FileQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

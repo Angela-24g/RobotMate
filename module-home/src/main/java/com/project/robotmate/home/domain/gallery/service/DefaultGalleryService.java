@@ -1,15 +1,14 @@
 package com.project.robotmate.home.domain.gallery.service;
 
 import com.project.robotmate.core.types.TargetType;
+import com.project.robotmate.domain.common.dto.Page;
+import com.project.robotmate.domain.common.dto.Pageable;
+import com.project.robotmate.domain.common.dto.Searchable;
 import com.project.robotmate.domain.entity.Gallery;
-import com.project.robotmate.domain.repository.gallery.GalleryRepository;
+import com.project.robotmate.domain.gallery.repository.GalleryQueryRepository;
 import com.project.robotmate.home.domain.file.dto.FileData;
 import com.project.robotmate.home.domain.file.service.FileService;
 import com.project.robotmate.home.domain.gallery.dto.response.GalleryResponse;
-import com.project.robotmate.home.domain.gallery.repository.GalleryQueryRepository;
-import com.project.robotmate.home.global.dto.response.Page;
-import com.project.robotmate.home.global.dto.response.Pageable;
-import com.project.robotmate.home.global.dto.response.Searchable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

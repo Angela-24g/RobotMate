@@ -1,6 +1,5 @@
 package com.project.robotmate.domain.entity;
 
-import com.project.robotmate.core.types.BoardType;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

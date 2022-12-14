@@ -1,0 +1,40 @@
+package com.project.robotmate.domain.notice.repository;
+
+import com.project.robotmate.domain.common.dto.Pageable;
+import com.project.robotmate.domain.entity.Notice;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+import static com.project.robotmate.domain.entity.QNotice.notice;
+
+@Repository
+@RequiredArgsConstructor
+public class DefaultNoticeQueryRepository implements NoticeQueryRepository{
+
+    private final JPAQueryFactory queryFactory;
+
+    @Override
+    public List<Notice> findAll(Pageable pageable) {
+        return queryFactory.selectFrom(notice)
+                .where(notDelete())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+    }
+
+    @Override
+    public Long countAll() {
+        return queryFactory.select(notice.count())
+                .from(notice)
+                .where(notDelete())
+                .fetchOne();
+    }
+
+    private BooleanExpression notDelete() {
+        return notice.delYn.eq("N");
+    }
+}

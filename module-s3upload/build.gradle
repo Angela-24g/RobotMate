@@ -1,0 +1,10 @@
+// 설정 부분
+bootJar {enabled = false}
+jar {enabled = true}
+
+dependencies {
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+    implementation 'commons-io:commons-io:2.11.0'
+
+    implementation project(':module-core')
+}

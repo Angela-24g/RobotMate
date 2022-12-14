@@ -1,8 +1,8 @@
 package com.project.robotmate.home.domain.gallery.service;
 
+import com.project.robotmate.domain.common.dto.Page;
+import com.project.robotmate.domain.common.dto.Searchable;
 import com.project.robotmate.home.domain.gallery.dto.response.GalleryResponse;
-import com.project.robotmate.home.global.dto.response.Page;
-import com.project.robotmate.home.global.dto.response.Searchable;
 
 import java.util.List;
 
