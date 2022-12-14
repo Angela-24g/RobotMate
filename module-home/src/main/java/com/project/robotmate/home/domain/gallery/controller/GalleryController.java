@@ -2,8 +2,6 @@ package com.project.robotmate.home.domain.gallery.controller;
 
 import com.project.robotmate.home.domain.gallery.dto.response.GalleryResponse;
 import com.project.robotmate.home.domain.gallery.service.GalleryService;
-import com.project.robotmate.home.global.dto.response.Page;
-import com.project.robotmate.home.global.dto.response.Searchable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

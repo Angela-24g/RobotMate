@@ -1,6 +1,6 @@
-package com.project.robotmate.admin.global.aws;
+package cloud.aws.s3;
 
-import com.project.robotmate.admin.global.aws.model.S3File;
+import cloud.aws.s3.model.S3File;
 import com.project.robotmate.core.types.DirectoryType;
 import org.springframework.web.multipart.MultipartFile;
 

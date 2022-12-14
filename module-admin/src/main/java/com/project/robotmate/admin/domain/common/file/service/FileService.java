@@ -1,8 +1,8 @@
 package com.project.robotmate.admin.domain.common.file.service;
 
+import cloud.aws.s3.model.S3File;
 import com.project.robotmate.admin.domain.common.file.dto.FileData;
 import com.project.robotmate.admin.domain.common.file.dto.TargetFileData;
-import com.project.robotmate.admin.global.aws.model.S3File;
 import com.project.robotmate.core.types.TargetType;
 import com.project.robotmate.domain.entity.File;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public interface FileService {
 
 
-    File save(S3File s3File,  TargetFileData target);
+    File save(S3File s3File, TargetFileData target);
 
     /**
      * target 의 파일 목록 조회

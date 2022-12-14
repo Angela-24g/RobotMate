@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cloud.aws.s3.config.AwsS3BucketAutoConfiguration,\
+cloud.aws.s3.AwsConfig

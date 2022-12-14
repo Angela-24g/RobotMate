@@ -1,4 +1,4 @@
-package com.project.robotmate.admin.global.aws.model;
+package cloud.aws.s3.model;
 
 public enum FileType {
     IMAGE,

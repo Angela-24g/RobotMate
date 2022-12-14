@@ -1,12 +1,12 @@
 package com.project.robotmate.admin.domain.gallery.service;
 
+import cloud.aws.s3.S3UploadProvider;
+import cloud.aws.s3.model.S3File;
 import com.project.robotmate.admin.domain.common.file.dto.FileData;
 import com.project.robotmate.admin.domain.common.file.dto.TargetFileData;
 import com.project.robotmate.admin.domain.common.file.service.FileService;
 import com.project.robotmate.admin.domain.gallery.dto.request.GalleryCreateRequest;
 import com.project.robotmate.admin.domain.gallery.dto.response.GalleryResponse;
-import com.project.robotmate.admin.global.aws.S3UploadProvider;
-import com.project.robotmate.admin.global.aws.model.S3File;
 import com.project.robotmate.core.types.DirectoryType;
 import com.project.robotmate.core.types.TargetType;
 import com.project.robotmate.domain.common.dto.Page;

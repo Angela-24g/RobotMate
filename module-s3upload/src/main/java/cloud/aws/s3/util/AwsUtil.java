@@ -1,5 +1,6 @@
-package com.project.robotmate.admin.global.aws.util;
-import com.project.robotmate.admin.global.aws.model.FileType;
+package cloud.aws.s3.util;
+
+import cloud.aws.s3.model.FileType;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -8,17 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-@Component
 public class AwsUtil {
-    @Value("${cloud.aws.s3.bucket-url}")
-    private static String IMAGE_URL;
 
-    public static String conventUrl(String bucket) {
-        if (bucket == null) {
-            return null;
-        }
-        return IMAGE_URL.concat("/").concat(bucket);
-    }
     public static String createFilename(String dir) {
         return dir + UUID.randomUUID().toString().replace("-", "");
     }

@@ -1,9 +1,9 @@
 package com.project.robotmate.home.domain.notice.service;
 
+import com.project.robotmate.domain.common.dto.Page;
+import com.project.robotmate.domain.common.dto.Pageable;
+import com.project.robotmate.domain.notice.repository.NoticeQueryRepository;
 import com.project.robotmate.home.domain.notice.dto.response.NoticeResponse;
-import com.project.robotmate.home.domain.notice.repository.NoticeQueryRepository;
-import com.project.robotmate.home.global.dto.response.Page;
-import com.project.robotmate.home.global.dto.response.Pageable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
