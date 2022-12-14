@@ -36,13 +36,4 @@ public class GalleryController {
         model.addAttribute("galleries", galleries.getContents());
         return "gallery/list";
     }
-
-    @PostMapping(value = "/test")
-    public ResponseEntity<S3File> test(
-            @RequestPart(value = "file")MultipartFile file
-            ) {
-        S3File upload = s3UploadProvider.upload(file, DirectoryType.GALLERY);
-        System.out.println("upload = " + upload);
-        return ResponseEntity.ok(upload);
-    }
 }
