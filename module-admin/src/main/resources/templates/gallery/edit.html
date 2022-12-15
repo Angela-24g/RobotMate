@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+<!-- Content -->
+<div layout:fragment="content">
+  <div>
+    <form id="gallery-edit-form" >
+      <input type="hidden" name="galleryId" th:value="${gallery?.id}">
+      <div class="mb-3">
+        <label for="title" class="form-label">제목</label>
+        <input th:value="${gallery?.title}"
+                type="text" class="form-control" id="title"  placeholder="제목을 입력해주세요" name="title">
+      </div>
+      <div class="mb-3">
+        <label for="contents" class="form-label">내용</label>
+        <textarea class="form-control" id="contents" name="contents" placeholder="내용을 입력해주세요" th:text="${gallery?.contents}"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="year" class="form-label">연도</label>
+        <input type="text" id="year" name="year" th:value="${#strings.defaultString(gallery?.year, '2022')}" readonly/>
+      </div>
+      <div class="mb-3 ">
+        <label class="form-label">카테고리</label>
+        <div class="d-flex">
+          <div class="me-1">
+            <label>
+              <input type="radio" name="type" value="normal" th:checked="${#strings.equals(gallery?.type, 'NORMAL') }">
+              <span class="mr-1">일반</span>
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="radio" name="type" value="award" th:checked="${#strings.equals(gallery?.type, 'AWARD')}">
+              <span class="mr-1">수상내역</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <input type="file" accept="image/*" id="file" name="file" class="d-none">
+        <label for="file">이미지추가</label>
+      </div>
+      <div th:if="${gallery != null}">
+        <img th:src="${gallery?.imageUri}" alt="image"/>
+      </div>
+      <div>
+        <a href="javascript:void(0)" class="btn btn-primary" id="gallery-button" th:text="${gallery == null ? '작성' : '수정'}"></a>
+      </div>
+    </form>
+  </div>
+  <th:block layout:fragment="script">
+    <script th:src="@{/js/gallery/gallery.edit.js}"></script>
+  </th:block>
+</div>
+</html>

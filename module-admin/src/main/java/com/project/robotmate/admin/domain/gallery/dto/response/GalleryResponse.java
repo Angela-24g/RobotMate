@@ -1,6 +1,6 @@
 package com.project.robotmate.admin.domain.gallery.dto.response;
 
-import com.project.robotmate.admin.global.util.S3UrlUtil;
+import cloud.aws.s3.util.S3UrlUtil;
 import com.project.robotmate.core.types.GalleryType;
 import com.project.robotmate.domain.entity.Gallery;
 import lombok.Getter;
@@ -29,4 +29,5 @@ public class GalleryResponse {
         this.year = gallery.getYear();
         this.createDate = gallery.getCreatedDate();
     }
+
 }

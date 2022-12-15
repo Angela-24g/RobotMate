@@ -40,7 +40,7 @@ public class User extends BaseEntity{
     private LocalDate birthday;
 
     @Column(name = "use_yn", length = 1)
-    private String useYn;
+    private String useYn = "Y";
 
     @Column(name = "sms_recv_yn", length = 1)
     private String smsReceiveYn;

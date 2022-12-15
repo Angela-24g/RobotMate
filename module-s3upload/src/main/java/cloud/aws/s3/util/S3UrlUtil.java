@@ -1,12 +1,14 @@
-package com.project.robotmate.admin.global.util;
+package cloud.aws.s3.util;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import cloud.aws.s3.config.AwsS3BucketProvider;
 
-@Component
 public class S3UrlUtil {
-    @Value("${cloud.aws.credentials.bucket-url}")
+
     private static String IMAGE_URL;
+
+    public void setImageUrl(String bucketUrl) {
+        IMAGE_URL =bucketUrl;
+    }
 
     public static String conventUrl(String bucket) {
         if (bucket == null) {

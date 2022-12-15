@@ -1,5 +1,7 @@
 package com.project.robotmate.admin.global.config;
 
+import com.project.robotmate.domain.entity.Admin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PostPersist;
 import javax.servlet.Filter;
 
 @Configuration
@@ -26,4 +30,6 @@ public class SecurityConfig  {
     public WebSecurityCustomizer webFilterChain() {
         return (web) -> web.ignoring().antMatchers("/css/**", "/img/**","/vendor/**","/js/**");
     }
+
+
 }

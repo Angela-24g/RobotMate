@@ -40,9 +40,22 @@ public class Gallery extends BaseEntity{
         this.id = id;
         this.title = title;
         this.contents = contents;
-        this.delYn = delYn;
+        this.delYn = delYn != null ? delYn : "N";
         this.type = type;
         this.year = year;
         this.admin = admin;
+    }
+
+    public void changeGallery(String title, String contents) {
+        this.title = title;
+        this.contents = contents;
+    }
+
+    public void changeYear(String year) {
+        this.year = year;
+    }
+
+    public void changeType(GalleryType type) {
+        this.type = type;
     }
 }

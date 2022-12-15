@@ -1,6 +1,8 @@
 package com.project.robotmate.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,4 +25,16 @@ public class Admin extends BaseEntity {
 
     @Column(name = "nm", length = 100)
     private String name;
+
+    @Builder
+    public Admin(Long id, String adminId, String password, String name) {
+        this.id = id;
+        this.adminId = adminId;
+        this.password = password;
+        this.name = name;
+    }
+
+    public boolean isSame(Long id) {
+        return this.id.equals(id);
+    }
 }

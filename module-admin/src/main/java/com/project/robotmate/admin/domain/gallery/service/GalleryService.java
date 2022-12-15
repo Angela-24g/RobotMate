@@ -1,6 +1,6 @@
 package com.project.robotmate.admin.domain.gallery.service;
 
-import com.project.robotmate.admin.domain.gallery.dto.request.GalleryCreateRequest;
+import com.project.robotmate.admin.domain.gallery.dto.request.GalleryRequest;
 import com.project.robotmate.admin.domain.gallery.dto.response.GalleryResponse;
 import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Searchable;
@@ -10,7 +10,11 @@ import java.util.List;
 
 public interface GalleryService {
 
-    void save(GalleryCreateRequest request, Admin admin);
+    GalleryResponse getGallery(Long id);
+
+    void save(GalleryRequest request, Admin admin);
+
+    void update(Long id, GalleryRequest request);
 
     Page<List<GalleryResponse>> getGalleries(int page);
 

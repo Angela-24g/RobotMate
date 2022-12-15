@@ -8,8 +8,11 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.project.robotmate.domain.entity.QGallery.gallery;
 
@@ -18,6 +21,16 @@ import static com.project.robotmate.domain.entity.QGallery.gallery;
 public class DefaultGalleryQueryRepository implements GalleryQueryRepository {
 
     private final JPAQueryFactory queryFactory;
+
+    @Override
+    public Optional<Gallery> findById(Long id) {
+        return Optional.ofNullable(
+                queryFactory
+                        .selectFrom(gallery)
+                        .where(notDelete(), gallery.id.eq(id))
+                        .fetchOne()
+        );
+    }
 
     @Override
     public List<Gallery> findAll(Pageable pageable) {
@@ -55,14 +68,18 @@ public class DefaultGalleryQueryRepository implements GalleryQueryRepository {
     }
 
     private BooleanExpression typeEq(String type) {
-        if (type == null) {
+        if (ObjectUtils.isEmpty(type)) {
             return null;
         }
-        return gallery.type.eq(GalleryType.valueOf(type));
+        try {
+            return gallery.type.eq(GalleryType.valueOf(type));
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private BooleanExpression yearEq(String year) {
-        if (year == null) {
+        if (ObjectUtils.isEmpty(year)) {
             return null;
         }
         return gallery.year.eq(year);

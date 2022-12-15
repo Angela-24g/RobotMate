@@ -5,8 +5,11 @@ import com.project.robotmate.domain.common.dto.Searchable;
 import com.project.robotmate.domain.entity.Gallery;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface GalleryQueryRepository {
+
+    Optional<Gallery> findById(Long id);
 
     List<Gallery> findAll(Pageable pageable);
 

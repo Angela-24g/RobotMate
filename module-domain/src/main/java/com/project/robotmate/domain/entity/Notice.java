@@ -24,13 +24,13 @@ public class Notice extends BaseEntity{
     private String contents;
 
     @Column(name = "view_cnt")
-    private Integer viewCount;
+    private Integer viewCount = 0;
 
     @Column(name = "pbc_yn")
-    private String publicYn;
+    private String publicYn = "Y";
 
     @Column(name = "del_yn")
-    private String delYn;
+    private String delYn = "N";
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "admin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
@@ -43,7 +43,7 @@ public class Notice extends BaseEntity{
         this.contents = contents;
         this.viewCount = viewCount;
         this.publicYn = publicYn;
-        this.delYn = delYn;
+        this.delYn = delYn != null ? delYn : "N";;
         this.admin = admin;
     }
 }

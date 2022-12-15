@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html  xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://thymeleaf.org"
+       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/default}">
 <!-- Content -->
 <div layout:fragment="content">
-  <table  class="table">
+  <div class="my-2">
+    <a th:href="@{/galleries/edit}" class="btn btn-primary">작성</a>
+  </div>
+  <div class="d-flex my-2">
+    <a th:href="|@{/galleries(page=1, type=${param.type})}|" class="badge me-1"
+          th:classappend="${#strings.isEmpty(param.year) ? 'bg-primary' : 'bg-secondary'}">All</a>
+    <a th:each="year : ${years}"
+       th:href="|@{/galleries(page=1, year=${year}, type=${param.type})}|"
+            class="badge me-1" th:classappend="${#strings.equals(param.year, year) ? 'bg-primary' : ' bg-secondary'}" th:text="${year}"></a>
+  </div>
+
+  <div class="d-flex my-2">
+    <a th:href="|@{/galleries(page=1, year=${param.year})}|" class="badge me-1"
+       th:classappend="${#strings.isEmpty(param.type) ? 'bg-danger' : 'bg-secondary'}">All</a>
+    <a th:href="|@{/galleries(page=1, year=${param.year}, type='NORMAL')}|"
+       class="badge me-1" th:classappend="${#strings.equals(param.type, 'NORMAL' ) ? 'bg-danger' : ' bg-secondary'}" th:text="'일반'"></a>
+    <a th:href="|@{/galleries(page=1, year=${param.year}, type='AWARD')}|"
+       class="badge me-1" th:classappend="${#strings.equals(param.type, 'AWARD' ) ? 'bg-danger' : ' bg-secondary'}" th:text="'수상내역'"></a>
+  </div>
+  <table class="table">
     <thead>
       <tr>
         <th>#</th>
@@ -15,13 +34,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr th:each="gallery : ${galleries}" th:object="${gallery}">
+      <tr th:if="${galleries.size() > 0}" th:each="gallery : ${galleries}" th:object="${gallery}">
         <td th:text="${gallery?.id}"></td>
         <td>
           <img th:src="${gallery?.imageUri}" alt="thumbnail"/>
         </td>
-        <td th:text="${gallery?.title}"></td>
+        <td >
+          <a th:href="|@{/galleries/}${gallery?.id}|" th:text="${gallery?.title}"></a>
+        </td>
         <td th:text="${gallery?.createDate}"></td>
+      </tr>
+      <tr th:unless="${galleries.size() > 0}">
+        <td colspan="4" class="text-center">갤리리 글이 없습니다.</td>
       </tr>
     </tbody>
   </table>

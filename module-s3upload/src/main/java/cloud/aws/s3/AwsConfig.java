@@ -1,6 +1,7 @@
 package cloud.aws.s3;
 
 import cloud.aws.s3.config.AwsS3BucketProvider;
+import cloud.aws.s3.util.S3UrlUtil;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -24,6 +25,14 @@ public class AwsConfig {
     @ConditionalOnMissingBean
     public S3UploadProvider s3UploadProvider(AmazonS3Client amazonS3Client, AwsS3BucketProvider provider) {
         return new DefaultS3UploadProvider(amazonS3Client, provider);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public S3UrlUtil s3UrlUtil(AwsS3BucketProvider provider) {
+        S3UrlUtil s3UrlUtil = new S3UrlUtil();
+        s3UrlUtil.setImageUrl(provider.getBucketUrl());
+        return s3UrlUtil;
     }
 
 }

@@ -18,7 +18,7 @@ public class Searchable {
     public Searchable(int page, String type, String year) {
         this.page = page;
         this.type = type;
-        this.year = getStringYear(year);
+        this.year = year;
     }
 
     public String getType() {
@@ -32,6 +32,6 @@ public class Searchable {
         if (year == null) {
            return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy"));
         }
-        return year;
+        return this.year;
     }
 }
