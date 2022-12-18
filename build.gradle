@@ -18,7 +18,6 @@ subprojects {
 	apply plugin: 'java-library'
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
-
 	configurations {
 		compileOnly {
 			extendsFrom annotationProcessor
@@ -38,10 +37,6 @@ subprojects {
 		annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
 		runtimeOnly 'com.h2database:h2'
-	}
-
-	test {
-		useJUnitPlatform()
 	}
 
 }

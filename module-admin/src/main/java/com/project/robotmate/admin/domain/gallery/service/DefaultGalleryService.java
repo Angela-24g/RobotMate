@@ -20,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -35,7 +37,7 @@ public class DefaultGalleryService implements GalleryService{
     private final S3UploadProvider s3UploadProvider;
     @Override
     @Transactional
-    public void save(GalleryRequest request, Admin admin) {
+    public Long save(GalleryRequest request, Admin admin) {
         // 파일 업로드
         S3File s3File = s3UploadProvider.upload(request.getFile(), DirectoryType.GALLERY);
         Gallery gallery = Gallery.builder()
@@ -48,6 +50,8 @@ public class DefaultGalleryService implements GalleryService{
         galleryRepository.save(gallery);
         TargetFileData target = new TargetFileData(gallery.getId(), TargetType.GALLERY);
         fileService.save(s3File, target);
+
+        return gallery.getId();
     }
 
     @Override
@@ -83,6 +87,7 @@ public class DefaultGalleryService implements GalleryService{
         List<Gallery> result = galleryQueryRepository.findAllBySearchable(pageable, searchable);
         return new Page<>(pageable, getGalleryResponses(result));
     }
+
 
     @Override
     public GalleryResponse getGallery(Long id) {

@@ -8,12 +8,15 @@
                         게시판
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </div>
-                    <div class="collapse" id="boardCollapse" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <div class="collapse"
+                         th:with="uri=${#httpServletRequest.getRequestURI()}"
+                         th:classappend="${uri.startsWith('/notices') || uri.startsWith('/galleries') ? 'show' : ''}"
+                         id="boardCollapse" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="/notices" >
+                            <a class="nav-link" href="/notices" th:classappend="${uri.startsWith('/notices') ? 'active' : ''}">
                                 공지사항
                             </a>
-                            <a class="nav-link" href="/galleries">
+                            <a class="nav-link" href="/galleries" th:classappend="${uri.startsWith('/galleries') ? 'active' : ''}">
                                 갤러리
                             </a>
                         </nav>
