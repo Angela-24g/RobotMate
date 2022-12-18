@@ -12,7 +12,7 @@ public interface GalleryService {
 
     GalleryResponse getGallery(Long id);
 
-    void save(GalleryRequest request, Admin admin);
+    Long save(GalleryRequest request, Admin admin);
 
     void update(Long id, GalleryRequest request);
 

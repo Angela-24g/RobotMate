@@ -1,10 +1,7 @@
 package com.project.robotmate.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "RM_ADMIN")
+@ToString(of = {"id", "adminId", "name"})
 public class Admin extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

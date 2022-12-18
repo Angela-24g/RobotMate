@@ -6,7 +6,6 @@ import lombok.Getter;
 public class ApiResponse {
 
     private int code;
-
     private String message;
 
 

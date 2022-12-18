@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 
 @EnableAsync
 @SpringBootApplication
-@EnableJpaAuditing
 public class RobotmateHomeApplication {
 
 	public static void main(String[] args) {

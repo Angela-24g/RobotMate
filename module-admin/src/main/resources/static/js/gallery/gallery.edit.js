@@ -22,8 +22,8 @@ window.addEventListener("DOMContentLoaded", () => {
                     location.href = "/galleries/" + galleryId;
                 },
                 error : (error) => {
-                    console.log(error);
-                    alert(error);
+                    const data = JSON.parse(error.responseText)
+                    alert(data.errorMessage);
                 },
                 complete : () => {
                     e.target.disabled = false;
@@ -36,12 +36,13 @@ window.addEventListener("DOMContentLoaded", () => {
                 data : formData,
                 processData: false,
                 contentType: false,
+                dataType : "json",
                 success : (data) => {
                     console.log(data);
                 },
-                error : (error) => {
-                    console.log(error);
-                    alert(error);
+                error : (error, textStatus , a) => {
+                    const data = JSON.parse(error.responseText)
+                    alert(data.errorMessage);
                 },
                 complete : () => {
                     e.target.disabled = false;
