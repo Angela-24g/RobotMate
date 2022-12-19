@@ -37,8 +37,9 @@ window.addEventListener("DOMContentLoaded", () => {
                 processData: false,
                 contentType: false,
                 dataType : "json",
-                success : (data) => {
-                    console.log(data);
+                success : (res) => {
+                    console.log(res);
+                    location.href = "/galleries/" + res.data;
                 },
                 error : (error, textStatus , a) => {
                     const data = JSON.parse(error.responseText)

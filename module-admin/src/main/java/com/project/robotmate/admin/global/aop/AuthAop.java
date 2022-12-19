@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 @Slf4j
 @Aspect
-@Component
+//@Component
 public class AuthAop {
 
     private final AdminRepository adminRepository;
@@ -22,7 +22,7 @@ public class AuthAop {
         this.adminRepository = adminRepository;
     }
 
-    @Around("execution(* com.project.robotmate.admin..*Controller.*(..))")
+//    @Around("execution(* com.project.robotmate.admin..*Controller.*(..))")
     public Object authMethod(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs();
 
