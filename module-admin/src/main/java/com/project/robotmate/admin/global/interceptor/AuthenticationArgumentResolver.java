@@ -22,9 +22,7 @@ public class AuthenticationArgumentResolver implements HandlerMethodArgumentReso
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
-
         Admin user = (Admin) request.getAttribute(REQUEST_USER);
 
         if (ObjectUtils.isEmpty(user)) {

@@ -7,37 +7,39 @@
 <div layout:fragment="content">
 
   <div class="container-fluid">
-    <div class="d-flex justify-content-between">
-      <div class="badge bg-info" th:text="|${gallery?.year}|"></div>
-      <div class="me-1" th:text="${#temporals.format(gallery?.createDate, 'YYYY년 MM월 dd일')}"></div>
-    </div>
 
-    <hr class="mb-3"/>
-
-    <div class="mb-3">
-      <label class="form-label">제목</label>
-      <h1 th:text="${gallery?.title}" class="form-control"></h1>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">내용</label>
-      <pre th:text="${gallery?.contents}" class="form-control mb-3"></pre>
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label">이미지</label>
-      <div th:if="${gallery?.imageUri != null}" class="form-control mb-3">
-        <img th:src="${gallery.imageUri}" alt="image"/>
+    <div style="max-width: 650px" class="m-auto mt-3">
+      <div class="d-flex justify-content-between">
+        <div class="badge bg-info" th:text="|${gallery?.year}|"></div>
+        <div class="me-1" th:text="${#temporals.format(gallery?.createDate, 'YYYY년 MM월 dd일')}"></div>
       </div>
-      <div th:unless="${gallery?.imageUri != null}" class="form-control mb-3">
-        이미지가 없습니다.
-      </div>
-    </div>
 
-    <div class="d-flex">
-      <a th:href="|@{/galleries/edit/}${gallery.id}|" CLASS="btn btn-primary">수정</a>
+      <hr class="mb-3"/>
+
+      <div class="mb-3">
+        <label class="form-label">제목</label>
+        <h1 th:text="${gallery?.title}" class="form-control"></h1>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">내용</label>
+        <pre th:text="${gallery?.contents}" class="form-control mb-3"></pre>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">이미지</label>
+        <div th:if="${gallery?.imageUri != null}" class="form-control mb-3">
+          <img th:src="${gallery.imageUri}" alt="image" class="w-100"/>
+        </div>
+        <div th:unless="${gallery?.imageUri != null}" class="form-control mb-3">
+          이미지가 없습니다.
+        </div>
+      </div>
+
+      <div class="d-flex">
+        <a th:href="|@{/galleries/edit/}${gallery.id}|" CLASS="btn btn-primary">수정</a>
+      </div>
     </div>
   </div>
-
   <th:block layout:fragment="script"></th:block>
 </div>
 </html>

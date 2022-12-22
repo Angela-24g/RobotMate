@@ -20,9 +20,10 @@ public class DefaultFileQueryRepository implements FileQueryRepository {
     public List<File> findInTargetIdAndType(List<Long> targetIds, TargetType type) {
         return queryFactory.selectFrom(file)
                 .where(
-                        file.targetId.in(targetIds),
+                    file.targetId.in(targetIds),
                     file.type.eq(type),
-                    file.displayOrder.eq(1)
+                    file.displayOrder.eq(1),
+                    file.delYn.eq("N")
                 ).fetch();
     }
 

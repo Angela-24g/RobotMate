@@ -57,4 +57,7 @@ public class File extends BaseEntity{
         this.delYn = delYn != null ? delYn : "N";
     }
 
+    public void delete() {
+        this.delYn = "Y";
+    }
 }

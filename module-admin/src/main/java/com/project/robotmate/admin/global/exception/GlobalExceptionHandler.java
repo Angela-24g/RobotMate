@@ -12,18 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static com.project.robotmate.admin.global.util.CommonUtil.isAjax;
+
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    private final String REQUESTED_WITH = "X-Requested-With";
-    private final String XMLHttpRequest = "XMLHttpRequest";
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_GATEWAY)
     public Object illegalArgumentException(Exception ex, HttpServletRequest request){
         if (isAjax(request)) {
-            return getErrorResponseEntity(ex, HttpStatus.BAD_GATEWAY);
+            return getErrorResponseEntity(ex, HttpStatus.BAD_REQUEST);
         }
         return getModelAndView("error/400");
     }
@@ -51,10 +51,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, status);
     }
 
-    private boolean isAjax(HttpServletRequest request) {
-        String header = request.getHeader(REQUESTED_WITH);
-        return XMLHttpRequest.equals(header);
-    }
 
     private static ModelAndView getModelAndView(String viewName) {
         ModelAndView model = new ModelAndView();

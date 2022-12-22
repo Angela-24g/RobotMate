@@ -9,6 +9,7 @@ import com.project.robotmate.domain.entity.Admin;
 import com.project.robotmate.domain.entity.Notice;
 import com.project.robotmate.domain.notice.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +39,7 @@ public class DefaultNoticeService implements NoticeService{
     @Override
     public Page<List<NoticeResponse>> getNotices(int page) {
         Long totalCount = noticeQueryRepository.countAll();
-        Pageable pageable = getPageable(page, totalCount);
+        Pageable pageable = getPageable(page, totalCount.intValue());
         List<NoticeResponse> result = noticeQueryRepository.findAll(pageable)
                 .stream().map(NoticeResponse::new)
                 .collect(Collectors.toList());
@@ -46,10 +47,7 @@ public class DefaultNoticeService implements NoticeService{
         return new Page<>(pageable, result);
     }
 
-    private Pageable getPageable(int page, Long totalCount) {
-        return Pageable.builder()
-                .page(page)
-                .totalCount(totalCount)
-                .build();
+    private Pageable getPageable(int page, int totalCount) {
+        return new Pageable(totalCount, page);
     }
 }

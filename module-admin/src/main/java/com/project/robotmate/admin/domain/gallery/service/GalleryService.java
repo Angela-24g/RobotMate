@@ -1,6 +1,7 @@
 package com.project.robotmate.admin.domain.gallery.service;
 
 import com.project.robotmate.admin.domain.gallery.dto.request.GalleryRequest;
+import com.project.robotmate.admin.domain.gallery.dto.request.GalleryUpdateRequest;
 import com.project.robotmate.admin.domain.gallery.dto.response.GalleryResponse;
 import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Searchable;
@@ -14,7 +15,7 @@ public interface GalleryService {
 
     Long save(GalleryRequest request, Admin admin);
 
-    void update(Long id, GalleryRequest request);
+    void update(Long id, GalleryUpdateRequest request);
 
     Page<List<GalleryResponse>> getGalleries(int page);
 

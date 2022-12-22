@@ -5,6 +5,13 @@
       layout:decorate="~{layouts/default}">
 <!-- Content -->
 <div layout:fragment="content">
+  <style>
+    .custom-card {
+      width : calc(100% / 3);
+      padding: 0 10px 10px 0;
+    }
+    .custom-card:nth-child(3n)
+  </style>
   <div class="my-2">
     <a th:href="@{/galleries/edit}" class="btn btn-primary">작성</a>
   </div>
@@ -24,7 +31,14 @@
     <a th:href="|@{/galleries(page=1, year=${param.year}, type='AWARD')}|"
        class="badge me-1" th:classappend="${#strings.equals(param.type, 'AWARD' ) ? 'bg-danger' : ' bg-secondary'}" th:text="'수상내역'"></a>
   </div>
+  <div class="table-responsive">
   <table class="table">
+    <colgroup>
+      <col style="width: 10%">
+      <col style="width: 20%">
+      <col style="width: 50%">
+      <col style="width: 20%">
+    </colgroup>
     <thead>
       <tr>
         <th>#</th>
@@ -33,21 +47,44 @@
         <th>작성일</th>
       </tr>
     </thead>
+
     <tbody>
       <tr th:if="${galleries.size() > 0}" th:each="gallery : ${galleries}" th:object="${gallery}">
-        <td th:text="${gallery?.id}"></td>
-        <td>
-          <img th:src="${gallery?.imageUri}" alt="thumbnail"/>
+        <td th:text="${galleryStat.count}" style="vertical-align: middle" class="text-center"></td>
+        <td class="p-0">
+          <img th:src="${gallery?.imageUri}" alt="thumbnail" class="w-100" style="max-width: 150px"/>
         </td>
-        <td >
+        <td class="text-truncate fw-bold">
           <a th:href="|@{/galleries/}${gallery?.id}|" th:text="${gallery?.title}"></a>
         </td>
-        <td th:text="${gallery?.createDate}"></td>
+        <td class="text-nowrap" style="font-size: 12px" th:text="${#temporals.format( gallery?.createDate, 'YYYY년 MM월 dd일 hh:mm:ss')}"></td>
       </tr>
       <tr th:unless="${galleries.size() > 0}">
         <td colspan="4" class="text-center">갤리리 글이 없습니다.</td>
       </tr>
     </tbody>
   </table>
+  </div>
+  <nav  th:if="${pageable.total > 0}">
+    <ul class="pagination justify-content-end">
+      <li class="page-item">
+        <a  class="page-link" th:href="|@{?(page = ${pageable.prevBlock},year=${param?.year}, type=${param?.type})}|" aria-label="Previous">
+          <span aria-hidden="true">이전</span>
+        </a>
+      </li>
+      <th:block th:with="start = ${pageable.startPage}, end = ${pageable.endPage}">
+        <li class="page-item"
+            th:with="start = ${pageable.startPage}, end = ${pageable.endPage}"
+            th:each="page : ${#numbers.sequence(start, end, 1)}">
+          <a class="page-link" th:href="|@{?(page = ${page},year=${param?.year}, type=${param?.type})}|" th:text=${page}></a>
+        </li>
+      </th:block>
+      <li class="page-item">
+        <a class="page-link" th:href="|@{?(page = ${pageable.nextBlock}, year=${param?.year}, type=${param?.type})}|" aria-label="Next">
+          <span aria-hidden="true">다음</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </div>
 </html>
