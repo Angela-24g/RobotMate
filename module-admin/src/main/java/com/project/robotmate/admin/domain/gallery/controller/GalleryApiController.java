@@ -1,6 +1,7 @@
 package com.project.robotmate.admin.domain.gallery.controller;
 
 import com.project.robotmate.admin.domain.gallery.dto.request.GalleryRequest;
+import com.project.robotmate.admin.domain.gallery.dto.request.GalleryUpdateRequest;
 import com.project.robotmate.admin.domain.gallery.service.GalleryService;
 import com.project.robotmate.admin.global.dto.response.ApiResponse;
 import com.project.robotmate.admin.global.dto.response.DataResponse;
@@ -24,13 +25,14 @@ public class GalleryApiController {
             @ModelAttribute GalleryRequest request,
             Admin admin
     ) {
+        System.out.println("admin.get = " + admin);
         Long galleryId = galleryService.save(request, admin);
         return ResponseEntity.ok(new DataResponse<>(galleryId));
     }
 
     @PutMapping(value = "/api/galleries/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ApiResponse> editGallery(
-            @ModelAttribute GalleryRequest request,
+            @ModelAttribute GalleryUpdateRequest request,
             @PathVariable("id") Long id
     ) {
         galleryService.update(id, request);

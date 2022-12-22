@@ -5,7 +5,7 @@
       layout:decorate="~{layouts/default}">
 <!-- Content -->
 <div layout:fragment="content">
-  <div>
+  <div style="max-width: 650px" class="m-auto mt-3">
     <form id="gallery-edit-form" >
       <input type="hidden" name="galleryId" th:value="${gallery?.id}">
       <div class="mb-3">
@@ -43,7 +43,8 @@
         <label for="file">이미지추가</label>
       </div>
       <div th:if="${gallery != null}">
-        <img th:src="${gallery?.imageUri}" alt="image"/>
+        <input type="hidden" name="fileId" th:value="${gallery?.imageId}">
+        <img th:src="${gallery?.imageUri}" alt="image" class="w-100"/>
       </div>
       <div>
         <a href="javascript:void(0)" class="btn btn-primary" id="gallery-button" th:text="${gallery == null ? '작성' : '수정'}"></a>

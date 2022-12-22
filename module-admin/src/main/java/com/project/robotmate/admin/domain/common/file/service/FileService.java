@@ -36,4 +36,8 @@ public interface FileService {
     List<FileData> getTargetFile(List<Long> targetIds, TargetType type);
 
     File s3FileToFileEntity(S3File s3File, TargetFileData target);
+
+    File getFileById(Long fileId);
+
+    void deleteFile(Long fileId);
 }

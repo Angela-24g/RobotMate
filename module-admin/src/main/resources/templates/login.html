@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<!-- Content -->
+<head th:fragment="commonHead">
+    <meta name="_csrf" th:content="${_csrf?.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf?.headerName}"/>
+    <meta name="_csrf_parameter" th:content="${_csrf?.parameterName}"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+    <style>
+        .disabled {
+            pointer-events: none;
+        }
+        .form-login{
+            max-width: 350px;
+            margin: 0 auto;
+            flex : 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .flex-center {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid flex-center">
+   <form id="loginForm" class="form-login">
+       <div class="mb-3">
+           <label for="adminId" class="form-label">아이디</label>
+           <input type="text" name="adminId" id="adminId" class="form-control">
+       </div>
+       <div class="mb-3">
+           <label for="password" class="form-label">비밀번호</label>
+           <input type="password" name="password" id="password" class="form-control">
+       </div>
+       <div class="mb-3">
+           <a href="javascript:void(0)" class="btn btn-primary w-100 disabled" id="login">로그인</a>
+       </div>
+
+       <div>
+           <a href="javascript:void(0)" class="btn btn-primary w-100" id="join">임시가입</a>
+       </div>
+   </form>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("loginForm");
+        const adminId = document.getElementById("adminId");
+        const pwd = document.getElementById("password");
+        const joinBtn = document.getElementById("join");
+        const loginBtn = document.getElementById("login");
+        loginBtn.classList.add("disabled");
+
+        function onChange(e)  {
+            e.preventDefault();
+
+            const adminValue = adminId.value;
+            const pwdValue = pwd.value;
+
+            if (adminValue && pwdValue) {
+                loginBtn.classList.remove("disabled")
+            } else {
+                loginBtn.classList.add("disabled")
+            }
+        }
+
+        $(adminId).on("change", onChange)
+        $(pwd).on("change", onChange)
+
+
+        joinBtn.addEventListener("click", (e) => {
+           e.preventDefault();
+            loginBtn.classList.add("disabled")
+
+           $.ajax({
+               url : "/join",
+               method : "POST",
+               dataType : 'json',
+               contentType : 'application/json',
+               success : (data) => {
+                    console.log(data);
+               },
+               error : (e) => {
+                    console.log(e)
+               },
+               complete : () => {
+                   loginBtn.classList.remove("disabled")
+               }
+           })
+        });
+
+
+        loginBtn.addEventListener("click", (e) => {
+           e.preventDefault();
+           const fd = new FormData(form);
+            loginBtn.classList.add("disabled")
+           const data = {
+               adminId : fd.get("adminId"),
+               password : fd.get("password")
+           }
+
+           $.ajax({
+               url : "/login",
+               method : "POST",
+               data : JSON.stringify(data),
+               dataType : 'json',
+               contentType : 'application/json',
+               success : (data) => {
+                   window.location.replace("/");
+               },
+               error : (e) => {
+                   console.log(e)
+               },
+               complete : () => {
+                   loginBtn.classList.remove("disabled")
+               }
+           })
+        })
+    });
+</script>
+</body>
+</html>

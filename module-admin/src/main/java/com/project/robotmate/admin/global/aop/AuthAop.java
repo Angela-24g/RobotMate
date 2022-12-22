@@ -8,12 +8,14 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
 
 @Slf4j
 @Aspect
-@Component
+//@Component
 public class AuthAop {
 
     private final AdminRepository adminRepository;
@@ -26,13 +28,12 @@ public class AuthAop {
     public Object authMethod(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs();
 
+        Admin admin = adminRepository.findByAdminId("admin")
+                .orElseThrow(() -> new AuthenticationException("Unauthorized error"));
+
         for (int i = 0 ; i < args.length ; i++) {
             if (args[i] instanceof Admin) {
-                Admin admin = adminRepository.findByAdminId("admin")
-                        .orElseThrow(() -> new AuthenticationException("Unauthorized error"));
-
                 args[i] = admin;
-                log.info("[Authentication] User={}" , admin);
             }
         }
 

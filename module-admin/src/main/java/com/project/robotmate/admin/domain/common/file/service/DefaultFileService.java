@@ -64,4 +64,17 @@ public class DefaultFileService implements FileService {
                 .build();
     }
 
+    @Override
+    public File getFileById(Long fileId) {
+        return fileRepository.findById(fileId).orElseThrow(() -> new IllegalArgumentException("파일이 없습니다"));
+    }
+
+    @Override
+    @Transactional
+    public void deleteFile(Long fileId) {
+        File file = fileRepository.findById(fileId)
+                .orElseThrow(() -> new IllegalArgumentException("파일이 없습니다"));
+        file.delete();
+    }
+
 }

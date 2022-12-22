@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import javax.persistence.EntityManager;
@@ -17,19 +19,18 @@ import javax.servlet.Filter;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig  {
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.httpBasic().disable()
                 .csrf().disable();
-
         return http.build();
     }
-
     @Bean
     public WebSecurityCustomizer webFilterChain() {
         return (web) -> web.ignoring().antMatchers("/css/**", "/img/**","/vendor/**","/js/**");
     }
-
-
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }
