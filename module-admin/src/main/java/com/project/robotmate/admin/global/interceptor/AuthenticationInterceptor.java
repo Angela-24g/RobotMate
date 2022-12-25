@@ -39,7 +39,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
             if (isAjax(request)) {
                 throw new AuthenticationException("Unauthorized error");
             } else {
-                response.sendRedirect("/login");
+                response.sendRedirect("/login?redirectUri=" + request.getRequestURI());
             }
         }
 
@@ -49,7 +49,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter {
             if (isAjax(request)) {
                 throw new AuthenticationException("Unauthorized error");
             } else {
-                response.sendRedirect("/login");
+                response.sendRedirect("/login?redirectUri=" + request.getRequestURI());
             }
         }
 

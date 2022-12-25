@@ -53,6 +53,9 @@
        </div>
    </form>
 </div>
+<script th:inline="javascript">
+    const requestUri = /*[[${param.requestUri}]]*/
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById("loginForm");
@@ -117,7 +120,7 @@
                dataType : 'json',
                contentType : 'application/json',
                success : (data) => {
-                   window.location.replace("/");
+                   window.location.replace(requestUri ? requestUri : "/");
                },
                error : (e) => {
                    console.log(e)

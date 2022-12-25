@@ -2,16 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>500</title>
+    <title>404 Error</title>
+    <link th:href="@{/css/error/error.css}" rel="stylesheet" />
 </head>
 <body>
   <main>
-    <h1>404</h1>
-    <h2>Not Found</h2>
-    <p>
-      Oops, page not found.
-    </p>
-    <a href="/">Home</a>
+      <div class="error-container ">
+          <div class="error-box">
+              <div class="error-status">404</div>
+              <div>
+                  <div class="error-title">Not Found</div>
+                  <div class="error-body">
+                    해당 페이지를 찾을 수 없습니다
+                  </div>
+                  <div class="error-footer">
+                      <a href="/" class="btn">Home</a>
+                  </div>
+              </div>
+          </div>
+      </div>
   </main>
 </body>
 </html>
