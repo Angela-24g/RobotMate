@@ -8,6 +8,9 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.project.robotmate.core.types.DirectoryType;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static cloud.aws.s3.util.AwsUtil.createFilename;
 
 public class DefaultS3UploadProvider implements S3UploadProvider {
@@ -44,6 +47,15 @@ public class DefaultS3UploadProvider implements S3UploadProvider {
             System.out.println("e = " + e);
             throw new IllegalArgumentException("파일 업로드에 실패했습니다.");
         }
+    }
+
+    @Override
+    public List<S3File> uploadAll(List<MultipartFile> files, DirectoryType type) {
+        List<S3File> result = new ArrayList<>();
+        for (int i = 0 ; i < files.size() ; i++) {
+            result.add(upload(files.get(i), type));
+        }
+        return result;
     }
 
     private static S3File getS3File(int index, MultipartFile file, String bucket) {

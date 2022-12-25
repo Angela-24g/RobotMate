@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>500</title>
+    <title>400 Error</title>
+    <link th:href="@{/css/error/error.css}" rel="stylesheet" />
 </head>
 <body>
   <main>
-    <h1>400</h1>
-    <h2>That's an error.</h2>
-    <p>
-      Oops, Your client has issued a malformed or illegal request.
-    </p>
-      <p>
-          That's all we know.
-      </p>
-    <a href="/">Home</a>
+      <div class="error-container ">
+          <div class="error-box">
+              <div class="error-status">400</div>
+              <div>
+                  <div class="error-title">오류가 발생했습니다.</div>
+                  <div class="error-body">
+                      클라이언트가 잘못된 형식의 요청을 했습니다. <br/>
+                      다시 한번 확인 해주세요.
+                  </div>
+                  <div class="error-footer">
+                      <a href="/" class="btn">Home</a>
+                  </div>
+              </div>
+          </div>
+      </div>
   </main>
 </body>
 </html>

@@ -2,20 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>500</title>
+    <title>500 Error</title>
+  <link th:href="@{/css/error/error.css}" rel="stylesheet" />
 </head>
 <body>
   <main>
-    <h1>500</h1>
-    <h2>Server Error</h2>
-    <p>
-      Oops, something went wrong.
-    </p>
-    <p>
-      Try to refresh this page or feel free to contact us if the problem persists.
-    </p>
-
-    <a href="/">Home</a>
+    <div class="error-container ">
+      <div class="error-box">
+        <div class="error-status">500</div>
+        <div>
+          <div class="error-title">Server Error</div>
+          <div class="error-body">
+            해당 페이지를 새로고침 하십시오. 만약 문제가 시속되면 문의해주세요
+          </div>
+          <div class="error-footer">
+            <a href="/" class="btn">Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 </html>

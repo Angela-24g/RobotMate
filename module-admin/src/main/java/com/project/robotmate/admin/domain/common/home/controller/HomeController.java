@@ -6,10 +6,8 @@ import com.project.robotmate.admin.global.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
@@ -36,7 +34,7 @@ public class HomeController {
     @ResponseBody
     public ResponseEntity<ApiResponse> login(
             @RequestBody LoginRequest request
-            ) {
+    ) {
         adminService.login(request);
         return ResponseEntity.ok(ApiResponse.ok());
     }
