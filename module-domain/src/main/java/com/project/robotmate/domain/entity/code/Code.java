@@ -1,4 +1,4 @@
-package com.project.robotmate.domain.entity;
+package com.project.robotmate.domain.entity.code;
 
 import lombok.AccessLevel;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package com.project.robotmate.admin.domain.common.file.dto;
 
 import com.project.robotmate.core.types.TargetType;
-import com.project.robotmate.domain.entity.File;
+import com.project.robotmate.domain.entity.file.File;
 import lombok.Getter;
 import lombok.Setter;
 

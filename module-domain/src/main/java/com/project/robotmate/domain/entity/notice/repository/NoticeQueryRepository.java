@@ -1,7 +1,7 @@
-package com.project.robotmate.domain.notice.repository;
+package com.project.robotmate.domain.entity.notice.repository;
 
 import com.project.robotmate.domain.common.dto.Pageable;
-import com.project.robotmate.domain.entity.Notice;
+import com.project.robotmate.domain.entity.notice.Notice;
 
 import java.util.List;
 

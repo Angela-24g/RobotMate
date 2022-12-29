@@ -4,12 +4,11 @@ import com.project.robotmate.admin.domain.notice.dto.request.NoticeRequest;
 import com.project.robotmate.admin.domain.notice.dto.response.NoticeResponse;
 import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Pageable;
-import com.project.robotmate.domain.notice.repository.NoticeQueryRepository;
-import com.project.robotmate.domain.entity.Admin;
-import com.project.robotmate.domain.entity.Notice;
-import com.project.robotmate.domain.notice.repository.NoticeRepository;
+import com.project.robotmate.domain.entity.notice.repository.NoticeQueryRepository;
+import com.project.robotmate.domain.entity.admin.Admin;
+import com.project.robotmate.domain.entity.notice.Notice;
+import com.project.robotmate.domain.entity.notice.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

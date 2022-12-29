@@ -1,15 +1,14 @@
-package com.project.robotmate.domain.gallery.repository;
+package com.project.robotmate.domain.entity.gallery.repository;
 
 import com.project.robotmate.core.types.GalleryType;
 import com.project.robotmate.domain.common.dto.Pageable;
 import com.project.robotmate.domain.common.dto.Searchable;
-import com.project.robotmate.domain.entity.Gallery;
+import com.project.robotmate.domain.entity.gallery.Gallery;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;

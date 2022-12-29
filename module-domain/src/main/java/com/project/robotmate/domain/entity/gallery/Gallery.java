@@ -1,6 +1,8 @@
-package com.project.robotmate.domain.entity;
+package com.project.robotmate.domain.entity.gallery;
 
 import com.project.robotmate.core.types.GalleryType;
+import com.project.robotmate.domain.entity.admin.Admin;
+import com.project.robotmate.domain.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "RM_GALLERY")
 @ToString(of = {"id", "title", "contents", "delYn", "type"})
-public class Gallery extends BaseEntity{
+public class Gallery extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

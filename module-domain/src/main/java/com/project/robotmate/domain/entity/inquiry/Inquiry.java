@@ -1,5 +1,7 @@
-package com.project.robotmate.domain.entity;
+package com.project.robotmate.domain.entity.inquiry;
 
+import com.project.robotmate.domain.entity.BaseEntity;
+import com.project.robotmate.domain.entity.user.User;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "RM_REQ")
-public class Inquiry extends BaseEntity{
+public class Inquiry extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

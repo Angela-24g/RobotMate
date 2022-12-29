@@ -1,6 +1,6 @@
-package com.project.robotmate.domain.entity;
+package com.project.robotmate.domain.entity.admin;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.robotmate.domain.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;

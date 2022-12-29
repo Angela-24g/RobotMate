@@ -2,13 +2,12 @@ package com.project.robotmate.admin.global.interceptor;
 
 import com.project.robotmate.admin.domain.common.home.dto.AdminDto;
 import com.project.robotmate.admin.global.exception.AuthenticationException;
-import com.project.robotmate.domain.admin.AdminRepository;
-import com.project.robotmate.domain.entity.Admin;
+import com.project.robotmate.domain.entity.admin.repository.AdminRepository;
+import com.project.robotmate.domain.entity.admin.Admin;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 

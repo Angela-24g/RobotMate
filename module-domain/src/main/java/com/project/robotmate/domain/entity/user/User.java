@@ -1,6 +1,7 @@
-package com.project.robotmate.domain.entity;
+package com.project.robotmate.domain.entity.user;
 
 import com.project.robotmate.core.types.UserType;
+import com.project.robotmate.domain.entity.BaseEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "RM_USER")
-public class User extends BaseEntity{
+public class User extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

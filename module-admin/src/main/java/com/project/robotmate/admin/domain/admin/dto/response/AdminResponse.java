@@ -1,6 +1,6 @@
 package com.project.robotmate.admin.domain.admin.dto.response;
 
-import com.project.robotmate.domain.entity.Admin;
+import com.project.robotmate.domain.entity.admin.Admin;
 import lombok.Getter;
 import lombok.Setter;
 

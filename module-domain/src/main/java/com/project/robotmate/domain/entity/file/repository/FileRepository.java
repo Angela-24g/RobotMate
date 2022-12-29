@@ -1,7 +1,7 @@
-package com.project.robotmate.domain.file.repository;
+package com.project.robotmate.domain.entity.file.repository;
 
 import com.project.robotmate.core.types.TargetType;
-import com.project.robotmate.domain.entity.File;
+import com.project.robotmate.domain.entity.file.File;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

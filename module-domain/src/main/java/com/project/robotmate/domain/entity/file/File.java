@@ -1,6 +1,7 @@
-package com.project.robotmate.domain.entity;
+package com.project.robotmate.domain.entity.file;
 
 import com.project.robotmate.core.types.TargetType;
+import com.project.robotmate.domain.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "RM_FILE")
 @ToString
-public class File extends BaseEntity{
+public class File extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

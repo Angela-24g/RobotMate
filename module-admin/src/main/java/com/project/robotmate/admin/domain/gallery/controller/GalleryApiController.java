@@ -5,14 +5,11 @@ import com.project.robotmate.admin.domain.gallery.dto.request.GalleryUpdateReque
 import com.project.robotmate.admin.domain.gallery.service.GalleryService;
 import com.project.robotmate.admin.global.dto.response.ApiResponse;
 import com.project.robotmate.admin.global.dto.response.DataResponse;
-import com.project.robotmate.domain.admin.AdminRepository;
-import com.project.robotmate.domain.entity.Admin;
+import com.project.robotmate.domain.entity.admin.Admin;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.EntityManager;
 
 @RestController
 @RequiredArgsConstructor

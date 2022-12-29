@@ -1,17 +1,12 @@
 package com.project.robotmate.admin.global.aop;
 
 import com.project.robotmate.admin.global.exception.AuthenticationException;
-import com.project.robotmate.domain.admin.AdminRepository;
-import com.project.robotmate.domain.entity.Admin;
+import com.project.robotmate.domain.entity.admin.repository.AdminRepository;
+import com.project.robotmate.domain.entity.admin.Admin;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.time.LocalDateTime;
 
 @Slf4j
 @Aspect

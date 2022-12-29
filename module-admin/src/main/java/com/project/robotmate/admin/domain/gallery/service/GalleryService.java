@@ -5,7 +5,7 @@ import com.project.robotmate.admin.domain.gallery.dto.request.GalleryUpdateReque
 import com.project.robotmate.admin.domain.gallery.dto.response.GalleryResponse;
 import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Searchable;
-import com.project.robotmate.domain.entity.Admin;
+import com.project.robotmate.domain.entity.admin.Admin;
 
 import java.util.List;
 

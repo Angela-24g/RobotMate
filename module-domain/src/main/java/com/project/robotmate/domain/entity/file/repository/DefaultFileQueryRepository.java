@@ -1,7 +1,7 @@
-package com.project.robotmate.domain.file.repository;
+package com.project.robotmate.domain.entity.file.repository;
 
 import com.project.robotmate.core.types.TargetType;
-import com.project.robotmate.domain.entity.File;
+import com.project.robotmate.domain.entity.file.File;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

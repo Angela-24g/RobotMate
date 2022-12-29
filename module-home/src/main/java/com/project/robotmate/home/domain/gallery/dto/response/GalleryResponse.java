@@ -1,7 +1,7 @@
 package com.project.robotmate.home.domain.gallery.dto.response;
 
 import com.project.robotmate.core.types.GalleryType;
-import com.project.robotmate.domain.entity.Gallery;
+import com.project.robotmate.domain.entity.gallery.Gallery;
 import com.project.robotmate.home.domain.admin.dto.response.AdminResponse;
 import com.project.robotmate.home.domain.file.dto.FileData;
 import lombok.Getter;

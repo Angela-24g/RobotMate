@@ -1,6 +1,6 @@
-package com.project.robotmate.domain.admin;
+package com.project.robotmate.domain.entity.admin.repository;
 
-import com.project.robotmate.domain.entity.Admin;
+import com.project.robotmate.domain.entity.admin.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

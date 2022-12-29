@@ -1,6 +1,6 @@
-package com.project.robotmate.domain.gallery.repository;
+package com.project.robotmate.domain.entity.gallery.repository;
 
-import com.project.robotmate.domain.entity.Gallery;
+import com.project.robotmate.domain.entity.gallery.Gallery;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

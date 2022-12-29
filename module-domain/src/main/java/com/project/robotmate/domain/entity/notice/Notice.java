@@ -1,5 +1,7 @@
-package com.project.robotmate.domain.entity;
+package com.project.robotmate.domain.entity.notice;
 
+import com.project.robotmate.domain.entity.admin.Admin;
+import com.project.robotmate.domain.entity.BaseEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "RM_NOTICE")
-public class Notice extends BaseEntity{
+public class Notice extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
