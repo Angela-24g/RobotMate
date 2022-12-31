@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static com.project.robotmate.domain.entity.QNotice.notice;
+import static com.project.robotmate.domain.entity.notice.QNotice.notice;
+
 
 @Repository
 @RequiredArgsConstructor

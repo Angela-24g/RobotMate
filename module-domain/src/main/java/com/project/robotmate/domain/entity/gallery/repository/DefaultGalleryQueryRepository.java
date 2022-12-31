@@ -13,7 +13,8 @@ import org.springframework.util.ObjectUtils;
 import java.util.List;
 import java.util.Optional;
 
-import static com.project.robotmate.domain.entity.QGallery.gallery;
+import static com.project.robotmate.domain.entity.gallery.QGallery.gallery;
+
 
 @Repository
 @RequiredArgsConstructor
