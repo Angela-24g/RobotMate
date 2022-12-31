@@ -8,31 +8,24 @@
 </head>
 <!-- Content -->
 <div layout:fragment="content">
-  <style>
-    .custom-card {
-      width : calc(100% / 3);
-      padding: 0 10px 10px 0;
-    }
-    .custom-card:nth-child(3n)
-  </style>
   <div class="my-2">
     <a th:href="@{/galleries/edit}" class="btn btn-primary">작성</a>
   </div>
   <div class="d-flex my-2">
-    <a th:href="|@{/galleries(page=1, type=${param.type})}|" class="badge me-1"
+    <a th:href="|@{/galleries(page=1, type=${param.type})}|" class="badge me-1 link-light text-decoration-none"
           th:classappend="${#strings.isEmpty(param.year) ? 'bg-primary' : 'bg-secondary'}">All</a>
     <a th:each="year : ${years}"
        th:href="|@{/galleries(page=1, year=${year}, type=${param.type})}|"
-            class="badge me-1" th:classappend="${#strings.equals(param.year, year) ? 'bg-primary' : ' bg-secondary'}" th:text="${year}"></a>
+            class="badge me-1 link-light text-decoration-none" th:classappend="${#strings.equals(param.year, year) ? 'bg-primary' : ' bg-secondary'}" th:text="${year}"></a>
   </div>
 
   <div class="d-flex my-2">
-    <a th:href="|@{/galleries(page=1, year=${param.year})}|" class="badge me-1"
+    <a th:href="|@{/galleries(page=1, year=${param.year})}|" class="badge me-1 link-light text-decoration-none"
        th:classappend="${#strings.isEmpty(param.type) ? 'bg-danger' : 'bg-secondary'}">All</a>
     <a th:href="|@{/galleries(page=1, year=${param.year}, type='NORMAL')}|"
-       class="badge me-1" th:classappend="${#strings.equals(param.type, 'NORMAL' ) ? 'bg-danger' : ' bg-secondary'}" th:text="'일반'"></a>
+       class="badge me-1 link-light text-decoration-none" th:classappend="${#strings.equals(param.type, 'NORMAL' ) ? 'bg-danger' : ' bg-secondary'}" th:text="'일반'"></a>
     <a th:href="|@{/galleries(page=1, year=${param.year}, type='AWARD')}|"
-       class="badge me-1" th:classappend="${#strings.equals(param.type, 'AWARD' ) ? 'bg-danger' : ' bg-secondary'}" th:text="'수상내역'"></a>
+       class="badge me-1 link-light text-decoration-none" th:classappend="${#strings.equals(param.type, 'AWARD' ) ? 'bg-danger' : ' bg-secondary'}" th:text="'수상내역'"></a>
   </div>
   <div class="table-responsive">
   <table class="table">
