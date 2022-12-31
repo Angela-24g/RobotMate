@@ -1,7 +1,7 @@
 package com.project.robotmate.admin.domain.notice.dto.response;
 
 import com.project.robotmate.admin.domain.admin.dto.response.AdminResponse;
-import com.project.robotmate.domain.entity.Notice;
+import com.project.robotmate.domain.entity.notice.Notice;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

@@ -2,8 +2,8 @@ package com.project.robotmate.admin.domain.common.home.service;
 
 import com.project.robotmate.admin.domain.common.home.dto.AdminDto;
 import com.project.robotmate.admin.domain.common.home.dto.LoginRequest;
-import com.project.robotmate.domain.admin.AdminRepository;
-import com.project.robotmate.domain.entity.Admin;
+import com.project.robotmate.domain.entity.admin.repository.AdminRepository;
+import com.project.robotmate.domain.entity.admin.Admin;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

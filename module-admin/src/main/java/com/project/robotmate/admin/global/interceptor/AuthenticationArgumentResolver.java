@@ -1,7 +1,7 @@
 package com.project.robotmate.admin.global.interceptor;
 
 import com.project.robotmate.admin.global.exception.AuthenticationException;
-import com.project.robotmate.domain.entity.Admin;
+import com.project.robotmate.domain.entity.admin.Admin;
 import org.springframework.core.MethodParameter;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.support.WebDataBinderFactory;

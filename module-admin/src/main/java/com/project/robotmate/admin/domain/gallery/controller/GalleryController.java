@@ -5,7 +5,6 @@ import com.project.robotmate.admin.domain.gallery.service.GalleryService;
 import com.project.robotmate.admin.global.util.DateUtil;
 import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Searchable;
-import com.project.robotmate.domain.entity.Admin;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

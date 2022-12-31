@@ -4,7 +4,7 @@ import cloud.aws.s3.model.S3File;
 import com.project.robotmate.admin.domain.common.file.dto.FileData;
 import com.project.robotmate.admin.domain.common.file.dto.TargetFileData;
 import com.project.robotmate.core.types.TargetType;
-import com.project.robotmate.domain.entity.File;
+import com.project.robotmate.domain.entity.file.File;
 
 
 import java.util.List;
