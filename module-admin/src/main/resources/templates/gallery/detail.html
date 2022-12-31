@@ -11,7 +11,7 @@
 
   <div class="container-fluid">
 
-    <div style="max-width: 650px" class="m-auto mt-3">
+    <div class="m-auto mt-3">
       <div class="d-flex justify-content-between">
         <div class="badge bg-info" th:text="|${gallery?.year}|"></div>
         <div class="me-1" th:text="${#temporals.format(gallery?.createDate, 'YYYY년 MM월 dd일')}"></div>
@@ -31,7 +31,7 @@
       <div class="mb-3">
         <label class="form-label">이미지</label>
         <div th:if="${gallery?.imageUri != null}" class="form-control mb-3">
-          <img th:src="${gallery.imageUri}" alt="image" class="w-100"/>
+          <img th:src="${gallery.imageUri}" alt="image" class="w-100" style="max-width: 600px"/>
         </div>
         <div th:unless="${gallery?.imageUri != null}" class="form-control mb-3">
           이미지가 없습니다.
