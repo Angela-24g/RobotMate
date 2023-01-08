@@ -23,6 +23,7 @@ public class DefaultFileService implements FileService {
     private final FileQueryRepository fileQueryRepository;
 
     @Override
+    @Transactional
     public File save(S3File s3File, TargetFileData target) {
         File file = s3FileToFileEntity(s3File, target);
         fileRepository.save(file);
