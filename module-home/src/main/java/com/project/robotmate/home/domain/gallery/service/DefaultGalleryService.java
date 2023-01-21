@@ -27,7 +27,7 @@ public class DefaultGalleryService implements GalleryService{
     @Override
     public Page<List<GalleryResponse>> getGalleries(int page) {
         Long totalCount = galleryQueryRepository.countAll();
-        Pageable pageable = getPageable(totalCount, page);
+        Pageable pageable = getPageable(totalCount.intValue(), page);
         List<Gallery> result = galleryQueryRepository.findAll(pageable);
         return new Page<>(pageable, getGalleryResponses(result));
     }
@@ -35,7 +35,7 @@ public class DefaultGalleryService implements GalleryService{
     @Override
     public Page<List<GalleryResponse>> getGalleries(Searchable searchable) {
         Long totalCount = galleryQueryRepository.countAllBySearchable(searchable);
-        Pageable pageable = getPageable(totalCount, searchable.getPage());
+        Pageable pageable = getPageable(totalCount.intValue(), searchable.getPage());
         List<Gallery> result = galleryQueryRepository.findAllBySearchable(pageable, searchable);
         return new Page<>(pageable, getGalleryResponses(result));
     }
@@ -60,10 +60,10 @@ public class DefaultGalleryService implements GalleryService{
     /**
      * Pageable 객체 가져오기
      * */
-    private Pageable getPageable(long totalCount, int page) {
-        return Pageable.builder()
-                .totalCount(totalCount)
-                .page(page)
-                .build();
+    /**
+     * Pageable 객체 가져오기
+     * */
+    private Pageable getPageable(int totalCount, int page) {
+        return new Pageable(totalCount, page);
     }
 }

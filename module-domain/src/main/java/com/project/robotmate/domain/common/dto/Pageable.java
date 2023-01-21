@@ -1,12 +1,11 @@
 package com.project.robotmate.domain.common.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @ToString
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Pageable {
 
     /** 1. 페이지 당 보여지는 게시글의 최대 개수 **/

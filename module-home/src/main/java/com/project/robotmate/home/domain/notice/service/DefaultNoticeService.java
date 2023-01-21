@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class DefaultNoticeService implements NoticeService{
+public class DefaultNoticeService implements NoticeService {
 
     private final NoticeQueryRepository noticeQueryRepository;
 
     @Override
     public Page<List<NoticeResponse>> getNotices(int page) {
         Long totalCount = noticeQueryRepository.countAll();
-        Pageable pageable = getPageable(page, totalCount);
+        Pageable pageable = getPageable(totalCount.intValue(), page);
         List<NoticeResponse> result = noticeQueryRepository.findAll(pageable)
                 .stream().map(NoticeResponse::new)
                 .collect(Collectors.toList());
@@ -29,10 +29,10 @@ public class DefaultNoticeService implements NoticeService{
         return new Page<>(pageable, result);
     }
 
-    private Pageable getPageable(int page, Long totalCount) {
-        return Pageable.builder()
-                .page(page)
-                .totalCount(totalCount)
-                .build();
+    /**
+     * Pageable 객체 가져오기
+     */
+    private Pageable getPageable(int totalCount, int page) {
+        return new Pageable(totalCount, page);
     }
 }
