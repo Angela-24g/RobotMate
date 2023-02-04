@@ -96,7 +96,7 @@
             <div class="container">
                 <!--Logo-->
                 <div id="logo">
-                    <a href="index.jsp">
+                    <a href="/">
                         코딩 & 로봇 메이트
                     </a>
                 </div>
@@ -121,7 +121,7 @@
                                 </li>
                                 <!-- <li class="dropdown"><a href="#">교육과정</a>
                                 </li> -->
-                                <li class=""><a href="gallery.jsp">갤러리</a>
+                                <li class=""><a href="galleryPage">갤러리</a>
                                 </li>
                                 <li class="dropdown"><a href="#" style="color:red;">031-385-4236</a>
 
