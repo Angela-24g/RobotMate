@@ -20,6 +20,7 @@ public class FileData {
     private int displayOrder;
 
     public FileData(File file) {
+
         this.id = file.getId();
         this.type = file.getType();
         this.bucket = file.getBucket();

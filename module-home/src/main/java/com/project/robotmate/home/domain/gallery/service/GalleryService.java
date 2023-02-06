@@ -19,4 +19,6 @@ public interface GalleryService {
      * @param searchable 조건 객체
      * */
     Page<List<GalleryResponse>> getGalleries(Searchable searchable);
+
+    List<GalleryResponse> getTop6Awards();
 }

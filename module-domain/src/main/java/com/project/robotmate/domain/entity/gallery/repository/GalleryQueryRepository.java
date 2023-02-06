@@ -18,4 +18,6 @@ public interface GalleryQueryRepository {
     List<Gallery> findAllBySearchable(Pageable pageable, Searchable searchable);
 
     Long countAllBySearchable(Searchable searchable);
+
+    List<Gallery> findTop6ByAward();
 }

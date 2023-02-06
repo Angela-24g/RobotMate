@@ -4,6 +4,8 @@ import com.project.robotmate.core.types.TargetType;
 import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Pageable;
 import com.project.robotmate.domain.common.dto.Searchable;
+import com.project.robotmate.domain.entity.file.File;
+import com.project.robotmate.domain.entity.file.repository.FileQueryRepository;
 import com.project.robotmate.domain.entity.gallery.Gallery;
 import com.project.robotmate.domain.entity.gallery.repository.GalleryQueryRepository;
 import com.project.robotmate.home.domain.file.dto.FileData;
@@ -24,6 +26,8 @@ public class DefaultGalleryService implements GalleryService{
     private final GalleryQueryRepository galleryQueryRepository;
     private final FileService fileService;
 
+    private final FileQueryRepository fileQueryRepository;
+
     @Override
     public Page<List<GalleryResponse>> getGalleries(int page) {
         Long totalCount = galleryQueryRepository.countAll();
@@ -38,6 +42,25 @@ public class DefaultGalleryService implements GalleryService{
         Pageable pageable = getPageable(totalCount.intValue(), searchable.getPage());
         List<Gallery> result = galleryQueryRepository.findAllBySearchable(pageable, searchable);
         return new Page<>(pageable, getGalleryResponses(result));
+    }
+
+    @Override
+    public List<GalleryResponse> getTop6Awards() {
+        List<Gallery> galleries = galleryQueryRepository.findTop6ByAward();
+
+        List<Long> ids = galleries.stream()
+                .map(Gallery::getId)
+                .collect(Collectors.toList());
+
+        List<File> files = fileQueryRepository.findInTargetIdAndType(ids, TargetType.GALLERY);
+
+
+        return galleries.stream()
+                .map(r -> {
+                    File file = files.stream()
+                            .filter(f -> f.getTargetId().equals(r.getId())).findFirst().orElse(null);
+                    return new GalleryResponse(r, file != null ? new FileData(file) : null);
+                }).collect(Collectors.toList());
     }
 
     /**

@@ -1,7 +1,9 @@
 <!-- 포워딩용 메인 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -196,98 +198,22 @@
             <!-- Portfolio Items -->
             <div id="portfolio" class="grid-layout portfolio-6-columns" data-margin="0">
                 <!-- portfolio item -->
-                <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
-                    <div class="portfolio-item-wrap">
-                        <div class="portfolio-image">
-                            <a href="#"><img src="/assets/images/award/2020/2101_2.jpg" alt=""></a>
-                        </div>
-                        <div class="portfolio-description">
-                            <a href="portfolio-page-grid-gallery.html">
-                                <h3>국제로봇올림피아드</h3>
-                                <h3>금 상</h3>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- end: portfolio item -->
-                <!-- portfolio item -->
-                <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
-                    <div class="portfolio-item-wrap">
-                        <div class="portfolio-image">
-                            <a href="#"><img src="/assets/images/award/2020/200210_1.jpg" alt=""></a>
-                        </div>
-                        <div class="portfolio-description">
-                            <a href="portfolio-page-grid-gallery.html">
-                                <h3>산업통상자원부장관</h3>
-                                <h3>장관상</h3>
-                            </a>
+                <c:forEach var="item" items="${galleries}" begin="0" end="${galleries.size()}" step="1" varStatus="status">
+                    <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
+                        <div class="portfolio-item-wrap">
+                            <div class="portfolio-image">
+                                <a href="#"><img src="${item.imageUri}" alt="${item.file.name}"></a>
+                            </div>
+                            <div class="portfolio-description">
+                                <a href="portfolio-page-grid-gallery.html">
+                                    <h3>${item.title}</h3>
+                                    <h3>${item.contents}</h3>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </c:forEach>
                 <!-- end: portfolio item -->
-                <!-- portfolio item -->
-                <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
-                    <div class="portfolio-item-wrap">
-                        <div class="portfolio-image">
-                            <a href="#"><img src="/assets/images/award/2019/2019-10-12woo.jpg" alt=""></a>
-                        </div>
-                        <div class="portfolio-description">
-                            <a href="portfolio-page-grid-gallery.html">
-                                <h3>국가기술표준원장</h3>
-                                <h3>금 상</h3>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- end: portfolio item -->
-                <!-- portfolio item -->
-                <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
-                    <div class="portfolio-item-wrap">
-                        <div class="portfolio-image">
-                            <a href="#"><img src="/assets/images/award/2019/2019-08-24sub.jpg" alt=""></a>
-                        </div>
-                        <div class="portfolio-description">
-                            <a href="portfolio-page-grid-gallery.html">
-                                <h3>해군참모총장</h3>
-                                <h3>대 상</h3>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- end: portfolio item -->
-                <!-- portfolio item -->
-                <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
-                    <div class="portfolio-item-wrap">
-                        <div class="portfolio-image">
-                            <a href="#"><img
-                                    src="/assets/images/award/2019/20191220 태국 태그아웃 기술상 - 이형동.png"
-                                    alt=""></a>
-                        </div>
-                        <div class="portfolio-description">
-                            <a href="portfolio-page-grid-gallery.html">
-                                <h3>세계대회 태국<br>태그아웃</h3>
-                                <h3>기술상</h3>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- end: portfolio item -->
-                <!-- portfolio item -->
-                <div class="portfolio-item img-zoom ct-photography ct-media ct-branding ct-Media">
-                    <div class="portfolio-item-wrap">
-                        <div class="portfolio-image">
-                            <a href="#"><img src="/assets/images/award/2018/2018-07-30yeon.png" alt=""></a>
-                        </div>
-                        <div class="portfolio-description">
-                            <a href="portfolio-page-grid-gallery.html">
-                                <h3>경기도교육감</h3>
-                                <h3>대 상</h3>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- end: portfolio item -->
-
             </div>
             <!-- end: Portfolio Items -->
         </div>

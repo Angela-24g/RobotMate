@@ -1,5 +1,6 @@
 package com.project.robotmate.home.domain.gallery.dto.response;
 
+import cloud.aws.s3.util.S3UrlUtil;
 import com.project.robotmate.core.types.GalleryType;
 import com.project.robotmate.domain.entity.gallery.Gallery;
 import com.project.robotmate.home.domain.admin.dto.response.AdminResponse;
@@ -20,7 +21,7 @@ public class GalleryResponse {
     private GalleryType type;
 
     private String year;
-
+    private String imageUri;
     private LocalDateTime createDate;
     private FileData file;
     private AdminResponse admin;
@@ -31,6 +32,7 @@ public class GalleryResponse {
         this.contents = gallery.getContents();
         this.delYn = gallery.getDelYn();
         this.type = gallery.getType();
+        this.imageUri = S3UrlUtil.conventUrl(file.getBucket());
         this.admin = new AdminResponse(gallery.getAdmin());
         this.file = file;
         this.year = gallery.getYear();

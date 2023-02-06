@@ -3,6 +3,7 @@ package com.project.robotmate.domain.entity.gallery.repository;
 import com.project.robotmate.core.types.GalleryType;
 import com.project.robotmate.domain.common.dto.Pageable;
 import com.project.robotmate.domain.common.dto.Searchable;
+import com.project.robotmate.domain.entity.file.QFile;
 import com.project.robotmate.domain.entity.gallery.Gallery;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -13,6 +14,7 @@ import org.springframework.util.ObjectUtils;
 import java.util.List;
 import java.util.Optional;
 
+import static com.project.robotmate.domain.entity.file.QFile.*;
 import static com.project.robotmate.domain.entity.gallery.QGallery.gallery;
 
 
@@ -65,6 +67,16 @@ public class DefaultGalleryQueryRepository implements GalleryQueryRepository {
                 .where(typeEq(searchable.getType()), yearEq(searchable.getYear()), notDelete())
                 .from(gallery)
                 .fetchOne();
+    }
+
+    @Override
+    public List<Gallery> findTop6ByAward() {
+        return queryFactory.select(gallery)
+                .from(gallery)
+                .where(typeEq("AWARD"), notDelete())
+                .offset(0)
+                .limit(6)
+                .fetch();
     }
 
     private BooleanExpression typeEq(String type) {
