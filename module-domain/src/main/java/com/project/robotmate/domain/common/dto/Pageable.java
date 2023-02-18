@@ -9,7 +9,7 @@ import lombok.*;
 public class Pageable {
 
     /** 1. 페이지 당 보여지는 게시글의 최대 개수 **/
-    private int pageSize = 10;
+    private int pageSize = 20;
 
     /** 2. 페이징된 버튼의 블럭당 최대 개수 **/
     private int blockSize = 10;
@@ -45,12 +45,17 @@ public class Pageable {
     private int nextBlock;
 
     public Pageable(int total, int page) {
+        this(total, page, 10);
+    }
+
+    public Pageable(int total, int page, int pageSize) {
 
         // 총 게시물 수와 현재 페이지를 Controller로 부터 받아온다.
 
         // 총 게시물 수	- totalListCnt
         // 현재 페이지	- page
 
+        setPageSize(pageSize);
 
         /** 3. 현재 페이지 **/
         setPage(page <= 0 ? 1 : page);

@@ -4,26 +4,22 @@ import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Searchable;
 import com.project.robotmate.home.domain.gallery.dto.response.GalleryResponse;
 import com.project.robotmate.home.domain.gallery.service.GalleryService;
-import com.project.robotmate.home.global.utils.DateUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.List;
 
 
-@Controller
+@RestController
 @RequiredArgsConstructor
-public class GalleryController {
+public class GalleryApiController {
 
     private final GalleryService galleryService;
 
-    @GetMapping("/gallery")
-    public String viewGalleries(
-            Model model,
+    @GetMapping("/api/galleries")
+    public ResponseEntity<HashMap<String, Object>> viewGalleries(
             @RequestParam(value = "page",defaultValue = "1") int page,
             @RequestParam(value = "year", required = false) String year
     ) {
@@ -32,13 +28,8 @@ public class GalleryController {
                 .year(year).build();
         Page<List<GalleryResponse>> galleries = galleryService.getGalleries(searchable);
 
-        model.addAttribute("years", DateUtil.getYears());
-        model.addAttribute("galleries", galleries.getContents());
-
-        return "gallery";
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("galleries", galleries.getContents());
+        return ResponseEntity.ok(result);
     }
-
-    // 갤러리 페이지 열기
-    @RequestMapping(value="/galleryPage", method = RequestMethod.GET)
-    public String gallery() {return "gallery"; }
 }

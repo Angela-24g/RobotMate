@@ -26,6 +26,8 @@
        class="badge me-1 link-light text-decoration-none" th:classappend="${#strings.equals(param.type, 'NORMAL' ) ? 'bg-danger' : ' bg-secondary'}" th:text="'일반'"></a>
     <a th:href="|@{/galleries(page=1, year=${param.year}, type='AWARD')}|"
        class="badge me-1 link-light text-decoration-none" th:classappend="${#strings.equals(param.type, 'AWARD' ) ? 'bg-danger' : ' bg-secondary'}" th:text="'수상내역'"></a>
+    <a th:href="|@{/galleries(page=1, year=${param.year}, type='MAIN')}|"
+       class="badge me-1 link-light text-decoration-none" th:classappend="${#strings.equals(param.type, 'MAIN' ) ? 'bg-danger' : ' bg-secondary'}" th:text="'메인이미지'"></a>
   </div>
   <div class="table-responsive">
   <table class="table">
@@ -48,7 +50,15 @@
       <tr th:if="${galleries.size() > 0}" th:each="gallery : ${galleries}" th:object="${gallery}">
         <td th:text="${galleryStat.count}" style="vertical-align: middle" class="text-center"></td>
         <td class="p-0">
-          <img th:src="${gallery?.imageUri}" alt="thumbnail" class="w-100" style="max-width: 150px"/>
+          <div th:if="${gallery.fileType.startsWith('video')}">
+            <video>
+              <source th:src="${gallery?.imageUri}" th:type="${gallery?.fileType}">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div th:unless="${gallery.fileType.startsWith('video')}">
+            <img th:src="${gallery?.imageUri}" alt="image" class="w-100" style="max-width: 600px"/>
+          </div>
         </td>
         <td class="text-truncate fw-bold">
           <a th:href="|@{/galleries/}${gallery?.id}|" th:text="${gallery?.title}"></a>

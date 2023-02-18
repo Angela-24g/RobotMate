@@ -95,32 +95,52 @@
     <!-- end: Header -->
     <!-- Inspiro Slider -->
     <div id="slider" class="inspiro-slider slider-fullscreen dots-creative">
-        <!-- Slide 1 -->
-        <div class="slide kenburns" data-bg-image="https://robot-dev.s3.ap-northeast-2.amazonaws.com/IMG_0725.JPG" style="background-size: cover;">
-            <div class="bg-overlay"></div>
-            <div class="container">
-                <div class="slide-captions text-center text-light">
-                    <!-- Captions -->
-                    <h1>최우수 인증 교육 기관</h1>
+        <c:forEach var="item" items="${mainGalleries}" begin="0" end="${mainGalleries.size()}" step="1" varStatus="status">
+            <!-- Slide 1 -->
+            <c:choose>
+                <c:when test="${item.file.fileFormat.startsWith('video')}">
+                    <div class="slide kenburns" data-bg-video="${item.imageUri}"
+                         style="background-size: cover;">
+                        <div class="bg-overlay"></div>
+                        <div class="container">
+                            <div class="slide-captions text-center text-light">
+                                <h1>${item.title}</h1>
+                                <p>${item.contents}</p>
+                            </div>
+                        </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="slide kenburns" data-bg-image="${item.imageUri}"
+                         style="background-size: cover;">
+                        <div class="bg-overlay"></div>
+                        <div class="container">
+                            <div class="slide-captions text-center text-light">
 
-                    <!-- end: Captions -->
-                </div>
-            </div>
-        </div>
-        <!-- end: Slide 1 -->
+                                <h1>${item.title}</h1>
+                                <p>${item.contents}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+
+            <!-- end: Slide 1 -->
+        </c:forEach>
         <!-- Slide 2 -->
-        <div class="slide" data-bg-video="/assets/images/video/sedtion06.mp4">
-            <div class="bg-overlay"></div>
-            <div class="container">
-                <div class="slide-captions text-left text-light">
-                    <!-- Captions -->
-                    <h1>카이스트 대학 주최 AI soccer</h1>
-                    <p class="text-small">파이썬을 적용하여 만든 프로그램 대회입니다.</p>
+<%--        <div class="slide" data-bg-video="/assets/images/video/sedtion06.mp4">--%>
+<%--            <div class="bg-overlay"></div>--%>
+<%--            <div class="container">--%>
+<%--                <div class="slide-captions text-left text-light">--%>
+<%--                    <!-- Captions -->--%>
+<%--                    <h1>카이스트 대학 주최 AI soccer</h1>--%>
+<%--                    <p class="text-small">파이썬을 적용하여 만든 프로그램 대회입니다.</p>--%>
 
-                    <!-- end: Captions -->
-                </div>
-            </div>
-        </div>
+<%--                    <!-- end: Captions -->--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
         <!-- end: Slide 2 -->
 
     </div>

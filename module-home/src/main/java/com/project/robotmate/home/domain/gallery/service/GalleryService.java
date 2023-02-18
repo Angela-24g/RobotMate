@@ -1,6 +1,7 @@
 package com.project.robotmate.home.domain.gallery.service;
 import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Searchable;
+import com.project.robotmate.domain.entity.gallery.Gallery;
 import com.project.robotmate.home.domain.gallery.dto.response.GalleryResponse;
 
 import java.util.List;
@@ -21,4 +22,6 @@ public interface GalleryService {
     Page<List<GalleryResponse>> getGalleries(Searchable searchable);
 
     List<GalleryResponse> getTop6Awards();
+
+    List<GalleryResponse> getMainGalleries();
 }

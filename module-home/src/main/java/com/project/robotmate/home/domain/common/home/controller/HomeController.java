@@ -18,8 +18,10 @@ public class HomeController {
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String home(Model model) {
         List<GalleryResponse> galleries = galleryService.getTop6Awards();
+        List<GalleryResponse> mainGalleries = galleryService.getMainGalleries();
 
         model.addAttribute("galleries", galleries);
+        model.addAttribute("mainGalleries", mainGalleries);
         return "index";
     }
 

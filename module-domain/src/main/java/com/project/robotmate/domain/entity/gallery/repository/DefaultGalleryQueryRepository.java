@@ -74,8 +74,18 @@ public class DefaultGalleryQueryRepository implements GalleryQueryRepository {
         return queryFactory.select(gallery)
                 .from(gallery)
                 .where(typeEq("AWARD"), notDelete())
+                .orderBy(gallery.year.desc())
                 .offset(0)
                 .limit(6)
+                .fetch();
+    }
+
+    @Override
+    public List<Gallery> findAllByMainType() {
+        return queryFactory.select(gallery)
+                .from(gallery)
+                .where(typeEq("MAIN"), notDelete())
+                .orderBy(gallery.createdDate.asc())
                 .fetch();
     }
 

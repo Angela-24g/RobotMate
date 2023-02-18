@@ -28,4 +28,5 @@ dependencies {
     implementation project(':module-core')
     implementation project(':module-domain')
     implementation project(':module-s3upload')
+
 }

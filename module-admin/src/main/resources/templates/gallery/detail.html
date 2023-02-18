@@ -31,7 +31,15 @@
       <div class="mb-3">
         <label class="form-label">이미지</label>
         <div th:if="${gallery?.imageUri != null}" class="form-control mb-3">
-          <img th:src="${gallery.imageUri}" alt="image" class="w-100" style="max-width: 600px"/>
+          <div th:if="${gallery.fileType.startsWith('video')}">
+            <video controls>
+              <source th:src="${gallery?.imageUri}" th:type="${gallery?.fileType}">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div th:unless="${gallery.fileType.startsWith('video')}">
+            <img th:src="${gallery?.imageUri}" alt="image" class="w-100" style="max-width: 600px"/>
+          </div>
         </div>
         <div th:unless="${gallery?.imageUri != null}" class="form-control mb-3">
           이미지가 없습니다.

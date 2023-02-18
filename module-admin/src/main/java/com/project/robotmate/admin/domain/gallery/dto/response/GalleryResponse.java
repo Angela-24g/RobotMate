@@ -21,6 +21,7 @@ public class GalleryResponse {
     private LocalDateTime createDate;
     private String imageUri;
     private Long imageId;
+    private String fileType;
 
     public GalleryResponse(Gallery gallery, FileData file) {
         this.id = gallery.getId();
@@ -31,6 +32,7 @@ public class GalleryResponse {
         this.year = gallery.getYear();
         this.createDate = gallery.getCreatedDate();
         this.imageId = file.getId();
+        this.fileType = file.getFileFormat();
     }
 
 }

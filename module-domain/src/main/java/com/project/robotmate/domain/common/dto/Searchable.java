@@ -11,7 +11,6 @@ public class Searchable {
 
     private int page;
     private String type;
-
     private String year;
 
     @Builder
