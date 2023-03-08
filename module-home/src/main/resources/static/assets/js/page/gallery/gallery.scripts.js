@@ -1,9 +1,10 @@
 $(function () {
-    const pageContent = document.getElementById("page-content")
-    const portfolioEl = document.getElementById("portfolio")
-    let activeApi = false;
+    const observerEl = document.getElementById("observer");
+    const portfolioEl = document.getElementById("portfolio");
+
+    let activeApi = true;
     const layouts = `
-    <div class="portfolio-item img-zoom">
+    <div class="portfolio-item img-zoom good">
         <div class="portfolio-item-wrap">
             <div class="portfolio-image">
                 <a href="#">
@@ -20,39 +21,53 @@ $(function () {
     </div>
     `
 
-
     const options = {
         rootMargin: "0px",
-        threshold: 1.0,
+        threshold: 0.8,
     };
 
-    const observer = new IntersectionObserver((entries) => {
-        // 관찰 중인 배열 형식의 객체 리스트
-        entries.forEach((entry) => {
+    const observer = new IntersectionObserver((entries, io) => {
+        entries.forEach( (entry) => {
             if (entry.isIntersecting) {
-                console.log(entry.isIntersecting)
-                getNextGalleries();
+                 getNextGalleries();
             }
         });
     }, options);
 
-    observer.observe(portfolioEl);
+    observer.observe(observerEl);
 
     function getNextGalleries() {
-        if (!activeApi) {
-            activeApi = true;
-            return;
-        }
-        ++page;
+        if (!activeApi) return;
         $.ajax({
             url: `/api/galleries?page=${page}${yearType ? '&year='.concat(yearType) : ''}`,
             type: "GET",
-            success : (data) => {
-                console.log(data);
+            success : (res) => {
+                page++;
+                if (res.galleries.length <= 0) {
+                    activeApi = false;
+                    return;
+                }
+
+                for (const d of res?.galleries || []) {
+                    getDataLayouts(d);
+                }
+
+
             },
             error : (error) => {
                 console.log(error);
             }
         })
     }
+
+    function getDataLayouts(data) {
+        let lo = layouts;
+        lo = lo.replaceAll("%%image%%", `<img src='${data.imageUri}' alt='image'/>`)
+            .replaceAll("%%title%%", data.title)
+            .replaceAll("%%contents%%", data.contents);
+
+        const loEl = document.createRange().createContextualFragment(lo);
+        portfolioEl.appendChild(loEl)
+    }
+
 })

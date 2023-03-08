@@ -142,38 +142,11 @@
             </nav>
             <!-- end: Portfolio Filter -->
             <!-- Portfolio -->
-            <div id="portfolio" class="portfolio-3-columns" data-margin="0">
-                <!-- portfolio item -->
-                <c:forEach var="gallery" items="${galleries}" begin="0" end="${galleries.size()}" step="1" varStatus="status">
-                    <div class="portfolio-item img-zoom">
-                        <div class="portfolio-item-wrap">
-                            <div class="portfolio-image">
-                                <a href="#">
-                                    <c:if test="${gallery.file.fileFormat.startsWith('video')}">
-                                        <video>
-                                            <source src="${gallery.imageUri}"/>
-                                        </video>
-                                    </c:if>
-                                    <c:if test="${!gallery.file.fileFormat.startsWith('video')}">
-                                        <img src="${gallery.imageUri}" alt=""/>
-                                    </c:if>
-                                </a>
-                            </div>
-                            <div class="portfolio-description">
-                                <a href="portfolio-page-grid-gallery.html">
-                                    <h3>${gallery.title}</h3>
-                                    <span>${gallery.contents}</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-                <!-- end: portfolio item -->
-
-            </div>
+            <div id="portfolio" class="portfolio-3-columns" data-margin="0"></div>
             <!-- end: Portfolio -->
         </div>
     </section> <!-- end: Content -->
+    <div id="observer"></div>
     <!-- Footer -->
     <footer id="footer">
         <div class="footer-content">
@@ -197,45 +170,8 @@
     <!-- end: Footer -->
 </div>
 <!-- end: Body Inner -->
-<!-- Scroll top -->
 <a id="scrollTop"><i class="icon-chevron-up"></i><i class="icon-chevron-up"></i></a>
-<!--Plugins-->
-
-<!--Google Maps files-->
-<script type='text/javascript'
-        src='//maps.googleapis.com/maps/api/js?key=AIzaSyAZIus-_huNW25Jl7RPmHgoGZjD5udgBMI'></script>
-<script type="text/javascript" src="/assets/plugins/gmap3/gmap3.min.js"></script>
-<script type="text/javascript" src="/assets/plugins/gmap3/map-styles.js"></script>
 <script type="text/javascript" src="/assets/js/page/gallery/gallery.scripts.js"></script>
-<script type="text/javascript">
-    $('#google-map-multiple').gmap3({
-        center: [48.8620722, 2.352047],
-        zoom: 3
-    })
-        .marker([{
-            position: [40.712776, -74.005974],
-            icon: ' '
-        },
-            {
-                position: [55.378052, -3.435973],
-                icon: ' '
-            },
-            {
-                position: [51.165691, 10.451526],
-                icon: ' '
-            }
-        ]).overlay({
-        position: [40.712776, -74.005974],
-        content: '<div class="animated-dot"></div>',
-    }).overlay({
-        position: [55.378052, -3.435973],
-        content: '<div class="animated-dot"></div>',
-    }).overlay({
-        position: [51.165691, 10.451526],
-        content: '<div class="animated-dot"></div>',
-    });
-</script>
-<!--google Maps end-->
 </body>
 
 </html>
