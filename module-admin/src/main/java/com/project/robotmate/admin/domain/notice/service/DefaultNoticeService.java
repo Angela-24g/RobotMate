@@ -1,7 +1,10 @@
 package com.project.robotmate.admin.domain.notice.service;
 
+import com.project.robotmate.admin.domain.common.file.dto.FileData;
+import com.project.robotmate.admin.domain.common.file.service.FileService;
 import com.project.robotmate.admin.domain.notice.dto.request.NoticeRequest;
 import com.project.robotmate.admin.domain.notice.dto.response.NoticeResponse;
+import com.project.robotmate.core.types.TargetType;
 import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Pageable;
 import com.project.robotmate.domain.entity.notice.repository.NoticeQueryRepository;
@@ -22,6 +25,7 @@ public class DefaultNoticeService implements NoticeService{
 
     private final NoticeRepository noticeRepository;
     private final NoticeQueryRepository noticeQueryRepository;
+    private final FileService fileService;
 
     @Override
     @Transactional
@@ -49,4 +53,20 @@ public class DefaultNoticeService implements NoticeService{
     private Pageable getPageable(int page, int totalCount) {
         return new Pageable(totalCount, page);
     }
+
+    @Override
+    public NoticeResponse getNotice(Long id) {
+        Notice notice = noticeQueryRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("찾을 수 없는 갤러리입니다"));
+
+      //  FileData file = fileService.getFile(notice.getId(), TargetType.NOTICE);
+
+        return new NoticeResponse(notice);
+    }
+
+
+
+
+
+
 }

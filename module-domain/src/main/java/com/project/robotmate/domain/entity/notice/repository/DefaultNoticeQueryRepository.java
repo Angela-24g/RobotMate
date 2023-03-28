@@ -1,6 +1,7 @@
 package com.project.robotmate.domain.entity.notice.repository;
 
 import com.project.robotmate.domain.common.dto.Pageable;
+import com.project.robotmate.domain.entity.gallery.Gallery;
 import com.project.robotmate.domain.entity.notice.Notice;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -8,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
+import static com.project.robotmate.domain.entity.gallery.QGallery.gallery;
 import static com.project.robotmate.domain.entity.notice.QNotice.notice;
 
 
@@ -38,4 +41,16 @@ public class DefaultNoticeQueryRepository implements NoticeQueryRepository{
     private BooleanExpression notDelete() {
         return notice.delYn.eq("N");
     }
+
+    @Override
+    public Optional<Notice> findById(Long id) {
+        return Optional.ofNullable(
+                queryFactory
+                        .selectFrom(notice)
+                        .where(notDelete(), notice.id.eq(id))
+                        .fetchOne()
+        );
+    }
+
+
 }

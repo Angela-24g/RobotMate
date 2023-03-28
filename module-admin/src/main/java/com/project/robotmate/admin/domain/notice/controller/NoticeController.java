@@ -1,5 +1,6 @@
 package com.project.robotmate.admin.domain.notice.controller;
 
+import com.project.robotmate.admin.domain.gallery.dto.response.GalleryResponse;
 import com.project.robotmate.admin.domain.notice.dto.response.NoticeResponse;
 import com.project.robotmate.admin.domain.notice.service.NoticeService;
 import com.project.robotmate.domain.common.dto.Page;
@@ -7,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -30,4 +32,26 @@ public class NoticeController {
 
         return "notice/list";
     }
+
+    @GetMapping(value = "/notice/edit")
+    public String viewNoticeEdit() {
+        return "notice/edit";
+    }
+
+    @GetMapping(value = "/notice/edit/{id}")
+    public String viewNoticeEdit(
+            @PathVariable("id") Long id,
+            Model model
+    ) {
+        NoticeResponse notice = noticeService.getNotice(id);
+        model.addAttribute("notice", notice);
+        return "notice/edit";
+    }
+
+
+
+
+
+
+
 }

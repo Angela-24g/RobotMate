@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+<head>
+  <title>갤러리 수정</title>
+</head>
+<!-- Content -->
+<div layout:fragment="content">
+  <div  class="m-auto mt-3">
+    <form id="gallery-edit-form" >
+      <input type="hidden" name="noticeId" th:value="${notice?.id}">
+      <div class="mb-3">
+        <label for="title" class="form-label">제목</label>
+        <input th:value="${notice?.title}"
+                type="text" class="form-control" id="title"  placeholder="제목을 입력해주세요" name="title">
+      </div>
+      <div class="mb-3">
+        <label for="contents" class="form-label">내용</label>
+        <textarea class="form-control" id="contents" name="contents" placeholder="내용을 입력해주세요" th:text="${notice?.contents}"></textarea>
+      </div>
+      <div class="mb-3">
+        <input type="file" accept="image/*,video/*" id="file" name="file" class="d-none" size="5242880">
+        <label for="file">이미지 및 비디오추가</label>
+      </div>
+      <div th:if="${notice != null}">
+        <input type="hidden" name="fileId" th:value="${notice?.imageId}">
+        <div th:if="${notice.fileType.startsWith('video')}">
+          <video controls>
+            <source th:src="${notice?.imageUri}" th:type="${notice?.fileType}">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div th:unless="${notice.fileType.startsWith('video')}">
+          <img th:src="${notice?.imageUri}" alt="image" class="w-100" style="max-width: 600px"/>
+        </div>
+
+      </div>
+      <div>
+        <a href="javascript:void(0)" class="btn btn-primary" id="gallery-button" th:text="${notice == null ? '작성' : '수정'}"></a>
+      </div>
+    </form>
+  </div>
+  <th:block layout:fragment="script">
+    <script th:src="@{/js/gallery/gallery.edit.js}"></script>
+  </th:block>
+</div>
+</html>
