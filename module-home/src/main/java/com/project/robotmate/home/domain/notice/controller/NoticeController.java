@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequiredArgsConstructor
 public class NoticeController {
 
-    // 갤러리 페이지 열기
+    // 공지사항 페이지 열기
     @RequestMapping(value="/noticePage", method = RequestMethod.GET)
     public String notice() {return "notice"; }
 }
