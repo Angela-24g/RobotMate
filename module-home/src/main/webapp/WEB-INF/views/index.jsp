@@ -72,13 +72,13 @@
                             <ul>
                                 <li sytle=""><a href="" style="color:red; font-weight:bold;">국제 올림피아드 인증 교육기관</a>
                                 </li>
-                                <li><a href="index.jsp">Home</a></li>
+                                <li><a href="/">Home</a></li>
                                 <li><a href="https://cafe.naver.com/breshit0" target="_blank">공식 카페</a>
 
                                 </li>
                                 <!-- <li class="dropdown"><a href="#">교육과정</a>
                                 </li> -->
-                                <li class=""><a href="galleryPage">갤러리</a>
+                                <li class=""><a href="/gallery">갤러리</a>
                                 </li>
                                 <li class="dropdown"><a href="#" style="color:red;">031-385-4236</a>
 
@@ -125,24 +125,7 @@
                     </div>
                 </c:otherwise>
             </c:choose>
-
-            <!-- end: Slide 1 -->
         </c:forEach>
-        <!-- Slide 2 -->
-<%--        <div class="slide" data-bg-video="/assets/images/video/sedtion06.mp4">--%>
-<%--            <div class="bg-overlay"></div>--%>
-<%--            <div class="container">--%>
-<%--                <div class="slide-captions text-left text-light">--%>
-<%--                    <!-- Captions -->--%>
-<%--                    <h1>카이스트 대학 주최 AI soccer</h1>--%>
-<%--                    <p class="text-small">파이썬을 적용하여 만든 프로그램 대회입니다.</p>--%>
-
-<%--                    <!-- end: Captions -->--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-        <!-- end: Slide 2 -->
-
     </div>
     <!--end: Inspiro Slider -->
     <!-- WELCOME -->
@@ -152,11 +135,6 @@
                 <h2>자기주도 학습의 완성</h2>
                 <span class="lead">스스로 학습하여 문제를 해결하는 능력을 길러줍니다.</span>
             </div>
-            <!-- <div class="row" data-animate="fadeInUp"> -->
-            <!-- <div class="col-lg-12"> -->
-            <!-- <img class="img-fluid" src="images/section01/image01.jpg" alt="Welcome to robot"> -->
-            <!-- </div> -->
-            <!-- </div> -->
         </div>
     </section>
     <!-- end: WELCOME -->
@@ -493,9 +471,11 @@
                     </div>
                 </div>
             </div>
+        </div>
     </footer>
     <!-- end: Footer -->
 </div>
+
 <!-- end: Body Inner -->
 <!-- Channel Plugin Scripts 채널톡 스크립트  -->
 <script>

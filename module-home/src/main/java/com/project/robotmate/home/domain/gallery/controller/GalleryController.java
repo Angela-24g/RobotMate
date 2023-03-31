@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 
@@ -27,15 +30,20 @@ public class GalleryController {
             @RequestParam(value = "page",defaultValue = "1") int page,
             @RequestParam(value = "year", required = false) String year
     ) {
-        Searchable searchable = Searchable.builder()
-                .page(page)
-                .year(year).build();
-        Page<List<GalleryResponse>> galleries = galleryService.getGalleries(searchable);
 
-        model.addAttribute("years", DateUtil.getYears());
-        model.addAttribute("galleries", galleries.getContents());
+            Searchable searchable = Searchable.builder()
+                    .page(page)
+                    .year(year)
+                    .build();
 
-        return "gallery";
+            Page<List<GalleryResponse>> galleries = galleryService.getGalleries(searchable);
+            List<String> years = DateUtil.getYears();
+            model.addAttribute("years", years);
+            model.addAttribute("galleries", galleries.getContents());
+
+            return "gallery";
+
+
     }
 
     // 갤러리 페이지 열기

@@ -1,4 +1,4 @@
-package com.project.robotmate.home.global.utils;
+package com.project.robotmate.global.util;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ public class DateUtil {
         List<String> years = new ArrayList<>();
 
         for (int i = 0 ; i < 15 ; i++ ){
-            years.add(String.valueOf(LocalDate.now().minusYears(i).getYear()).trim());
+            years.add(String.valueOf(LocalDate.now().minusYears(i).getYear()));
         }
 
         return years;

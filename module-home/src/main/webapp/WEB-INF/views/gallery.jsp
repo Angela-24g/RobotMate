@@ -42,7 +42,6 @@
     </script>
 </head>
 <body>
-<body>
 <!-- Body Inner -->
 <div class="body-inner">
     <script>
@@ -106,7 +105,7 @@
             <div class="portfolio-item img-zoom">
                 <div class="portfolio-item-wrap">
                     <div class="portfolio-image">
-                        <a href="#"><img src="images/gallery/main.png" alt=""/></a>
+                        <a href="#"><img src="/images/gallery/main.png" alt=""/></a>
                     </div>
                     <div class="portfolio-description">
                         <a href="portfolio-page-grid-gallery.html">
@@ -137,8 +136,10 @@
                     <c:forEach var="year" items="${years}" begin="0" end="${years.size()}" step="1" varStatus="status">
                         <li class="${param.year== year ? 'active' : ''}"><a href="/gallery?year=${year}" >${year}</a></li>
                     </c:forEach>
+
+                    <li class="${param.year == "prev" ? 'active' : ''}"><a href="/gallery?year=prev">이전</a></li>
                 </ul>
-                <div class="grid-active-title">Show All</div>
+                <div class="grid-active-title" style="z-index: -1">Show All</div>
             </nav>
             <!-- end: Portfolio Filter -->
             <!-- Portfolio -->

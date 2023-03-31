@@ -1,10 +1,11 @@
 package com.project.robotmate.domain.entity.gallery.repository;
 
 import com.project.robotmate.core.types.GalleryType;
+import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Pageable;
 import com.project.robotmate.domain.common.dto.Searchable;
-import com.project.robotmate.domain.entity.file.QFile;
 import com.project.robotmate.domain.entity.gallery.Gallery;
+import com.project.robotmate.global.util.DateUtil;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,6 @@ import org.springframework.util.ObjectUtils;
 import java.util.List;
 import java.util.Optional;
 
-import static com.project.robotmate.domain.entity.file.QFile.*;
 import static com.project.robotmate.domain.entity.gallery.QGallery.gallery;
 
 
@@ -87,6 +87,27 @@ public class DefaultGalleryQueryRepository implements GalleryQueryRepository {
                 .where(typeEq("MAIN"), notDelete())
                 .orderBy(gallery.createdDate.asc())
                 .fetch();
+    }
+
+    @Override
+    public List<Gallery> findByAllByOld(Pageable pageable) {
+        List<String> years = DateUtil.getYears();
+        String year = years.get(years.size() - 1);
+        return queryFactory.selectFrom(gallery)
+                .where(notDelete(), gallery.year.castToNum(Integer.class).lt(Integer.parseInt(year)))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+    }
+
+    @Override
+    public Long countByAllByOld() {
+        List<String> years = DateUtil.getYears();
+        String year = years.get(years.size() - 1);
+        return queryFactory.select(gallery.count())
+                .where(notDelete(), gallery.year.castToNum(Integer.class).lt(Integer.parseInt(year)))
+                .from(gallery)
+                .fetchOne();
     }
 
     private BooleanExpression typeEq(String type) {

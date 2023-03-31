@@ -4,16 +4,17 @@ import com.project.robotmate.core.types.TargetType;
 import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Pageable;
 import com.project.robotmate.domain.common.dto.Searchable;
-import com.project.robotmate.domain.entity.file.File;
 import com.project.robotmate.domain.entity.file.repository.FileQueryRepository;
 import com.project.robotmate.domain.entity.gallery.Gallery;
 import com.project.robotmate.domain.entity.gallery.repository.GalleryQueryRepository;
+import com.project.robotmate.global.util.DateUtil;
 import com.project.robotmate.home.domain.file.dto.FileData;
 import com.project.robotmate.home.domain.file.service.FileService;
 import com.project.robotmate.home.domain.gallery.dto.response.GalleryResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,10 +39,15 @@ public class DefaultGalleryService implements GalleryService{
 
     @Override
     public Page<List<GalleryResponse>> getGalleries(Searchable searchable) {
+        // 마지막 연도 < 검색 연도  2009 < 2010
+        if (!ObjectUtils.isEmpty(searchable.getYear()) && searchable.getYear().equals("prev")) {
+            return getOldGalleries(searchable.getPage());
+        }
         Long totalCount = galleryQueryRepository.countAllBySearchable(searchable);
         Pageable pageable = new Pageable(totalCount.intValue(), searchable.getPage(), 20);
         List<Gallery> result = galleryQueryRepository.findAllBySearchable(pageable, searchable);
         return new Page<>(pageable, getGalleryResponses(result));
+
     }
 
     @Override
@@ -56,6 +62,14 @@ public class DefaultGalleryService implements GalleryService{
         List<Gallery> galleries = galleryQueryRepository.findAllByMainType();
         return getGalleryResponses(galleries);
 
+    }
+
+    @Override
+    public Page<List<GalleryResponse>> getOldGalleries(int page) {
+        Long totalCount = galleryQueryRepository.countByAllByOld();
+        Pageable pageable = getPageable(totalCount.intValue(), page);
+        List<Gallery> result = galleryQueryRepository.findByAllByOld(pageable);
+        return new Page<>(pageable, getGalleryResponses(result));
     }
 
 
