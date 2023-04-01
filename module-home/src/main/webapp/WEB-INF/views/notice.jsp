@@ -1146,9 +1146,29 @@
         });
         table.buttons().container().appendTo('#export_buttons');
         $("#export_buttons .btn").removeClass('btn-secondary').addClass('btn-light');
+
+        fn_search();
     });
-    function fn_search(){
-    var data = '';
+
+    function fn_search() {
+        var data = {};
+
+        $.ajax({
+            url: '/notice/noticeList',
+            data: data,
+            cache: false,
+            async: false,
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            pagingYn: false,
+            success: function (jsonView) {
+                var resultData = jsonView;
+                console.log(resultData);
+                //  for (const data of jsonView.payload) {
+                // var hstTyp = data.hstTyp;
+
+            }
+
+        });
     }
 </script>
 </body>
