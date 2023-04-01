@@ -2,9 +2,9 @@ package com.project.robotmate.home.domain.gallery.controller;
 
 import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Searchable;
+import com.project.robotmate.global.util.DateUtil;
 import com.project.robotmate.home.domain.gallery.dto.response.GalleryResponse;
 import com.project.robotmate.home.domain.gallery.service.GalleryService;
-import com.project.robotmate.home.global.utils.DateUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 

@@ -15,6 +15,7 @@ import java.util.List;
 public class HomeController {
 
     private final GalleryService galleryService;
+
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String home(Model model) {
         List<GalleryResponse> galleries = galleryService.getTop6Awards();
