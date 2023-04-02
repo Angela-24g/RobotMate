@@ -2,12 +2,14 @@ package com.project.robotmate.home.domain.notice.service;
 
 import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Pageable;
+import com.project.robotmate.domain.entity.notice.Notice;
 import com.project.robotmate.domain.entity.notice.repository.NoticeQueryRepository;
 import com.project.robotmate.home.domain.notice.dto.response.NoticeResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +29,13 @@ public class DefaultNoticeService implements NoticeService {
                 .collect(Collectors.toList());
 
         return new Page<>(pageable, result);
+    }
+
+    @Override
+    public List<NoticeResponse> getNoticeList() {
+        return noticeQueryRepository.findAllBySearchable()
+                .stream().map(NoticeResponse::new)
+                .collect(Collectors.toList());
     }
 
     /**
