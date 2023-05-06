@@ -148,6 +148,11 @@
             </div>
         </div>
         <div class="portfolio">
+            <c:if test="${galleries.size() <= 0}">
+                <div class="text-center">
+                    수상실적이 없습니다.
+                </div>
+            </c:if>
             <!-- Portfolio Items -->
             <div id="portfolio" class="grid-layout portfolio-6-columns" data-margin="0">
                 <!-- portfolio item -->
