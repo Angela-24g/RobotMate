@@ -9,6 +9,7 @@
 <!-- Content -->
 <div layout:fragment="content">
   <div  class="m-auto mt-3">
+    <a href="/galleries" class="btn btn-primary btn-sm">목록</a>
     <form id="gallery-edit-form" >
       <input type="hidden" name="galleryId" th:value="${gallery?.id}">
       <div class="mb-3">
@@ -49,7 +50,7 @@
       </div>
       <div class="mb-3">
         <input type="file" accept="image/*,video/*" id="file" name="file" class="d-none" size="5242880">
-        <label for="file">이미지 및 비디오추가</label>
+        <label for="file" class="btn btn-dark btn-sm">이미지 및 비디오추가</label>
       </div>
       <div th:if="${gallery != null}">
         <input type="hidden" name="fileId" th:value="${gallery?.imageId}">
@@ -64,7 +65,7 @@
         </div>
 
       </div>
-      <div>
+      <div class="mt-2">
         <a href="javascript:void(0)" class="btn btn-primary" id="gallery-button" th:text="${gallery == null ? '작성' : '수정'}"></a>
       </div>
     </form>
