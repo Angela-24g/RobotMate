@@ -91,3 +91,28 @@ INSERT INTO RM_FILE (id, type, bucket, ori_file_nm, nm, file_format, size, targe
 VALUES (29, 'GALLERY', 'gallery/0699274f381f4c1e8dba60954b98e91f', 'filename.png', 'filename', 'image/png', 85400, 29, 1, 'N');
 INSERT INTO RM_FILE (id, type, bucket, ori_file_nm, nm, file_format, size, target_id, display_order, del_yn)
 VALUES (30, 'GALLERY', 'gallery/0699274f381f4c1e8dba60954b98e91f', 'filename.png', 'filename', 'image/png', 85400, 30, 1, 'N');
+
+
+INSERT INTO rm_price
+(id, teaching_course, type, teaching_expenses, teaching_hour, collection_unit, mod_dt)
+VALUES (1, '교육용', '로봇', '10', '120000', '월', NOW());
+
+INSERT INTO rm_price
+(id, teaching_course, type, teaching_expenses, teaching_hour, collection_unit, mod_dt)
+VALUES (2, '대회용', '로봇', '12.5', '150000', '월', NOW());
+
+INSERT INTO rm_price
+(id, teaching_course, type, teaching_expenses, teaching_hour, collection_unit, mod_dt)
+VALUES (3, '코딩', null, '10', '120000', '월', NOW());
+
+INSERT INTO rm_price
+(id, teaching_course, type, teaching_expenses, teaching_hour, collection_unit, mod_dt)
+VALUES (4, '전자회로', null, '12.5', '150000', '월', NOW());
+
+INSERT INTO rm_price
+(id, teaching_course, type, teaching_expenses, teaching_hour, collection_unit, mod_dt)
+VALUES (5, '3D설계', null, '12.5', '150000', '월', NOW());
+
+INSERT INTO rm_price
+(id, teaching_course, type, teaching_expenses, teaching_hour, collection_unit, mod_dt)
+VALUES (6, '휴머노이드', null, '12.5', '150000', '월', NOW());

@@ -94,3 +94,20 @@ create table RM_CODE (
     PRIMARY KEY (code_cd)
  );
 
+# 가격표 테이블
+create table RM_PRICE (
+    id                  BIGINT          NOT NULL        AUTO_INCREMENT      COMMENT '가격표 식별자',
+    type                VARCHAR(10)     NULL                                COMMENT '타입 (로봇, null)',
+    teaching_course     VARCHAR(50)     NULL                                COMMENT '교습과정',
+    teaching_expenses   VARCHAR(50)     NULL                                COMMENT '교습비',
+    teaching_hour       VARCHAR(10)     NULL                                COMMENT '교습시간',
+    collection_unit     VARCHAR(5)      NULL                                COMMENT '징수단위(월,분기)',
+    mock_test_cost      VARCHAR(30)     NULL                                COMMENT '모의고사비용',
+    material_cost       VARCHAR(30)     NULL                                COMMENT '재료비',
+    clothes_cost        VARCHAR(30)     NULL                                COMMENT '피복비',
+    lunch_money         VARCHAR(30)     NULL                                COMMENT '급식비',
+    boarding_expenses   VARCHAR(30)     NULL                                COMMENT '기숙사비',
+    car_cost            VARCHAR(30)     NULL                                COMMENT '차량비용',
+    mod_dt              DATETIME        NULL            DEFAULT NOW()       COMMENT '수정일',
+    PRIMARY KEY (id)
+);

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default}">
+<head>
+  <title>가격표</title>
+</head>
+<!-- Content -->
+<div layout:fragment="content">
+  <div class="my-2">
+    <a th:href="@{/prices/edit}" class="btn btn-primary">가격표 추가</a>
+  </div>
+  <div class="row">
+    <div class="col-3 col-md-6 col-sm-12 mb-3"  th:each="price : ${prices}" th:object="${price}">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title" >
+            <span th:text="${price?.teachingCourse}"></span>
+            <spen th:if="${not #strings.isEmpty(price?.type)}" th:text="|(${price?.type})|"></spen>
+          </div>
+        </div>
+        <div class="card-body">
+          <div>
+              <div>총 교습시간 <BR/> (분/월)</div>
+              <div>
+                  <div th:text="|${price?.teachingHour}시간|"></div>
+                  <div th:text="|(${price?.monthToMin}/1개월)|"></div>
+              </div>
+          </div>
+            <div>
+                <span>교습비 | <span th:text="${#numbers.formatInteger(price?.teachingExpenses, 3, 'COMMA')}"></span></span>
+            </div>
+            <div>
+                합계 | <span th:text="${#numbers.formatInteger(price?.totalCost, 3, 'COMMA')}"></span>
+            </div>
+        </div>
+          <div class="card-footer">
+              <div>
+                  <a th:href="|/prices/edit/${price?.id}|" class="btn btn-warning" >수정</a>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>
