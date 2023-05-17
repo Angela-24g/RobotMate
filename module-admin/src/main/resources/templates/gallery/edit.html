@@ -8,8 +8,12 @@
 </head>
 <!-- Content -->
 <div layout:fragment="content">
-  <div  class="m-auto mt-3">
+  <div class="mb-3 d-flex align-items-center">
+    <span class="h2 me-2">갤러리 수정</span>
     <a href="/galleries" class="btn btn-primary btn-sm">목록</a>
+  </div>
+  <div class="m-auto mb-3 p-3 rounded shadow">
+
     <form id="gallery-edit-form" >
       <input type="hidden" name="galleryId" th:value="${gallery?.id}">
       <div class="mb-3">
@@ -23,27 +27,27 @@
       </div>
       <div class="mb-3">
         <label for="year" class="form-label">연도</label>
-        <input type="text" id="year" name="year" th:value="${#strings.defaultString(gallery?.year, '2022')}" readonly/>
+        <input type="text" id="year" name="year" class="form-control" th:value="${#strings.defaultString(gallery?.year, '2022')}" readonly/>
       </div>
       <div class="mb-3 ">
         <label class="form-label">카테고리</label>
         <div class="d-flex">
-          <div class="me-1">
+          <div class="me-2">
             <label>
               <input type="radio" name="type" value="normal" th:checked="${#strings.equals(gallery?.type, 'NORMAL') }">
-              <span class="mr-1">일반</span>
+              <span class="mr-2">일반</span>
             </label>
           </div>
-          <div>
+          <div class="me-2">
             <label>
               <input type="radio" name="type" value="award" th:checked="${#strings.equals(gallery?.type, 'AWARD')}">
-              <span class="mr-1">수상내역</span>
+              <span class="mr-2">수상내역</span>
             </label>
           </div>
           <div>
             <label>
               <input type="radio" name="type" value="main" th:checked="${#strings.equals(gallery?.type, 'MAIN')}">
-              <span class="mr-1">메인이미지</span>
+              <span class="mr-2">메인이미지</span>
             </label>
           </div>
         </div>

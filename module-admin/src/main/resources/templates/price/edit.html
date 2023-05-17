@@ -12,53 +12,61 @@
     <form id="gallery-edit-form" th:action method="post">
       <input type="hidden" name="noticeId" th:value="${price?.id}">
       <div class="mb-3">
-        <label for="teachingCourse" class="form-label">교습과정</label>
+        <label for="teachingCourse" class="form-label text-muted">교습과정</label>
         <input th:value="${price?.teachingCourse}"
                 type="text" class="form-control" id="teachingCourse"  placeholder="교습과정을 입력해주세요" name="teachingCourse">
       </div>
       <div class="mb-3">
-        <label for="teachingHour" class="form-label">총교습시간</label>
+        <label for="teachingHour" class="form-label text-muted">총교습시간</label>
         <input type="number" class="form-control" id="teachingHour" name="teachingHour" placeholder="교습시간을 입력해주세요" th:value="${price?.teachingHour}">
       </div>
       <div class="mb-3">
-        <label for="teachingExpenses" class="form-label">교습비</label>
+        <label for="teachingExpenses" class="form-label text-muted">교습비</label>
         <input th:value="${price?.teachingExpenses}"
                type="text" class="form-control" id="teachingExpenses"  placeholder="교습비를 입력해주세요" name="teachingExpenses">
       </div>
       <div class="mb-3">
-        <label for="type" class="form-label">타입</label>
-        <input th:value="${price?.type}"
-               type="text" class="form-control" id="type"  placeholder="타입을 입력해주세요 ('로봇' or null)" name="type">
+        <label class="form-label text-muted">타입</label>
+        <div class="d-flex align-items-center">
+          <div class="me-2">
+            <label class="form-label">로봇</label>
+            <input for="type-robot" type="radio" name="type" value="로봇" id="type-robot" th:checked="${price?.type == '로봇'}">
+          </div>
+          <div>
+            <label for="type-none" class="form-label">없음</label>
+            <input type="radio" name="type" value="" id="type-none" th:checked="${price?.type != '로봇'}">
+          </div>
+        </div>
       </div>
-      <div class="border border-1 border-secondary mb-3 p-3">
-        <div class="text-secondary small mb-2">해당 영역은 지정하지 않은 경우 0을 입력해주세요</div>
+      <div class="border border-1 mb-3 p-3 rounded" style="border-color:#d1d2d4">
+        <div class="text-secondary small mb-2">해당 영역은 지정하지 않은 경우 0을 입력하거나 빈칸으로 두시면됩니다</div>
         <div class="mb-3">
-          <label for="mockTestCost" class="form-label">모의고사비</label>
+          <label for="mockTestCost" class="form-label text-muted">모의고사비</label>
           <input th:value="${price?.mockTestCost}"
                  type="number" class="form-control" id="mockTestCost"  placeholder="모의고사비를 입력해주세요" name="mockTestCost">
         </div>
         <div class="mb-3">
-          <label for="materialCost" class="form-label">재료비</label>
+          <label for="materialCost" class="form-label text-muted">재료비</label>
           <input th:value="${price?.materialCost}"
                  type="number" class="form-control" id="materialCost"  placeholder="재료비를 입력해주세요" name="materialCost">
         </div>
         <div class="mb-3">
-          <label for="clothesCost" class="form-label">피복비</label>
+          <label for="clothesCost" class="form-label text-muted ">피복비</label>
           <input th:value="${price?.clothesCost}"
                  type="number" class="form-control" id="clothesCost"  placeholder="피복비를 입력해주세요" name="clothesCost">
         </div>
         <div class="mb-3">
-          <label for="lunchMoney" class="form-label">급식비</label>
+          <label for="lunchMoney" class="form-label text-muted">급식비</label>
           <input th:value="${price?.lunchMoney}"
                  type="number" class="form-control" id="lunchMoney"  placeholder="급식비를 입력해주세요" name="lunchMoney">
         </div>
         <div class="mb-3">
-          <label for="boardingExpenses" class="form-label">기숙사비</label>
+          <label for="boardingExpenses" class="form-label text-muted">기숙사비</label>
           <input th:value="${price?.boardingExpenses}"
                  type="number" class="form-control" id="boardingExpenses"  placeholder="기숙사비 입력해주세요" name="boardingExpenses">
         </div>
         <div class="mb-3">
-          <label for="carCost" class="form-label">차량비</label>
+          <label for="carCost" class="form-label text-muted">차량비</label>
           <input th:value="${price?.carCost}"
                  type="number" class="form-control" id="carCost"  placeholder="차량비를 입력해주세요" name="carCost">
         </div>

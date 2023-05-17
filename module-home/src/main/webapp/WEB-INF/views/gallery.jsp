@@ -143,6 +143,7 @@
             </nav>
             <!-- end: Portfolio Filter -->
             <!-- Portfolio -->
+            <div id="noitems"></div>
             <div id="portfolio" class="portfolio-3-columns" data-margin="0"></div>
             <!-- end: Portfolio -->
         </div>
