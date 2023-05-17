@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -34,7 +36,8 @@ public class GalleryController {
     }
 
     @GetMapping(value = "/galleries/edit")
-    public String viewGalleriesEdit() {
+    public String viewGalleriesEdit(Model model) {
+        model.addAttribute("currentYear", LocalDate.now().getYear());
         return "gallery/edit";
     }
 
@@ -45,6 +48,7 @@ public class GalleryController {
     ) {
         GalleryResponse gallery = galleryService.getGallery(id);
         model.addAttribute("gallery", gallery);
+        model.addAttribute("currentYear", LocalDate.now().getYear());
         return "gallery/edit";
     }
 

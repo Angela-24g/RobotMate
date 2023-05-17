@@ -59,4 +59,48 @@ window.addEventListener("DOMContentLoaded", () => {
         minViewMode: "years",
         autoclose:true //to close picker once year is selected
     })
+
+    let previewImage = document.getElementById("preview-image");
+
+    if (previewImage) {
+        let fileElement = document.getElementById("file");
+
+        fileElement.addEventListener("change", (e) => {
+            if (e.target.files.length <= 0) return;
+
+            let file = e.target.files[0];
+            let fileReader = new FileReader();
+            fileReader.onload = ({target}) => {
+                if (file.type.startsWith("video")) {
+                    let _videoEl = previewImage.querySelector("video");
+                    if (_videoEl) {
+                        _videoEl.querySelector("source").src = target.result;
+                    } else {
+                        let videoEl = document.createElement("video");
+                        let sourceEl = document.createElement("source");
+                        videoEl.controls = true;
+                        sourceEl.src = target.result;
+                        sourceEl.type = file.type;
+                        videoEl.append(sourceEl);
+                        previewImage.append(videoEl);
+                    }
+                } else {
+                    let _imgEl = previewImage.querySelector("img");
+                    if (_imgEl) {
+                        _imgEl.src = target.result;
+                    } else {
+                        let imaEl = document.createElement("img");
+                        imaEl.style.maxWidth = "600px";
+                        imaEl.src = target.result;
+                        previewImage.append(imaEl);
+                    }
+
+                }
+
+            }
+
+            fileReader.readAsDataURL(file);
+        })
+
+    }
 });
