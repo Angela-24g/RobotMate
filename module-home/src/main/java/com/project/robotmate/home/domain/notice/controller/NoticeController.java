@@ -27,16 +27,14 @@ public class NoticeController {
 
 
     // 공지사항 페이지 열기
-    @RequestMapping(value="/noticePage", method = RequestMethod.GET)
+    @RequestMapping(value="/notice", method = RequestMethod.GET)
     public String notice() {return "notice"; }
 
     @RequestMapping("/notice/noticeList")
     @ResponseBody
     public ResponseEntity<DataResponse<List<NoticeResponse>>> noticeList(){
         List<NoticeResponse> noticeList = noticeService.getNoticeList();
-//        log.info("notices : {}", noticeList);
         return ResponseEntity.ok(new DataResponse<>(noticeList));
-//        return ResponseEntity.ok(new DataResponse<NoticeResponse>(noticeList));
     }
 
 

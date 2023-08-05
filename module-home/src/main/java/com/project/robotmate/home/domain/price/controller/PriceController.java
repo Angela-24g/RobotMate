@@ -15,7 +15,7 @@ import java.util.List;
 public class PriceController {
 
    // price 페이지 열기
-   @RequestMapping(value = "/pricePage", method = RequestMethod.GET)
+   @RequestMapping(value = "/price", method = RequestMethod.GET)
    public String faq() {
       return "price";
    }
