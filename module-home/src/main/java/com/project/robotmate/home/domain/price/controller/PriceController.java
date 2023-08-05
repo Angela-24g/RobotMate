@@ -14,6 +14,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PriceController {
 
+   // price 페이지 열기
+   @RequestMapping(value = "/pricePage", method = RequestMethod.GET)
+   public String faq() {
+      return "price";
+   }
+
    private final PriceService priceService;
 //    @GetMapping(value = "/prices")
 //    public String viewPrices(

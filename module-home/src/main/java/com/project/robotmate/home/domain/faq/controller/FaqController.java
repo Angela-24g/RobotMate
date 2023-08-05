@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class FaqController {
 
     // faq 페이지 열기
-    @RequestMapping(value="/faqPage", method = RequestMethod.GET)
-    public String faq() {return "faq"; }
+    @RequestMapping(value = "/faqPage", method = RequestMethod.GET)
+    public String faq() {
+        return "faq";
+    }
 }
