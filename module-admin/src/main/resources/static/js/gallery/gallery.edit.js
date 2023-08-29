@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
     const galleryForm = document.getElementById("gallery-edit-form");
     const gallerySubmitButton = document.getElementById("gallery-button");

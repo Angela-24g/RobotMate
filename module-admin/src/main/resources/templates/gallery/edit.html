@@ -13,7 +13,7 @@
     <a th:href="@{/galleries}" class="btn btn-primary small">목록</a>
   </div>
 
-  <div id="gallery-edit-form"  class="card mb-3">
+  <form id="gallery-edit-form"  class="card mb-3">
     <div class="card-body" >
       <input type="hidden" name="galleryId" th:value="${gallery?.id}">
       <div class="mb-3">
