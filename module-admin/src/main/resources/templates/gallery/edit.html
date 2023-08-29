@@ -71,8 +71,9 @@
         </th:block>
       </div>
     </div>
-    <div class="card-footer">
-      <a href="javascript:void(0)" class="btn btn-primary" id="gallery-button" th:text="${gallery == null ? '작성' : '수정'}"></a>
+    <div class="card-footer d-flex justify-content-between align-items-center">
+      <a href="javascript:void(0)" class="btn btn-sm btn-danger" id="gallery-delete-button">삭제</a>
+      <a href="javascript:void(0)" class="btn btn-sm btn-primary" id="gallery-button" th:text="${gallery == null ? '작성' : '수정'}"></a>
     </div>
   </form>
   <th:block layout:fragment="script">

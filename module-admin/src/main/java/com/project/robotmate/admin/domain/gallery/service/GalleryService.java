@@ -17,6 +17,8 @@ public interface GalleryService {
 
     void update(Long id, GalleryUpdateRequest request);
 
+    void delete(Long id);
+
     Page<List<GalleryResponse>> getGalleries(int page);
 
     Page<List<GalleryResponse>> getGalleries(Searchable searchable);

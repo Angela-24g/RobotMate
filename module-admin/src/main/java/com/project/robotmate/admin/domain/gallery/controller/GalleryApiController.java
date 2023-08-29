@@ -35,4 +35,11 @@ public class GalleryApiController {
         return ResponseEntity.ok(ApiResponse.ok());
     }
 
+    @DeleteMapping(value = "/api/galleries/{id}")
+    public ResponseEntity<ApiResponse> editGallery(
+            @PathVariable("id") Long id
+    ) {
+        galleryService.delete(id);
+        return ResponseEntity.ok(ApiResponse.ok());
+    }
 }

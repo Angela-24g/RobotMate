@@ -60,4 +60,8 @@ public class Gallery extends BaseEntity {
     public void changeType(GalleryType type) {
         this.type = type;
     }
+
+    public void remove() {
+        this.delYn = "Y";
+    }
 }

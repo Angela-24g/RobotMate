@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class DefaultGalleryService implements GalleryService{
+public class DefaultGalleryService implements GalleryService {
 
     private final GalleryRepository galleryRepository;
     private final GalleryQueryRepository galleryQueryRepository;
@@ -72,6 +72,14 @@ public class DefaultGalleryService implements GalleryService{
         gallery.changeGallery(request.getTitle(), request.getContents());
         gallery.changeYear(request.getYear());
         gallery.changeType(request.getType());
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        Gallery gallery = galleryQueryRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("찾을 수 없는 갤러리입니다"));
+        gallery.remove();
     }
 
     @Override
