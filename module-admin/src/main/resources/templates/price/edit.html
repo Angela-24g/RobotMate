@@ -8,8 +8,8 @@
 </head>
 <!-- Content -->
 <div layout:fragment="content">
-  <div  class="m-auto mt-3">
-    <form id="gallery-edit-form" th:action method="post">
+  <form id="gallery-edit-form" th:action method="post" class="card mt-3">
+    <div class="card-body">
       <input type="hidden" name="noticeId" th:value="${price?.id}">
       <div class="mb-3">
         <label for="teachingCourse" class="form-label text-muted">교습과정</label>
@@ -71,12 +71,13 @@
                  type="number" class="form-control" id="carCost"  placeholder="차량비를 입력해주세요" name="carCost">
         </div>
       </div>
-      <div>
-        <button  class="btn btn-primary">
-          <th:block th:text="${price == null ? '작성' : '수정'}"></th:block>
-        </button>
-      </div>
-    </form>
-  </div>
+
+    </div>
+    <div class="card-footer">
+      <button  class="btn btn-primary">
+        <th:block th:text="${price == null ? '작성' : '수정'}"></th:block>
+      </button>
+    </div>
+  </form>
 </div>
 </html>

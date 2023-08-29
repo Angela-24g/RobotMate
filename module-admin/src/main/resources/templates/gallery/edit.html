@@ -8,13 +8,13 @@
 </head>
 <!-- Content -->
 <div layout:fragment="content">
-  <div class="mb-3 d-flex align-items-center">
-    <span class="h2 me-2" th:text="${gallery == null ? '갤러리 작성' : '갤러리 수정'}"></span>
-    <a href="/galleries" class="btn btn-primary btn-sm">목록</a>
+  <div class="my-3 d-flex align-items-center justify-content-between">
+    <span class="h4 me-2 fw-bold" th:text="${gallery == null ? '갤러리 작성' : '갤러리 수정'}"> </span>
+    <a th:href="@{/galleries}" class="btn btn-primary small">목록</a>
   </div>
-  <div class="m-auto mb-3">
 
-    <form id="gallery-edit-form" >
+  <div id="gallery-edit-form"  class="card mb-3">
+    <div class="card-body" >
       <input type="hidden" name="galleryId" th:value="${gallery?.id}">
       <div class="mb-3">
         <label for="title" class="form-label">제목</label>
@@ -56,8 +56,6 @@
         <input type="file" accept="image/*,video/*" id="file" name="file" class="d-none" size="5242880">
         <label for="file" class="btn btn-dark btn-sm">이미지 및 비디오추가</label>
       </div>
-
-
       <div  id="preview-image">
         <th:block th:if="${gallery != null}">
           <input type="hidden" name="fileId" th:value="${gallery?.imageId}">
@@ -72,11 +70,11 @@
             </div>
         </th:block>
       </div>
-      <div class="mt-2">
-        <a href="javascript:void(0)" class="btn btn-primary" id="gallery-button" th:text="${gallery == null ? '작성' : '수정'}"></a>
-      </div>
-    </form>
-  </div>
+    </div>
+    <div class="card-footer">
+      <a href="javascript:void(0)" class="btn btn-primary" id="gallery-button" th:text="${gallery == null ? '작성' : '수정'}"></a>
+    </div>
+  </form>
   <th:block layout:fragment="script">
     <script th:src="@{/js/gallery/gallery.edit.js}"></script>
   </th:block>

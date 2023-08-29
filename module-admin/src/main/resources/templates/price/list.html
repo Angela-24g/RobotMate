@@ -8,42 +8,46 @@
 </head>
 <!-- Content -->
 <div layout:fragment="content">
-  <div class="my-2">
-    <a th:href="@{/prices/edit}" class="btn btn-primary">가격표 추가</a>
-  </div>
-  <div class="row">
-    <div class="col-3 col-md-6 col-sm-12 mb-3"  th:each="price : ${prices}" th:object="${price}">
-      <div class="card">
-        <div class="card-header">
-          <div class="card-title" >
-            <span th:text="${price?.teachingCourse}" class="fw-bold"></span>
-            <spen th:if="${not #strings.isEmpty(price?.type)}" th:text="|(${price?.type})|"></spen>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="mb-2">
-              <div class="text-muted small">총 교습시간 (분/월)</div>
-              <div>
-                  <span th:text="|${price?.teachingHour}시간|"></span>
-                  <span th:text="|(${price?.monthToMin}/1개월)|"></span>
-              </div>
-          </div>
-          <div class="mb-2">
-            <span class="text-muted small me-1">교습비 |</span>
-            <span th:text="${#numbers.formatInteger(price?.teachingExpenses, 3, 'COMMA')}"></span>
-          </div>
-          <div>
-            <span class="text-muted small me-1">합계 |</span>
-            <span th:text="${#numbers.formatInteger(price?.totalCost, 3, 'COMMA')}"></span>
-          </div>
-        </div>
-          <div class="card-footer">
-              <div>
-                  <a th:href="|/prices/edit/${price?.id}|" class="btn btn-warning" >수정</a>
-              </div>
-          </div>
-      </div>
+    <div class="my-3 d-flex align-items-center justify-content-between">
+        <span class="h4 me-2 fw-bold">가격표 목록</span>
+        <a th:href="@{/prices/edit}" class="btn btn-primary small">추가</a>
     </div>
-  </div>
+
+    <div class="card">
+        <div class="row card-body">
+            <div class="col-3 col-md-6 col-sm-12 mb-3" th:each="price : ${prices}" th:object="${price}">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title" >
+                            <span th:text="${price?.teachingCourse}" class="fw-bold"></span>
+                            <spen th:if="${not #strings.isEmpty(price?.type)}" th:text="|(${price?.type})|"></spen>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-2">
+                            <div class="text-muted small">총 교습시간 (분/월)</div>
+                            <div>
+                                <span th:text="|${price?.teachingHour}시간|"></span>
+                                <span th:text="|(${price?.monthToMin}/1개월)|"></span>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <span class="text-muted small me-1">교습비 |</span>
+                            <span th:text="${#numbers.formatInteger(price?.teachingExpenses, 3, 'COMMA')}"></span>
+                        </div>
+                        <div>
+                            <span class="text-muted small me-1">합계 |</span>
+                            <span th:text="${#numbers.formatInteger(price?.totalCost, 3, 'COMMA')}"></span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <a th:href="|/prices/edit/${price?.id}|" class="btn btn-warning" >수정</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </html>

@@ -3,7 +3,8 @@ package com.project.robotmate.core.types;
 public enum TargetType {
     BBS("001001"),
     REQ("001002"),
-    GALLERY("001003");
+    GALLERY("001003"),
+    NOTICE("001004");
 
     private String code;
 

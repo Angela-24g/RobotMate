@@ -8,85 +8,90 @@
 </head>
 <!-- Content -->
 <div layout:fragment="content">
-  <div class="mb-3 d-flex align-items-center justify-content-between">
-    <span class="h2 me-2">갤러리</span>
-    <a th:href="@{/galleries/edit}" class="btn btn-primary">작성</a>
-  </div>
-  <div>
-    <div class="w-100">
-      <form class="d-flex my-2 align-items-end justify-content-end" method="get" >
-        <div class="me-2">
-          <div class="fs-6 text-muted">연도</div>
-          <select name="year" class="form-select  form-select-sm">
-            <option value="" th:selected="${#strings.isEmpty(param.year)}">전체</option>
-            <option th:value="${year}" th:each="year : ${years}" th:text="${year}" th:selected="${#strings.equals(param.year, year)}"></option>
-          </select>
-        </div>
-        <div class="me-2">
-          <div class="fs-6 text-muted">구분</div>
-          <select name="type" class="form-select form-select-sm">
-            <option value="" th:selected="${#strings.isEmpty(param.type)}">전체</option>
-            <option value="NORMAL" th:selected="${#strings.equals(param.type, 'NORMAL')}">일반</option>
-            <option value="AWARD" th:selected="${#strings.equals(param.type, 'AWARD')}">수상내역</option>
-            <option value="MAIN" th:selected="${#strings.equals(param.type, 'MAIN')}">메인이미지</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-sm btn-dark">적용</button>
-      </form>
-
-    </div>
+  <div class="my-3 d-flex align-items-center justify-content-between">
+    <span class="h4 me-2 fw-bold">갤러리</span>
+    <a th:href="@{/galleries/edit}" class="btn btn-primary small">작성</a>
   </div>
 
-  <hr/>
+  <div class="card px-3 mb-3">
+    <form class="d-flex my-2 align-items-end justify-content-end" method="get" >
+      <div class="me-2">
+        <div class="fs-6 text-muted">연도</div>
+        <select name="year" class="form-select  form-select-sm">
+          <option value="" th:selected="${#strings.isEmpty(param.year)}">전체</option>
+          <option th:value="${year}" th:each="year : ${years}" th:text="${year}" th:selected="${#strings.equals(param.year, year)}"></option>
+        </select>
+      </div>
+      <div class="me-2">
+        <div class="fs-6 text-muted">구분</div>
+        <select name="type" class="form-select form-select-sm">
+          <option value="" th:selected="${#strings.isEmpty(param.type)}">전체</option>
+          <option value="NORMAL" th:selected="${#strings.equals(param.type, 'NORMAL')}">일반</option>
+          <option value="AWARD" th:selected="${#strings.equals(param.type, 'AWARD')}">수상내역</option>
+          <option value="MAIN" th:selected="${#strings.equals(param.type, 'MAIN')}">메인이미지</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-sm btn-dark">적용</button>
+    </form>
+  </div>
 
-  <div class="row mb-3">
-    <div th:unless="${galleries.size() > 0}" class="col-12 mb-2">
-      <td colspan="4" class="text-center">갤리리 글이 없습니다.</td>
+  <div class="card">
+    <div class="card-header bg-white">
+      <span th:text="|전체 ${pageable.total}건|"></span>
     </div>
-    <div class="col-12 col-md-6 col-lg-4 mb-2" th:if="${galleries.size() > 0}" th:each="gallery : ${galleries}" th:object="${gallery}">
-      <a class="card text-decoration-none text-dark" th:href="|@{/galleries/}${gallery?.id}|">
-        <div class="card-header p-0">
-          <div th:if="${gallery.fileType.startsWith('video')}">
-            <video>
-              <source th:src="${gallery?.imageUri}" th:type="${gallery?.fileType}">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-          <div th:unless="${gallery.fileType.startsWith('video')}">
-            <img th:src="${gallery?.imageUri}" alt="image" class="w-100" style="max-width: 600px"/>
-          </div>
-        </div>
-        <div class="card-body">
-          <div>
-            <div class="text-truncate fw-bold">
-              <span class="text-muted fw-bold text-decoration-none text-black"  th:text="${gallery?.title}"></span>
+    <div class="row card-body">
+      <div th:unless="${galleries.size() > 0}" class="col-12 mb-2">
+        <td colspan="4" class="text-center">갤리리 글이 없습니다.</td>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4 mb-2" th:if="${galleries.size() > 0}" th:each="gallery : ${galleries}" th:object="${gallery}">
+        <a class="card text-decoration-none text-dark" th:href="|@{/galleries/}${gallery?.id}|">
+          <div class="card-header p-0">
+            <div th:if="${gallery.fileType.startsWith('video')}">
+              <video>
+                <source th:src="${gallery?.imageUri}" th:type="${gallery?.fileType}">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div th:unless="${gallery.fileType.startsWith('video')}">
+              <img th:src="${gallery?.imageUri}" alt="image" class="w-100" style="max-width: 600px"/>
             </div>
           </div>
-          <td class="text-nowrap" style="font-size: 12px" th:text="${#temporals.format( gallery?.createDate, 'YYYY년 MM월 dd일')}"></td>
-        </div>
-      </a>
+          <div class="card-body">
+            <div>
+              <div class="text-truncate fw-bold">
+                <span class="text-muted fw-bold text-decoration-none text-black"  th:text="${gallery?.title}"></span>
+              </div>
+            </div>
+            <td class="text-nowrap" style="font-size: 12px" th:text="${#temporals.format( gallery?.createDate, 'YYYY년 MM월 dd일')}"></td>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="card-footer bg-white">
+      <nav  th:if="${pageable.total > 0}">
+        <ul class="pagination justify-content-end mb-0">
+          <li class="page-item">
+            <a  class="page-link" th:href="|@{?(page = ${pageable.prevBlock},year=${param?.year}, type=${param?.type})}|" aria-label="Previous">
+              <span aria-hidden="true">이전</span>
+            </a>
+          </li>
+          <th:block th:with="start = ${pageable.startPage}, end = ${pageable.endPage}">
+            <li class="page-item"
+                th:with="start = ${pageable.startPage}, end = ${pageable.endPage}"
+                th:each="page : ${#numbers.sequence(start, end, 1)}">
+              <a class="page-link" th:href="|@{?(page = ${page},year=${param?.year}, type=${param?.type})}|" th:text=${page}></a>
+            </li>
+          </th:block>
+          <li class="page-item">
+            <a class="page-link" th:href="|@{?(page = ${pageable.nextBlock}, year=${param?.year}, type=${param?.type})}|" aria-label="Next">
+              <span aria-hidden="true">다음</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
-  <nav  th:if="${pageable.total > 0}">
-    <ul class="pagination justify-content-end">
-      <li class="page-item">
-        <a  class="page-link" th:href="|@{?(page = ${pageable.prevBlock},year=${param?.year}, type=${param?.type})}|" aria-label="Previous">
-          <span aria-hidden="true">이전</span>
-        </a>
-      </li>
-      <th:block th:with="start = ${pageable.startPage}, end = ${pageable.endPage}">
-        <li class="page-item"
-            th:with="start = ${pageable.startPage}, end = ${pageable.endPage}"
-            th:each="page : ${#numbers.sequence(start, end, 1)}">
-          <a class="page-link" th:href="|@{?(page = ${page},year=${param?.year}, type=${param?.type})}|" th:text=${page}></a>
-        </li>
-      </th:block>
-      <li class="page-item">
-        <a class="page-link" th:href="|@{?(page = ${pageable.nextBlock}, year=${param?.year}, type=${param?.type})}|" aria-label="Next">
-          <span aria-hidden="true">다음</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+
 </div>
 </html>

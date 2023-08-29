@@ -1,6 +1,5 @@
 package com.project.robotmate.admin.domain.notice.controller;
 
-import com.project.robotmate.admin.domain.gallery.dto.response.GalleryResponse;
 import com.project.robotmate.admin.domain.notice.dto.response.NoticeResponse;
 import com.project.robotmate.admin.domain.notice.service.NoticeService;
 import com.project.robotmate.domain.common.dto.Page;
@@ -33,12 +32,12 @@ public class NoticeController {
         return "notice/list";
     }
 
-    @GetMapping(value = "/notice/edit")
+    @GetMapping(value = "/notices/edit")
     public String viewNoticeEdit() {
         return "notice/edit";
     }
 
-    @GetMapping(value = "/notice/edit/{id}")
+    @GetMapping(value = "/notices/edit/{id}")
     public String viewNoticeEdit(
             @PathVariable("id") Long id,
             Model model

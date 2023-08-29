@@ -8,26 +8,67 @@
 </head>
 <!-- Content -->
 <div layout:fragment="content">
-  <div class="my-2">
-    <a th:href="@{/notice/edit}" class="btn btn-primary">공지사항 작성</a>
+  <div class="my-3 d-flex align-items-center justify-content-between">
+    <span class="h4 me-2 fw-bold">공지사항</span>
+    <a th:href="@{/notice/edit}" class="btn btn-primary small">작성</a>
   </div>
-  <table  class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>제목</th>
-        <th>조회수</th>
-        <th>작성일</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr th:each="notice : ${notices}" th:object="${notice}">
-        <td th:text="${notice?.id}"></td>
-        <td th:text="${notice?.title}"></td>
-        <td th:text="${notice?.viewCount}"></td>
-        <td th:text="${notice?.createDate}"></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="card">
+    <div class="card-header bg-white">
+      <span th:text="|전체 ${pageable.total}건|"></span>
+    </div>
+    <div class="table-responsive card-body p-0">
+      <table class="table table-borderless" style="min-width: 768px;">
+        <colgroup>
+          <col width="10%"/>
+          <col width="50%"/>
+          <col width="10%"/>
+          <col width="30%"/>
+        </colgroup>
+        <thead>
+            <tr>
+              <th class="text-center">No.</th>
+              <th>제목</th>
+              <th class="text-center">조회수</th>
+              <th class="text-center">작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr th:if="${notices.size() <= 0}">
+            <td colspan="4" class="text-center p-5">공지사항이 없습니다.</td>
+          </tr>
+          <tr th:each="notice : ${notices}" th:object="${notice}">
+            <td class="text-center" th:text="${notice?.id}"></td>
+            <td th:text="${notice?.title}"></td>
+            <td class="text-center" th:text="${notice?.viewCount}"></td>
+            <td class="text-center" th:text="${notice?.createDate}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-footer bg-white">
+      <nav  th:if="${pageable.total > 0}">
+        <ul class="pagination justify-content-end mb-0">
+          <li class="page-item">
+            <a  class="page-link" th:href="|@{?(page = ${pageable.prevBlock},year=${param?.year}, type=${param?.type})}|" aria-label="Previous">
+              <span aria-hidden="true">이전</span>
+            </a>
+          </li>
+          <th:block th:with="start = ${pageable.startPage}, end = ${pageable.endPage}">
+            <li class="page-item"
+                th:with="start = ${pageable.startPage}, end = ${pageable.endPage}"
+                th:each="page : ${#numbers.sequence(start, end, 1)}">
+              <a class="page-link" th:href="|@{?(page = ${page},year=${param?.year}, type=${param?.type})}|" th:text=${page}></a>
+            </li>
+          </th:block>
+          <li class="page-item">
+            <a class="page-link" th:href="|@{?(page = ${pageable.nextBlock}, year=${param?.year}, type=${param?.type})}|" aria-label="Next">
+              <span aria-hidden="true">다음</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 </div>
 </html>
