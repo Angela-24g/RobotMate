@@ -45,24 +45,29 @@
       </div>
       <div class="col-12 col-md-6 col-lg-4 mb-2" th:if="${galleries.size() > 0}" th:each="gallery : ${galleries}" th:object="${gallery}">
         <a class="card text-decoration-none text-dark" th:href="|@{/galleries/}${gallery?.id}|">
-          <div class="card-header p-0">
-            <div th:if="${gallery.fileType.startsWith('video')}">
-              <video>
+          <div class="card-header p-0 ">
+            <div th:if="${gallery.fileType.startsWith('video')}" class="h-215px">
+              <video class="object-fit-contain w-100 h-100">
                 <source th:src="${gallery?.imageUri}" th:type="${gallery?.fileType}">
                 Your browser does not support the video tag.
               </video>
             </div>
-            <div th:unless="${gallery.fileType.startsWith('video')}">
-              <img th:src="${gallery?.imageUri}" alt="image" class="w-100" style="max-width: 600px"/>
+            <div th:unless="${gallery.fileType.startsWith('video')}" class="h-215px">
+              <img th:src="${gallery?.imageUri}" alt="image" class="w-100 h-100 object-fit-contain"/>
             </div>
           </div>
           <div class="card-body">
+            <div class="d-flex align-items-start justify-content-between mb-3">
+              <span class="badge "
+                    th:classappend="${gallery?.typeToClassName()}"
+                    th:text="${gallery?.typeToKor()}"></span>
+              <div class="text-nowrap" style="font-size: 12px" th:text="${#temporals.format( gallery?.createDate, 'YYYY년 MM월 dd일')}"></div>
+            </div>
             <div>
               <div class="text-truncate fw-bold">
                 <span class="text-muted fw-bold text-decoration-none text-black"  th:text="${gallery?.title}"></span>
               </div>
             </div>
-            <td class="text-nowrap" style="font-size: 12px" th:text="${#temporals.format( gallery?.createDate, 'YYYY년 MM월 dd일')}"></td>
           </div>
         </a>
       </div>

@@ -13,68 +13,99 @@
     <a th:href="@{/galleries}" class="btn btn-primary small">목록</a>
   </div>
 
-  <form id="gallery-edit-form"  class="card mb-3">
-    <div class="card-body" >
-      <input type="hidden" name="galleryId" th:value="${gallery?.id}">
-      <div class="mb-3">
-        <label for="title" class="form-label">제목</label>
-        <input th:value="${gallery?.title}"
-                type="text" class="form-control" id="title"  placeholder="제목을 입력해주세요" name="title">
-      </div>
-      <div class="mb-3">
-        <label for="contents" class="form-label">내용</label>
-        <textarea class="form-control" id="contents" name="contents" placeholder="내용을 입력해주세요" th:text="${gallery?.contents}"></textarea>
-      </div>
-      <div class="mb-3">
-        <label for="year" class="form-label">연도</label>
-        <input type="text" id="year" name="year" class="form-control" th:value="${#strings.defaultString(gallery?.year, currentYear)}" readonly/>
-      </div>
-      <div class="mb-3 ">
-        <label class="form-label">카테고리</label>
-        <div class="d-flex">
-          <div class="me-2">
-            <label>
-              <input type="radio" name="type" value="normal" th:checked="${#strings.equals(gallery?.type, 'NORMAL') || gallery == null}">
-              <span class="mr-2">일반</span>
-            </label>
+  <form id="gallery-edit-form" class="row">
+    <div class="col-12 col-lg-3 mb-3">
+      <div class="card ">
+        <div class="card-header">
+          이미지 및 비디오 업로드
+        </div>
+        <div class="card-body">
+          <input type="hidden" name="fileId" th:value="${gallery?.imageId}">
+          <div class=" d-flex justify-content-center align-items-center">
+            <div data-single-image class="single_image"
+                 th:data-single-image-type="${gallery != null} ? ${gallery?.fileType?.startsWith('video') ? 'video' : 'image'} : ''"
+                 th:data-single-image-url="${gallery?.imageUri}">
+              <input type="file" name="file" id="single_image">
+              <label for="single_image"></label>
+              <video controls class="video"></video>
+            </div>
           </div>
-          <div class="me-2">
-            <label>
-              <input type="radio" name="type" value="award" th:checked="${#strings.equals(gallery?.type, 'AWARD')}">
-              <span class="mr-2">수상내역</span>
-            </label>
-          </div>
-          <div>
-            <label>
-              <input type="radio" name="type" value="main" th:checked="${#strings.equals(gallery?.type, 'MAIN')}">
-              <span class="mr-2">메인이미지</span>
-            </label>
-          </div>
+
         </div>
       </div>
-      <div class="mb-3">
-        <input type="file" accept="image/*,video/*" id="file" name="file" class="d-none" size="5242880">
-        <label for="file" class="btn btn-dark btn-sm">이미지 및 비디오추가</label>
-      </div>
-      <div  id="preview-image">
-        <th:block th:if="${gallery != null}">
-          <input type="hidden" name="fileId" th:value="${gallery?.imageId}">
-            <div th:if="${gallery.fileType.startsWith('video')}">
-              <video controls>
-                <source th:src="${gallery?.imageUri}" th:type="${gallery?.fileType}">
-                Your browser does not support the video tag.
-              </video>
+    </div>
+
+    <div class="col-12 col-lg-9 mb-3">
+      <div class="card mb-3">
+        <div class="card-body" >
+          <input type="hidden" name="galleryId" th:value="${gallery?.id}">
+          <div class="mb-3 ">
+            <label class="form-label">카테고리</label>
+            <div class="d-flex">
+              <div class="me-2">
+                <label>
+                  <input type="radio" name="type" value="normal" th:checked="${#strings.equals(gallery?.type, 'NORMAL') || gallery == null}">
+                  <span class="mr-2">일반</span>
+                </label>
+              </div>
+              <div class="me-2">
+                <label>
+                  <input type="radio" name="type" value="award" th:checked="${#strings.equals(gallery?.type, 'AWARD')}">
+                  <span class="mr-2">수상내역</span>
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input type="radio" name="type" value="main" th:checked="${#strings.equals(gallery?.type, 'MAIN')}">
+                  <span class="mr-2">메인이미지</span>
+                </label>
+              </div>
             </div>
-            <div th:unless="${gallery.fileType.startsWith('video')}">
-              <img th:src="${gallery?.imageUri}" alt="image" class="w-100" style="max-width: 600px"/>
-            </div>
-        </th:block>
+          </div>
+
+          <div class="mb-3">
+            <label for="title" class="form-label">제목</label>
+            <input th:value="${gallery?.title}"
+                    type="text" class="form-control" id="title"  placeholder="제목을 입력해주세요" name="title">
+          </div>
+          <div class="mb-3">
+            <label for="contents" class="form-label">내용</label>
+            <textarea class="form-control" id="contents" name="contents" placeholder="내용을 입력해주세요" th:text="${gallery?.contents}"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="year" class="form-label">연도</label>
+            <input type="text" id="year" name="year" class="form-control" th:value="${#strings.defaultString(gallery?.year, currentYear)}" readonly/>
+          </div>
+
+  <!--        <div class="mb-3">-->
+  <!--          <input type="file" accept="image/*,video/*" id="file" name="file" class="d-none" size="5242880">-->
+  <!--          <label for="file" class="btn btn-dark btn-sm">이미지 및 비디오추가</label>-->
+  <!--        </div>-->
+  <!--        <div  id="preview-image">-->
+  <!--          <th:block th:if="${gallery != null}">-->
+  <!--            <input type="hidden" name="fileId" th:value="${gallery?.imageId}">-->
+  <!--              <div th:if="${gallery.fileType.startsWith('video')}">-->
+  <!--                <video controls>-->
+  <!--                  <source th:src="${gallery?.imageUri}" th:type="${gallery?.fileType}">-->
+  <!--                  Your browser does not support the video tag.-->
+  <!--                </video>-->
+  <!--              </div>-->
+  <!--              <div th:unless="${gallery.fileType.startsWith('video')}">-->
+  <!--                <img th:src="${gallery?.imageUri}" alt="image" class="w-100" style="max-width: 600px"/>-->
+  <!--              </div>-->
+  <!--          </th:block>-->
+  <!--        </div>-->
+
+        </div>
+
+        <div class="card-footer d-flex justify-content-between align-items-center">
+          <a href="javascript:void(0)" class="btn btn-sm btn-danger" id="gallery-delete-button">삭제</a>
+          <a href="javascript:void(0)" class="btn btn-sm btn-primary" id="gallery-button" th:text="${gallery == null ? '작성' : '수정'}"></a>
+        </div>
+
       </div>
     </div>
-    <div class="card-footer d-flex justify-content-between align-items-center">
-      <a href="javascript:void(0)" class="btn btn-sm btn-danger" id="gallery-delete-button">삭제</a>
-      <a href="javascript:void(0)" class="btn btn-sm btn-primary" id="gallery-button" th:text="${gallery == null ? '작성' : '수정'}"></a>
-    </div>
+
   </form>
   <th:block layout:fragment="script">
     <script th:src="@{/js/gallery/gallery.edit.js}"></script>

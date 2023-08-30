@@ -1,0 +1,41 @@
+.single_image {
+    display: inline-flex;
+    position: relative;
+}
+
+.single_image input[type='file'] {
+    display: none;
+}
+
+.single_image label {
+    width: 150px;
+    height: 150px;
+    border: 1px dashed #555555;
+    cursor: pointer;
+    background-image: url('/images/preview.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.single_image [data-single-image-close] {
+    width: 16px;
+    height: 16px;
+    background-image: url("/images/close.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top : 5px;
+    right: 5px;
+}
+
+.single_image .video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    visibility: hidden;
+}

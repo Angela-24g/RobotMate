@@ -35,4 +35,23 @@ public class GalleryResponse {
         this.fileType = file.getFileFormat();
     }
 
+    public String typeToKor() {
+        if (GalleryType.AWARD.equals(this.type)) {
+            return "수상내역";
+        } else if (GalleryType.MAIN.equals(this.type)) {
+            return "메인이미지";
+        } else {
+            return "일반";
+        }
+    }
+
+    public String typeToClassName() {
+        if (GalleryType.AWARD.equals(this.type)) {
+            return "bg-info";
+        } else if (GalleryType.MAIN.equals(this.type)) {
+            return "bg-danger";
+        } else {
+            return "bg-primary";
+        }
+    }
 }
