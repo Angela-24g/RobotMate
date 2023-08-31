@@ -62,6 +62,8 @@ public class DefaultFileService implements FileService {
                 .size(s3File.getSize())
                 .type(target.getType())
                 .targetId(target.getTargetId())
+                .thumbnailBucket(target.getThumbnailBucket())
+                .delYn("N")
                 .build();
     }
 

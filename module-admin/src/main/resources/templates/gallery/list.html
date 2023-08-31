@@ -46,13 +46,16 @@
       <div class="col-12 col-md-6 col-lg-4 mb-2" th:if="${galleries.size() > 0}" th:each="gallery : ${galleries}" th:object="${gallery}">
         <a class="card text-decoration-none text-dark" th:href="|@{/galleries/}${gallery?.id}|">
           <div class="card-header p-0 ">
-            <div th:if="${gallery.fileType.startsWith('video')}" class="h-215px">
-              <video class="object-fit-contain w-100 h-100">
-                <source th:src="${gallery?.imageUri}" th:type="${gallery?.fileType}">
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <div th:unless="${gallery.fileType.startsWith('video')}" class="h-215px">
+<!--            <div th:if="${gallery.fileType.startsWith('video')}" class="h-215px">-->
+<!--              <video class="object-fit-contain w-100 h-100">-->
+<!--                <source th:src="${gallery?.imageUri}" th:type="${gallery?.fileType}">-->
+<!--                Your browser does not support the video tag.-->
+<!--              </video>-->
+<!--            </div>-->
+<!--            <div th:unless="${gallery.fileType.startsWith('video')}" class="h-215px">-->
+<!--              <img th:src="${gallery?.imageUri}" alt="image" class="w-100 h-100 object-fit-contain"/>-->
+<!--            </div>-->
+            <div class="h-215px">
               <img th:src="${gallery?.imageUri}" alt="image" class="w-100 h-100 object-fit-contain"/>
             </div>
           </div>

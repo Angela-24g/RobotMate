@@ -24,13 +24,16 @@
           <div class=" d-flex justify-content-center align-items-center">
             <div data-single-image class="single_image"
                  th:data-single-image-type="${gallery != null} ? ${gallery?.fileType?.startsWith('video') ? 'video' : 'image'} : ''"
-                 th:data-single-image-url="${gallery?.imageUri}">
+                 th:data-single-image-url="${gallery?.originalImageUri}">
               <input type="file" name="file" id="single_image">
               <label for="single_image"></label>
               <video controls class="video"></video>
             </div>
           </div>
 
+        </div>
+        <div class="card-footer">
+          <label for="single_image" class="btn btn-sm btn-warning">업로드</label>
         </div>
       </div>
     </div>

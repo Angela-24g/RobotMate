@@ -4,6 +4,7 @@ import cloud.aws.s3.S3UploadProvider;
 import cloud.aws.s3.model.S3File;
 import com.project.robotmate.admin.domain.common.file.dto.FileData;
 import com.project.robotmate.admin.domain.common.file.dto.TargetFileData;
+import com.project.robotmate.admin.domain.common.file.provider.ThumbnailProvider;
 import com.project.robotmate.admin.domain.common.file.service.FileService;
 import com.project.robotmate.admin.domain.gallery.dto.request.GalleryRequest;
 import com.project.robotmate.admin.domain.gallery.dto.request.GalleryUpdateRequest;
@@ -21,6 +22,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +37,7 @@ public class DefaultGalleryService implements GalleryService {
     private final GalleryQueryRepository galleryQueryRepository;
     private final FileService fileService;
     private final S3UploadProvider s3UploadProvider;
+    private final ThumbnailProvider thumbnailProvider;
     @Override
     @Transactional
     public Long save(GalleryRequest request, Admin admin) {
@@ -45,8 +50,11 @@ public class DefaultGalleryService implements GalleryService {
                 .type(request.getType())
                 .admin(admin)
                 .build();
+
+        String thumbnail = getThumbnail(request.getFile());
         galleryRepository.save(gallery);
         TargetFileData target = new TargetFileData(gallery.getId(), TargetType.GALLERY);
+        target.setThumbnailBucket(thumbnail);
         fileService.save(s3File, target);
 
         return gallery.getId();
@@ -64,8 +72,11 @@ public class DefaultGalleryService implements GalleryService {
                 fileService.deleteFile(request.getFileId());
             }
 
+            String thumbnail = getThumbnail(request.getFile());
+
             S3File s3File = s3UploadProvider.upload(request.getFile(), DirectoryType.GALLERY);
             TargetFileData target = new TargetFileData(gallery.getId(), TargetType.GALLERY);
+            target.setThumbnailBucket(thumbnail);
             fileService.save(s3File, target);
         }
 
@@ -127,5 +138,20 @@ public class DefaultGalleryService implements GalleryService {
      * */
     private Pageable getPageable(int totalCount, int page) {
         return new Pageable(totalCount, page);
+    }
+
+    private String getThumbnail(MultipartFile multipartFile) {
+        String thumbnail = null;
+        if (!multipartFile.isEmpty()) {
+            try {
+                if (thumbnailProvider.isVideoFormat(multipartFile)) {
+                    File file = thumbnailProvider.extractThumbnail(multipartFile);
+                    S3File thumbnailS3File = s3UploadProvider.upload(file, DirectoryType.GALLERY);
+                    thumbnail = thumbnailS3File.getBucket();
+                }
+
+            } catch (Exception e) {e.printStackTrace();}
+        }
+        return thumbnail;
     }
 }

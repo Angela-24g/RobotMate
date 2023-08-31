@@ -41,11 +41,14 @@ public class File extends BaseEntity {
     @Column(name = "display_order")
     private int displayOrder;
 
+    @Column(name = "thumbnail_bucket")
+    public String thumbnailBucket;
+
     @Column(name = "del_yn")
     private String delYn = "N";
 
     @Builder
-    public File(Long id, TargetType type, String bucket, String originalFileName, String name, String fileFormat, Long size, Long targetId, int displayOrder, String delYn) {
+    public File(Long id, TargetType type, String bucket, String originalFileName, String name, String fileFormat, Long size, Long targetId, int displayOrder, String thumbnailBucket, String delYn) {
         this.id = id;
         this.type = type;
         this.bucket = bucket;
@@ -55,7 +58,8 @@ public class File extends BaseEntity {
         this.size = size;
         this.targetId = targetId;
         this.displayOrder = displayOrder;
-        this.delYn = delYn != null ? delYn : "N";
+        this.thumbnailBucket = thumbnailBucket;
+        this.delYn = delYn;
     }
 
     public void delete() {

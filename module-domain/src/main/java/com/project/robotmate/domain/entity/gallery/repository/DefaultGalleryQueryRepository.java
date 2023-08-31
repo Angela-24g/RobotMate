@@ -1,7 +1,6 @@
 package com.project.robotmate.domain.entity.gallery.repository;
 
 import com.project.robotmate.core.types.GalleryType;
-import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Pageable;
 import com.project.robotmate.domain.common.dto.Searchable;
 import com.project.robotmate.domain.entity.gallery.Gallery;

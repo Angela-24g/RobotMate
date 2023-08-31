@@ -46,8 +46,8 @@ function SingleImage(element) {
      * 이벤트 추가 
     */
     function _events() {
-        _this.fileInputElement.addEventListener("change", _fileChangeHandler);
-        _this.removeFileButton.addEventListener("click", _removeFileClickHandler);
+        if (_this.fileInputElement) _this.fileInputElement.addEventListener("change", _fileChangeHandler);
+        if (_this.removeFileButton) _this.removeFileButton.addEventListener("click", _removeFileClickHandler);
     }
 
     /**
@@ -77,10 +77,12 @@ function SingleImage(element) {
                 if (_isAllowedVideoExtensions(fileExtension)) {
                     _visibility(_this.fileLabelElement, false);
                     _visibility(_this.videoViewElement, true);
+                    _this.element.setAttribute("data-single-image-type", 'video')
                     _this.videoViewElement.src = e.target.result;
                 } else {
                     _visibility(_this.fileLabelElement, true);
                     _visibility(_this.videoViewElement, false);
+                    _this.element.setAttribute("data-single-image-type", 'image')
                     _setLabelBackgroundImage(e.target.result);       
                 }
             }
@@ -119,6 +121,7 @@ function SingleImage(element) {
         _this.fileLabelElement.style.backgroundImage = "url('/images/preview.png')";
         _this.fileInputElement.value = '';
         _this.videoViewElement.src = '';
+        _this.element.setAttribute("data-single-image-type", 'image')
     }
 
     /**
