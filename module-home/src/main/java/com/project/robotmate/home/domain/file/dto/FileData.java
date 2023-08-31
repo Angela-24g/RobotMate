@@ -18,6 +18,7 @@ public class FileData {
     private Long size;
     private Long targetId;
     private int displayOrder;
+    private String thumbnailBucket;
 
     public FileData(File file) {
 
@@ -30,6 +31,7 @@ public class FileData {
         this.size = file.getSize();
         this.targetId = file.getTargetId();
         this.displayOrder = file.getDisplayOrder();
+        this.thumbnailBucket = file.getThumbnailBucket();
     }
 }
 
