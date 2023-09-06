@@ -1,10 +1,5 @@
-buildscript {
-    ext {
-        queryDslVersion = "5.0.0"
-    }
-}
 plugins {
-    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+    id "io.spring.dependency-management" version "1.0.15.RELEASE"
 }
 
 bootJar { enabled = false }
