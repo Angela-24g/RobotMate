@@ -85,7 +85,7 @@
         <div class="container">
             <!-- Portfolio Filter -->
             <nav class="grid-filter gf-outline" data-layout="#portfolio">
-                <ul>
+                <ul class="d-none d-lg-block">
                     <li class="${param.year == null || param.year == '' ? 'active' : ''}"><a href="/gallery" data-category="*">Show All</a></li>
 
                     <c:forEach var="year" items="${years}" begin="0" end="${years.size()}" step="1" varStatus="status">
@@ -94,6 +94,44 @@
 
                     <li class="${param.year == "prev" ? 'active' : ''}"><a href="/gallery?year=prev">이전</a></li>
                 </ul>
+
+                <form class="d-block d-lg-none">
+                    <div class="input-group">
+                        <select class="form-control" name="year">
+                            <c:choose>
+                                <c:when test="${(param.year == null || param.year == '')}">
+                                    <option selected value="">Show All</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="">Show All</option>
+                                </c:otherwise>
+                            </c:choose>
+
+                            <c:forEach var="year" items="${years}" begin="0" end="${years.size()}" step="1" varStatus="status">
+                                <c:choose>
+                                    <c:when test="${param.year == year}">
+                                        <option selected value="${year}">${year}</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option value="${year}">${year}</option>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+
+                            <c:choose>
+                                <c:when test="${param.year == 'prev'}">
+                                    <option selected value="prev">이전</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="prev">이전</option>
+                                </c:otherwise>
+                            </c:choose>
+                        </select>
+                        <button class="btn btn-primary ">검색</button>
+                    </div>
+
+                </form>
+
                 <div class="grid-active-title" style="z-index: -1">Show All</div>
             </nav>
             <!-- end: Portfolio Filter -->

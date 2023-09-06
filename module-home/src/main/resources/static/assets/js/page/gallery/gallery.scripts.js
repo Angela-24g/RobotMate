@@ -43,12 +43,12 @@ $(function () {
             type: "GET",
             success : (res) => {
                 page++;
-                if (res.galleries.length <= 0) {
-                    activeApi = false;
-                    let item = document.getElementById("noitems");
-                    item.innerHTML = "<div class='text-center'>게시글이 없습니다</div>"
-                    return;
-                }
+                // if (res.galleries.length <= 0) {
+                //     activeApi = false;
+                //     let item = document.getElementById("noitems");
+                //     item.innerHTML = "<div class='text-center'>게시글이 없습니다</div>"
+                //     return;
+                // }
 
                 for (const d of res?.galleries || []) {
                     getDataLayouts(d);
