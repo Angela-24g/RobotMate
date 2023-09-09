@@ -33,6 +33,15 @@ public class DefaultPriceService implements PriceService{
 
     @Override
     @Transactional
+    public Long create(EditPriceDto request) {
+        Price price = buildPrice(request);
+        priceRepository.save(price);
+
+        return price.getId();
+    }
+
+    @Override
+    @Transactional
     public void update(Long id, EditPriceDto request) {
         Price price = findPrice(id);
 
@@ -51,6 +60,13 @@ public class DefaultPriceService implements PriceService{
         );
     }
 
+    @Override
+    @Transactional
+    public void remove(Long id) {
+        Price price = findPrice(id);
+        priceRepository.delete(price);
+    }
+
     private Price findPrice(Long id) {
         return priceRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("찾을 수 없는 가격정보입니다."));
@@ -62,5 +78,26 @@ public class DefaultPriceService implements PriceService{
         }
 
         return value;
+    }
+
+    private Price buildPrice(EditPriceDto request) {
+        Price price = Price.builder()
+                .teachingCourse(request.getTeachingCourse())
+                .teachingExpenses(String.valueOf(request.getTeachingExpenses()))
+                .teachingHour(request.getTeachingHour())
+                .type(request.getType().equals("로봇") ? request.getType() : null)
+                .collectionUnit(request.getCollectionUnit())
+                .build();
+
+        price.changeCost(
+                zeroToEmpty(request.getMockTestCost()),
+                zeroToEmpty(request.getMaterialCost()),
+                zeroToEmpty(request.getClothesCost()),
+                zeroToEmpty(request.getLunchMoney()),
+                zeroToEmpty(request.getBoardingExpenses()),
+                zeroToEmpty(request.getCarCost())
+        );
+
+        return price;
     }
 }

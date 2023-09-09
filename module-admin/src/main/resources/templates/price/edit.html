@@ -4,18 +4,18 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/default}">
 <head>
-  <title>가격표 수정</title>
+  <title th:text="${price == null ? '가격표 추가' : '가격표 수정'}"></title>
 </head>
 <!-- Content -->
 <div layout:fragment="content">
   <div class="my-3 d-flex align-items-center justify-content-between">
-    <span class="h4 me-2 fw-bold">가격표 수정</span>
+    <span class="h4 me-2 fw-bold" th:text="${price == null ? '가격표 추가' : '가격표 수정'}">가격표 추가 | 수정</span>
     <a th:href="@{/prices}" class="btn btn-primary small">목록</a>
   </div>
 
-  <form id="gallery-edit-form" th:action method="post" class="card mt-3">
+  <form id="gallery-edit-form" th:action="${price == null ? '/prices/edit' : '/prices/edit/' + price.id}" method="post" class="card mt-3">
     <div class="card-body">
-      <input type="hidden" name="noticeId" th:value="${price?.id}">
+      <input type="hidden" name="priceId" th:value="${price?.id}">
       <div class="mb-3">
         <label for="teachingCourse" class="form-label text-muted">교습과정</label>
         <input th:value="${price?.teachingCourse}"
@@ -82,7 +82,12 @@
       <button  class="btn btn-primary">
         <th:block th:text="${price == null ? '작성' : '수정'}"></th:block>
       </button>
+      <button id="delete-price-btn" type="button" class="btn btn-danger" th:if="${price != null}">삭제</button>
     </div>
   </form>
+
+  <th:block layout:fragment="script">
+    <script th:src="@{/js/prices/prices.edit.js}"></script>
+  </th:block>
 </div>
 </html>

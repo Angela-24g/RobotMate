@@ -1,6 +1,7 @@
 package com.project.robotmate.domain.entity.price;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -54,6 +55,22 @@ public class Price {
     @LastModifiedBy
     @Column(name = "mod_dt")
     private LocalDateTime modDate;
+
+    @Builder
+    public Price(Long id, String teachingCourse, String teachingExpenses, String teachingHour, String collectionUnit, String mockTestCost, String materialCost, String clothesCost, String lunchMoney, String boardingExpenses, String carCost, String type) {
+        this.id = id;
+        this.teachingCourse = teachingCourse;
+        this.teachingExpenses = teachingExpenses;
+        this.teachingHour = teachingHour;
+        this.collectionUnit = collectionUnit;
+        this.mockTestCost = mockTestCost;
+        this.materialCost = materialCost;
+        this.clothesCost = clothesCost;
+        this.lunchMoney = lunchMoney;
+        this.boardingExpenses = boardingExpenses;
+        this.carCost = carCost;
+        this.type = type;
+    }
 
     public void changeTeachingCourse(String teachingCourse) {
         this.teachingCourse = teachingCourse;

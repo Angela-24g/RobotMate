@@ -1,13 +1,8 @@
 package com.project.robotmate.admin.domain.price.controller;
 
-import com.project.robotmate.admin.domain.gallery.dto.response.GalleryResponse;
-import com.project.robotmate.admin.domain.gallery.service.GalleryService;
 import com.project.robotmate.admin.domain.price.dto.EditPriceDto;
 import com.project.robotmate.admin.domain.price.dto.PriceDto;
 import com.project.robotmate.admin.domain.price.service.PriceService;
-import com.project.robotmate.admin.global.util.DateUtil;
-import com.project.robotmate.domain.common.dto.Page;
-import com.project.robotmate.domain.common.dto.Searchable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +29,11 @@ public class PriceController {
         return "price/list";
     }
 
+    @GetMapping("/prices/edit")
+    public String viewEditPrice() {
+        return "price/edit";
+    }
+
     @GetMapping("/prices/edit/{id}")
     public String viewEditPrice(
             @PathVariable("id") Long id,
@@ -54,5 +54,12 @@ public class PriceController {
         return "redirect:/prices/edit/" + id;
     }
 
+    @PostMapping("/prices/edit")
+    public String editPrice(
+            @ModelAttribute("price") EditPriceDto request
+    ) {
+        Long id = priceService.create(request);
+        return "redirect:/prices/edit/" + id;
+    }
 
 }
