@@ -5,24 +5,16 @@ spring:
   profiles:
     active: local
 
-#spring:
-#  datasource:
-#    url: jdbc:h2:tcp://localhost/~/test
-#    username: sa
-#    password:
-#    driver-class-name: org.h2.Driver
-#
-#  jpa:
-#    database-platform: org.hibernate.dialect.H2Dialect
-#    hibernate:
-#      ddl-auto: create
-#    properties:
-#      hibernate:
-#        format_sql: true
-#        # show_sql: true
-#
-#logging.level:
-#  org.hibernate.SQL: debug
-## org.hibernate.type: trace
+# log 설정
+logging:
+  config: classpath:logback-spring.xml
+  file:
+    path: logs/
+
+# AWS EC2 MetadataUtils Error 처리
+spring.autoconfigure.exclude: org.springframework.cloud.aws.autoconfigure.context.ContextInstanceDataAutoConfiguration
+
+
+
 
 

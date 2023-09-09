@@ -1,7 +1,5 @@
 version = '1.0.0'
 
-apply plugin: 'war'
-
 springBoot {
     buildInfo()
 }
