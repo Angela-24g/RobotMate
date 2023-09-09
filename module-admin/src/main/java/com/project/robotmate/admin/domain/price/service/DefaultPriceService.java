@@ -37,7 +37,7 @@ public class DefaultPriceService implements PriceService{
         Price price = findPrice(id);
 
         price.changeTeachingCourse(request.getTeachingCourse());
-        price.changeTeachingExpenses(request.getTeachingExpenses().toString());
+        price.changeTeachingExpenses(String.valueOf(request.getTeachingExpenses()));
         price.changeTeachingHour(request.getTeachingHour());
         price.changeType(request.getType().equals("로봇") ? request.getType() : null);
         price.changeCollectionUnit(request.getCollectionUnit());

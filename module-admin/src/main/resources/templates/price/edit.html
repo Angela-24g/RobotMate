@@ -8,6 +8,11 @@
 </head>
 <!-- Content -->
 <div layout:fragment="content">
+  <div class="my-3 d-flex align-items-center justify-content-between">
+    <span class="h4 me-2 fw-bold">가격표 수정</span>
+    <a th:href="@{/prices}" class="btn btn-primary small">목록</a>
+  </div>
+
   <form id="gallery-edit-form" th:action method="post" class="card mt-3">
     <div class="card-body">
       <input type="hidden" name="noticeId" th:value="${price?.id}">

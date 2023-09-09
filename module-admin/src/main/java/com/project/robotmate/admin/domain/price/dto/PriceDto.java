@@ -13,13 +13,13 @@ public class PriceDto {
     private String teachingCourse;
     private Integer teachingExpenses;
     private String teachingHour;
-    private String collectionUnit;
-    private String mockTestCost;
-    private String materialCost;
-    private String clothesCost;
-    private String lunchMoney;
-    private String boardingExpenses;
-    private String carCost;
+    private Integer collectionUnit;
+    private Integer mockTestCost;
+    private Integer materialCost;
+    private Integer clothesCost;
+    private Integer lunchMoney;
+    private Integer boardingExpenses;
+    private Integer carCost;
     private String type;
     private LocalDateTime modDate;
 
@@ -28,15 +28,15 @@ public class PriceDto {
     public PriceDto(Price price) {
         this.id = price.getId();
         this.teachingCourse = price.getTeachingCourse();
-        this.teachingExpenses = Integer.parseInt(price.getTeachingExpenses());
+        this.teachingExpenses = stringToInt(price.getTeachingExpenses());
         this.teachingHour = price.getTeachingHour();
-        this.collectionUnit = price.getCollectionUnit();
-        this.mockTestCost = price.getMockTestCost();
-        this.materialCost = price.getMaterialCost();
-        this.clothesCost = price.getClothesCost();
-        this.lunchMoney = price.getLunchMoney();
-        this.boardingExpenses = price.getBoardingExpenses();
-        this.carCost = price.getCarCost();
+        this.collectionUnit = stringToInt(price.getCollectionUnit());
+        this.mockTestCost = stringToInt(price.getMockTestCost());
+        this.materialCost = stringToInt(price.getMaterialCost());
+        this.clothesCost = stringToInt(price.getClothesCost());
+        this.lunchMoney = stringToInt(price.getLunchMoney());
+        this.boardingExpenses = stringToInt(price.getBoardingExpenses());
+        this.carCost = stringToInt(price.getCarCost());
         this.type = price.getType();
         this.modDate = price.getModDate();
         this.totalCost = calcTotalCost(price);
