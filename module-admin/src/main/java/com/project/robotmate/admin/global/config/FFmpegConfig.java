@@ -32,7 +32,7 @@ public class FFmpegConfig {
             log.info("classPathResource : {}", classPathResource);
             ffMPeg = new FFmpeg(classPathResource.getURL().getPath());
 //            ffMPeg = new FFmpeg("classpath:static/ffmpeg.exe");
-        } else if(osName.toLowerCase().contains("unix") || osName.toLowerCase().contains("linux")) {
+        } else {
             ffMPeg = new FFmpeg(ffmpegLocation);
         }
 
@@ -51,8 +51,8 @@ public class FFmpegConfig {
             log.info("classPathResource : {}", classPathResource);
             ffprobe = new FFprobe(classPathResource.getURL().getPath());
 //            ffprobe = new FFprobe("classpath:static/ffprobe.exe");
-        } else if(osName.toLowerCase().contains("unix") || osName.toLowerCase().contains("linux")) {
-            ffprobe = new FFprobe(ffmpegLocation);
+        } else {
+            ffprobe = new FFprobe(ffprobeLocation);
         }
 
         return ffprobe;
