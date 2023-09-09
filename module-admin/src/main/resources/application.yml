@@ -7,7 +7,7 @@ spring:
 
 # log 설정
 logging:
-  config: classpath:logback-spring.xml
+  config: classpath:spring-logback.xml
   file:
     path: logs/
 
