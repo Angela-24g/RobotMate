@@ -54,7 +54,7 @@
             <!-- Slide 1 -->
             <c:choose>
                 <c:when test="${item.file.fileFormat.startsWith('video')}">
-                    <div class="slide kenburns" data-bg-video="${item.imageUri}"
+                    <div class="slide" data-bg-video="${item.originalImageUri}"
                          style="background-size: cover;">
                         <div class="bg-overlay"></div>
                         <div class="container">
@@ -66,7 +66,7 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <div class="slide kenburns" data-bg-image="${item.imageUri}"
+                    <div class="slide" data-bg-image="${item.imageUri}"
                          style="background-size: cover;">
                         <div class="bg-overlay"></div>
                         <div class="container">

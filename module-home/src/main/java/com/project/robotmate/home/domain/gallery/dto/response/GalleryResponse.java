@@ -21,6 +21,7 @@ public class GalleryResponse {
     private String delYn;
     private GalleryType type;
 
+    private String originalImageUri;
     private String year;
     private String imageUri;
     private LocalDateTime createDate;
@@ -35,6 +36,7 @@ public class GalleryResponse {
         this.type = gallery.getType();
         this.imageUri = ObjectUtils.isEmpty(file.getThumbnailBucket()) ?
                 S3UrlUtil.conventUrl(file.getBucket()) : S3UrlUtil.conventUrl(file.getThumbnailBucket());
+        this.originalImageUri = S3UrlUtil.conventUrl(file.getBucket());
         this.admin = new AdminResponse(gallery.getAdmin());
         this.file = file;
         this.year = gallery.getYear();
