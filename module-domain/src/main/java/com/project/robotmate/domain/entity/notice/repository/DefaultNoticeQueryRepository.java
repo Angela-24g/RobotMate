@@ -1,12 +1,15 @@
 package com.project.robotmate.domain.entity.notice.repository;
 
+import com.project.robotmate.core.types.NoticeType;
 import com.project.robotmate.domain.common.dto.Pageable;
 import com.project.robotmate.domain.entity.gallery.Gallery;
+import com.project.robotmate.domain.common.dto.Searchable;
 import com.project.robotmate.domain.entity.notice.Notice;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.ObjectUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -54,12 +57,35 @@ public class DefaultNoticeQueryRepository implements NoticeQueryRepository{
     }
 
     @Override
-    public List<Notice> findAllBySearchable() {
-        return queryFactory.select(notice)
-                .from(notice)
-                .where(notDelete())
+    public List<Notice> findAllBySearchable(Pageable pageable, Searchable searchable) {
+        return queryFactory.selectFrom(notice)
+                .where(typeEq(searchable.getType()))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
+        // notDelete 는 뭔지?
 
+    }
+
+
+    @Override
+    public Long countAllBySearchable(Searchable searchable){
+        return queryFactory.select(notice.count())
+                .where(typeEq(searchable.getType()))
+                .from(notice)
+                .fetchOne();
+    }
+
+
+    private BooleanExpression typeEq(String type){
+        if (ObjectUtils.isEmpty(type)) {
+            return null;
+        }
+        try {
+            return notice.type.eq(NoticeType.valueOf(type));
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 

@@ -2,6 +2,7 @@ package com.project.robotmate.home.domain.notice.service;
 
 import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Pageable;
+import com.project.robotmate.domain.common.dto.Searchable;
 import com.project.robotmate.domain.entity.notice.Notice;
 import com.project.robotmate.domain.entity.notice.repository.NoticeQueryRepository;
 import com.project.robotmate.home.domain.notice.dto.response.NoticeResponse;
@@ -21,21 +22,27 @@ public class DefaultNoticeService implements NoticeService {
     private final NoticeQueryRepository noticeQueryRepository;
 
     @Override
-    public Page<List<NoticeResponse>> getNotices(int page) {
-        Long totalCount = noticeQueryRepository.countAll();
-        Pageable pageable = getPageable(totalCount.intValue(), page);
-        List<NoticeResponse> result = noticeQueryRepository.findAll(pageable)
-                .stream().map(NoticeResponse::new)
-                .collect(Collectors.toList());
+    public Page<List<NoticeResponse>> getNoticeList(Searchable searchable) {
 
+        Long totalCount = noticeQueryRepository.countAllBySearchable(searchable);
+        Pageable pageable = new Pageable(totalCount.intValue(), searchable.getPage(), 20);
+        List<NoticeResponse> result = noticeQueryRepository.findAllBySearchable(pageable, searchable)
+                                        .stream()
+                                        .map(NoticeResponse::new)
+                                        .collect(Collectors.toList());
         return new Page<>(pageable, result);
     }
 
+//    @Override
+//    public List<NoticeResponse> getNoticeList() {
+//        return noticeQueryRepository.findAllBySearchable()
+//                .stream().map(NoticeResponse::new)
+//                .collect(Collectors.toList());
+//    }
+
     @Override
-    public List<NoticeResponse> getNoticeList() {
-        return noticeQueryRepository.findAllBySearchable()
-                .stream().map(NoticeResponse::new)
-                .collect(Collectors.toList());
+    public List<NoticeResponse> getNoticeListDetail(HttpServletRequest req) {
+        return null;
     }
 
     /**

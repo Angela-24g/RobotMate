@@ -16,5 +16,7 @@ public interface NoticeQueryRepository {
 
     Optional<Notice> findById(Long id);
 
-    List<Notice> findAllBySearchable();
+    List<Notice> findAllBySearchable(Pageable pageable, Searchable searchable);
+
+    Long countAllBySearchable(Searchable searchable);
 }

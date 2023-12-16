@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 포워딩용 메인 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
@@ -91,17 +92,21 @@
           <table id="datatable" class="table table-bordered table-hover" style="width:100%">
             <thead>
             <tr>
-              <th>작성일</th>
+              <th>등록번호</th>
               <th>제목</th>
               <th>작성자</th>
+              <th>조회수</th>
             </tr>
             </thead>
             <tbody id="noticeContents">
-            <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-            </tr>
+            <c:forEach var="list" items="${noticeList}">
+              <tr>
+                <td>${list.id}</td>
+                <td>${list.title}</td>
+                <td>${list.admin}</td>
+                <td>${list.viewCount}</td>
+              </tr>
+            </c:forEach>
             </tbody>
           </table>
         </div>
@@ -128,7 +133,7 @@
 
 <script>
     $(document).ready(function () {
-        fn_search();
+        // fn_search();
 
         var table = $('#datatable').DataTable({
             buttons: [{
@@ -169,39 +174,7 @@
 
     });
 
-    function fn_search() {
-        var data = {};
 
-        $.ajax({
-            url: '/notice/noticeList',
-            data: data,
-            cache: false,
-            async: false,
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-            pagingYn: false,
-            success: function (jsonView) {
-                var resultData = jsonView;
-                console.log(resultData);
-                console.log(resultData.data.length);
-                for (var i = 0; i < resultData.data.length; i++) {
-                    var title = resultData.data[i].title;
-                    var id = resultData.data[i].id;
-                    var writer = resultData.data[i].admin.name;
-                    var content = '<tr><td><a href="noticeDetail?id='+ id +'">' + id + '</a></td>';
-                        content += '<td><a href="noticeDetail?id='+ id +'">' + title + '</a></td>';
-                        content += '<td>' + writer + '</td></tr>';
-
-                    var contents;
-                    contents += content;
-
-                }
-                $("#noticeContents").html(contents);
-
-
-            }
-
-        });
-    }
 </script>
 </body>
 

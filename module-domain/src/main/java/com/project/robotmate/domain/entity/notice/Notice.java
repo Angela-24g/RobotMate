@@ -1,5 +1,6 @@
 package com.project.robotmate.domain.entity.notice;
 
+import com.project.robotmate.core.types.NoticeType;
 import com.project.robotmate.domain.entity.admin.Admin;
 import com.project.robotmate.domain.entity.BaseEntity;
 import lombok.AccessLevel;
@@ -38,8 +39,13 @@ public class Notice extends BaseEntity {
     @JoinColumn(name = "admin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Admin admin;
 
+    @Column(name = "type")
+    //enum String으로 쓸경우 써줘야함
+    @Enumerated(EnumType.STRING)
+    private NoticeType type;
+
     @Builder
-    public Notice(Long id, String title, String contents, Integer viewCount, String publicYn, String delYn, Admin admin) {
+    public Notice(Long id, String title, String contents, String createdDated, Integer viewCount, String publicYn, String delYn, Admin admin) {
         this.id = id;
         this.title = title;
         this.contents = contents;
@@ -48,4 +54,6 @@ public class Notice extends BaseEntity {
         this.delYn = delYn != null ? delYn : "N";;
         this.admin = admin;
     }
+
+
 }
