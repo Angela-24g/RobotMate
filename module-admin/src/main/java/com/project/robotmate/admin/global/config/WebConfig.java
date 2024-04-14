@@ -15,12 +15,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.List;
 
 
-@Configuration
+//@Configuration
 public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new StringToIntegerConverter());
     }
+/*
 
     private final AuthenticationInterceptor authenticationInterceptor;
 
@@ -40,6 +41,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new AuthenticationArgumentResolver());
     }
+*/
 
 
 }
