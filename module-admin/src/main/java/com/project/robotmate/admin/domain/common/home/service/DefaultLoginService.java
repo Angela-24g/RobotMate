@@ -5,6 +5,9 @@ import com.project.robotmate.admin.domain.common.home.dto.LoginRequest;
 import com.project.robotmate.domain.entity.admin.repository.AdminRepository;
 import com.project.robotmate.domain.entity.admin.Admin;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +18,7 @@ import java.util.Optional;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class DefaultLoginService implements AdminService {
+public class DefaultLoginService implements AdminService, UserDetailsService {
 
     private final AdminRepository adminRepository;
     private final PasswordEncoder passwordEncoder;
@@ -24,7 +27,7 @@ public class DefaultLoginService implements AdminService {
     private final String AUTH_SESSION_NAME = "user";
 
     @Transactional
-    @Override
+   // @Override
     public void login(LoginRequest request) {
         Admin admin = adminRepository.findByAdminId(request.getAdminId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다."));
@@ -55,8 +58,14 @@ public class DefaultLoginService implements AdminService {
         adminRepository.save(admin);
     }
 
-    @Override
+ //   @Override
     public void logout() {
         httpSession.removeAttribute(AUTH_SESSION_NAME);
+    }
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Admin admin = adminRepository.findByAdminId(username)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다."));
+        return new com.project.robotmate.admin.domain.admin.security.AdminDetail(admin);
     }
 }

@@ -23,6 +23,7 @@ public class HomeController {
     public String viewLoginPage() {
         return "login";
     }
+/*
 
     @GetMapping("/logout")
     public String logout() {
@@ -38,6 +39,7 @@ public class HomeController {
         adminService.login(request);
         return ResponseEntity.ok(ApiResponse.ok());
     }
+*/
 
     @PostMapping("/join")
     @ResponseBody

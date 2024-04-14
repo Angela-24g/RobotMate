@@ -14,8 +14,20 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig  {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.httpBasic().disable()
-                .csrf().disable();
+//        http.httpBasic().disable()
+//                .csrf().disable();
+//        return http.build();
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/css/**","/fonts/**", "/images/**","/js/**", "/login").permitAll()
+                .antMatchers("/**").authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/galleries")
+                .usernameParameter("adminId")
+                .and()
+                .logout();
         return http.build();
     }
     @Bean
