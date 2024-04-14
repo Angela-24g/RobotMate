@@ -1,6 +1,7 @@
 package com.project.robotmate.admin.domain.gallery.dto.request;
 
 import com.project.robotmate.core.types.GalleryType;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,15 +27,19 @@ public class GalleryUpdateRequest {
 
     private Long fileId;
 
+    private Integer order;
+
     private MultipartFile file;
 
-    public GalleryUpdateRequest(String title, String contents, String type, String year, MultipartFile file, Long fileId) {
+    @Builder
+    public GalleryUpdateRequest(String title, String contents, String type, String year, Long fileId, Integer order, MultipartFile file) {
         this.title = title;
         this.contents = contents;
         this.type = type;
         this.year = year;
-        this.file = file;
         this.fileId = fileId;
+        this.order = order;
+        this.file = file;
     }
 
     public GalleryType getType() {

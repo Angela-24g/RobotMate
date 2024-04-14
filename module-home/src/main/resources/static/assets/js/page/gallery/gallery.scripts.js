@@ -39,7 +39,7 @@ $(function () {
     function getNextGalleries() {
         if (!activeApi) return;
         $.ajax({
-            url: `/api/galleries?page=${page}${yearType ? '&year='.concat(yearType) : ''}`,
+            url: `/api/galleries?&type=NORMAL&page=${page}${yearType ? '&year='.concat(yearType) : ''}`,
             type: "GET",
             success : (res) => {
                 page++;

@@ -79,6 +79,10 @@
             <label for="year" class="form-label">연도</label>
             <input type="text" id="year" name="year" class="form-control" th:value="${#strings.defaultString(gallery?.year, currentYear)}" readonly/>
           </div>
+          <div class="mb-3">
+            <label for="order" class="form-label">순서</label>
+            <input type="number" class="form-control" id="order" name="order" placeholder="순서(숫자만) 입력해주세요" th:value="${gallery?.order}"></input>
+          </div>
 
   <!--        <div class="mb-3">-->
   <!--          <input type="file" accept="image/*,video/*" id="file" name="file" class="d-none" size="5242880">-->

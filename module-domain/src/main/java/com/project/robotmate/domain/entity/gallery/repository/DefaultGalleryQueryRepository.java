@@ -55,6 +55,7 @@ public class DefaultGalleryQueryRepository implements GalleryQueryRepository {
     public List<Gallery> findAllBySearchable(Pageable pageable, Searchable searchable) {
         return queryFactory.selectFrom(gallery)
                 .where(typeEq(searchable.getType()), yearEq(searchable.getYear()), notDelete())
+                .orderBy(gallery.order.asc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

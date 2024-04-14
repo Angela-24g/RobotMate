@@ -21,10 +21,12 @@ public class GalleryApiController {
     @GetMapping("/api/galleries")
     public ResponseEntity<HashMap<String, Object>> viewGalleries(
             @RequestParam(value = "page",defaultValue = "1") int page,
-            @RequestParam(value = "year", required = false) String year
+            @RequestParam(value = "year", required = false) String year,
+            @RequestParam(value = "type", required = false) String type
     ) {
         Searchable searchable = Searchable.builder()
                 .page(page)
+                .type(type)
                 .year(year).build();
         Page<List<GalleryResponse>> galleries = galleryService.getGalleries(searchable);
 

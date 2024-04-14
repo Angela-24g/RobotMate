@@ -10,6 +10,7 @@ import com.project.robotmate.admin.domain.gallery.dto.request.GalleryRequest;
 import com.project.robotmate.admin.domain.gallery.dto.request.GalleryUpdateRequest;
 import com.project.robotmate.admin.domain.gallery.dto.response.GalleryResponse;
 import com.project.robotmate.core.types.DirectoryType;
+import com.project.robotmate.core.types.GalleryType;
 import com.project.robotmate.core.types.TargetType;
 import com.project.robotmate.domain.common.dto.Page;
 import com.project.robotmate.domain.common.dto.Pageable;
@@ -83,6 +84,12 @@ public class DefaultGalleryService implements GalleryService {
         gallery.changeGallery(request.getTitle(), request.getContents());
         gallery.changeYear(request.getYear());
         gallery.changeType(request.getType());
+
+        if (!GalleryType.MAIN.equals(request.getType())) {
+            gallery.changeOrder(0);
+        } else {
+            gallery.changeOrder(request.getOrder());
+        }
     }
 
     @Override

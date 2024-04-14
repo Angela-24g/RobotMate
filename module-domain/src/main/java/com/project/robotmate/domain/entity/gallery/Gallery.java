@@ -33,6 +33,9 @@ public class Gallery extends BaseEntity {
     @Column(name = "gall_year")
     private String year;
 
+    @Column(name = "ord")
+    private int order;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "admin_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Admin admin;
@@ -63,5 +66,9 @@ public class Gallery extends BaseEntity {
 
     public void remove() {
         this.delYn = "Y";
+    }
+
+    public void changeOrder(int order) {
+        this.order = order;
     }
 }

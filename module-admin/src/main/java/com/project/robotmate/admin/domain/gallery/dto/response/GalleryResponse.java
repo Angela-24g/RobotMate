@@ -25,6 +25,8 @@ public class GalleryResponse {
     private String fileType;
     private String originalImageUri;
 
+    private Integer order;
+
     public GalleryResponse(Gallery gallery, FileData file) {
         this.id = gallery.getId();
         this.title = gallery.getTitle();
@@ -37,6 +39,7 @@ public class GalleryResponse {
         this.createDate = gallery.getCreatedDate();
         this.imageId = file.getId();
         this.fileType = file.getFileFormat();
+        this.order = gallery.getOrder();
     }
 
     public String typeToKor() {
