@@ -62,6 +62,8 @@ public class DefaultLoginService implements AdminService, UserDetailsService {
     public void logout() {
         httpSession.removeAttribute(AUTH_SESSION_NAME);
     }
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Admin admin = adminRepository.findByAdminId(username)
