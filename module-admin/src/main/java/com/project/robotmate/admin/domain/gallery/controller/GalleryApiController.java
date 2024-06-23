@@ -22,7 +22,6 @@ public class GalleryApiController {
             @ModelAttribute GalleryRequest request,
             Admin admin
     ) {
-        System.out.println("Admin = " + admin);
         Long galleryId = galleryService.save(request, admin);
         return ResponseEntity.ok(new DataResponse<>(galleryId));
     }
