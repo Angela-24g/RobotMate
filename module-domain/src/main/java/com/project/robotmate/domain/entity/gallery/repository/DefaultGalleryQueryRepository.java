@@ -85,7 +85,7 @@ public class DefaultGalleryQueryRepository implements GalleryQueryRepository {
         return queryFactory.select(gallery)
                 .from(gallery)
                 .where(typeEq("MAIN"), notDelete())
-                .orderBy(gallery.createdDate.asc())
+                .orderBy(gallery.order.asc())
                 .fetch();
     }
 

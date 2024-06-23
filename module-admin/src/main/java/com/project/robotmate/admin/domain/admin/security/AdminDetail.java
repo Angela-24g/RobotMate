@@ -1,12 +1,14 @@
 package com.project.robotmate.admin.domain.admin.security;
 
 import com.project.robotmate.domain.entity.admin.Admin;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+@Getter
 public class AdminDetail implements UserDetails {
 
     private String loginId;

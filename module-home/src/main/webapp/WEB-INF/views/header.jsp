@@ -29,9 +29,9 @@
         <div class="container">
           <nav>
             <ul>
-              <li sytle=""><a href="index.html" style="color:red; font-weight:bold;">국제 올림피아드 인증
+              <li sytle=""><a href="/" style="color:red; font-weight:bold;">국제 올림피아드 인증
                 교육기관</a></li>
-              <li><a href="index.html">Home</a></li>
+              <li><a href="/">Home</a></li>
               <li><a href="https://cafe.naver.com/breshit0" target="_blank">공식 카페</a>
 
               </li>
