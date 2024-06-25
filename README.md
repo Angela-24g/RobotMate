@@ -33,7 +33,7 @@ java11, Spring boot 2.7.5, Spring data JPA, QueryDSL, IntelliJ, Gradle, MySQL, A
    - [ ] Price Edit Page
 
 
-### Table
+### ✔️ Table
 ```
 # 회원 테이블
 create table RM_USER (
