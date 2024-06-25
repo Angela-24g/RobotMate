@@ -2,6 +2,14 @@
 
 2022-11-12 dev env setting & db relation setting working start 
 
+### ✔️ 인원
+- 배서하
+  - Github. [https://github.com/Baeseoha](https://github.com/Baeseoha)
+- 이영신
+   - Github. [https://github.com/Angela-24g](https://github.com/Angela-24g)
+- 김일중
+   - Github. [https://github.com/bdgom73](https://github.com/bdgom73)
+
 ### ✔️ URL
 [http://robotmate.co.kr](http://robotmate.co.kr)
 
