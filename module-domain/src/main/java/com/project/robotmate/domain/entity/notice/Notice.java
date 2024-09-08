@@ -1,5 +1,6 @@
 package com.project.robotmate.domain.entity.notice;
 
+import com.project.robotmate.core.types.GalleryType;
 import com.project.robotmate.core.types.NoticeType;
 import com.project.robotmate.domain.entity.admin.Admin;
 import com.project.robotmate.domain.entity.BaseEntity;
@@ -27,7 +28,7 @@ public class Notice extends BaseEntity {
     private String contents;
 
     @Column(name = "view_cnt")
-    private Integer viewCount = 0;
+    private Integer viewCount;
 
     @Column(name = "pbc_yn")
     private String publicYn = "Y";
@@ -45,15 +46,30 @@ public class Notice extends BaseEntity {
     private NoticeType type;
 
     @Builder
-    public Notice(Long id, String title, String contents, String createdDated, Integer viewCount, String publicYn, String delYn, Admin admin) {
+    public Notice(Long id, String title, String contents, Integer viewCount, String publicYn, String delYn, Admin admin) {
         this.id = id;
         this.title = title;
         this.contents = contents;
-        this.viewCount = viewCount;
+        this.viewCount = viewCount != null ? viewCount:0;
         this.publicYn = publicYn;
-        this.delYn = delYn != null ? delYn : "N";;
+        this.delYn = delYn != null ? delYn : "N";
         this.admin = admin;
     }
 
 
+    public  void increaseViewCount() {
+        this.viewCount++;
+    }
+
+    public void changeNotice(String title, String contents) {
+        this.title = title;
+        this.contents = contents;
+    }
+    public void changeType(NoticeType type) {
+        this.type = type;
+    }
+
+    public void remove() {
+        this.delYn = "Y";
+    }
 }

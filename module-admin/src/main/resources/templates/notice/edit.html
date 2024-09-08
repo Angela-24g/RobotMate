@@ -1,55 +1,57 @@
 <!DOCTYPE html>
-<html  xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:th="http://www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/default}">
-<head><head>
-  <title th:text="${notice == null ? '공지사항 작성' : '공지사항 수정'}"></title>
+<head>
+    <title th:text="${notice == null ? '공지사항 작성' : '공지사항 수정'}"></title>
 </head>
 <!-- Content -->
 <div layout:fragment="content">
-  <div class="my-3 d-flex align-items-center justify-content-between">
-    <span class="h4 me-2 fw-bold" th:text="${notice == null ? '공지사항 작성' : '공지사항 수정'}"> </span>
-    <a th:href="@{/notices}" class="btn btn-primary small">목록</a>
-  </div>
+    <div class="my-3 d-flex align-items-center justify-content-between">
+        <span class="h4 me-2 fw-bold" th:text="${notice == null ? '공지사항 작성' : '공지사항 수정'}"> </span>
+        <a th:href="@{/notices}" class="btn btn-primary small">목록</a>
+    </div>
 
-  <div  class="card mb-3">
-    <form id="notice-edit-form" >
-      <div class="card-body">
-        <input type="hidden" name="noticeId" th:value="${notice?.id}">
-        <div class="mb-3">
-          <label for="title" class="form-label">공개여부</label>
-          <div>
-            <input type="radio" checked name="publicYn" value="Y">
-            <span class="ms-1">공개</span>
-          </div>
-          <div>
-            <input type="radio" checked name="publicYn" value="N">
-            <span class="ms-1">비공개</span>
-          </div>
-
-        </div>
-        <div class="mb-3">
-          <label for="title" class="form-label">제목</label>
-          <input th:value="${notice?.title}"
-                  type="text" class="form-control" id="title"  placeholder="제목을 입력해주세요" name="title">
-        </div>
-        <div class="mb-3">
-          <label for="contents" class="form-label">내용</label>
-          <textarea class="form-control" id="contents" name="contents" placeholder="내용을 입력해주세요" th:text="${notice?.contents}"></textarea>
-        </div>
-        <div class="mb-3">
-          <input type="file" accept="image/*,video/*" id="file" name="file" class="d-none" size="5242880">
-          <label for="file">이미지 및 비디오추가</label>
-        </div>
-      </div>
-      <div class="card-footer">
-        <a href="javascript:void(0)" class="btn btn-primary" id="notice-button" th:text="${notice == null ? '작성' : '수정'}"></a>
-      </div>
-    </form>
-  </div>
-  <th:block layout:fragment="script">
-    <script th:src="@{/js/notice/notice.edit.js}"></script>
-  </th:block>
+    <div class="card mb-3">
+        <form id="notice-edit-form">
+            <div class="card-body">
+                <input type="hidden" name="noticeId" th:value="${notice?.id}">
+                <div class="mb-3">
+                    <label for="title" class="form-label">공개여부</label>
+                    <div>
+                        <input type="radio" th:checked="${notice?.publicYn} == 'Y'" name="publicYn" value="Y">
+                        <span class="ms-1">공개</span>
+                    </div>
+                    <div>
+                        <input type="radio" th:checked="${notice?.publicYn} == 'N'" name="publicYn" value="N">
+                        <span class="ms-1">비공개</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="title" class="form-label">제목</label>
+                    <input th:value="${notice?.title}"
+                           type="text" class="form-control" id="title" placeholder="제목을 입력해주세요" name="title">
+                </div>
+                <div class="mb-3">
+                    <label for="contents" class="form-label">내용</label>
+                    <div class="form-control" id="contents" name="contents" th:text="${notice?.contents}"></div>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <a href="javascript:void(0)" class="btn btn-sm btn-danger" id="notice-delete-button">삭제</a>
+                <a href="javascript:void(0)" class="btn btn-primary" id="notice-button"
+                   th:text="${notice == null ? '작성' : '수정'}"></a>
+            </div>
+        </form>
+    </div>
+    <th:block layout:fragment="script">
+        <script th:inline="javascript">
+            const noticeContens = /*[[${notice?.contents}]]*/ '';
+                document.querySelector('#contents').innerHTML = noticeContens;
+        </script>
+        <script th:src="@{/js/notice/notice.edit.js}"></script>
+    </th:block>
 </div>
+
 </html>

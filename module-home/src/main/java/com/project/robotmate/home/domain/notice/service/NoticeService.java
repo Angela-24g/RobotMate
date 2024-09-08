@@ -10,6 +10,12 @@ import java.util.List;
 public interface NoticeService {
 
     //Page<List<NoticeResponse>> getNotices(int page);
+
+    // 공지사항 페이지 열기
     Page<List<NoticeResponse>> getNoticeList(Searchable searchable);
     List<NoticeResponse> getNoticeListDetail(HttpServletRequest req);
+
+    // 공지사항 상세보기
+    NoticeResponse getNoticeDetail(Long id);
+
 }

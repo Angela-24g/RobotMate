@@ -47,6 +47,7 @@ public class GlobalExceptionHandler {
 
     private static ResponseEntity<ErrorResponse> getErrorResponseEntity(Exception ex, HttpStatus status) {
         ErrorResponse response = ErrorResponse.error(status.value(), ex.getMessage());
+        ex.printStackTrace();
         return new ResponseEntity<>(response, status);
     }
 

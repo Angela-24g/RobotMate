@@ -21,6 +21,7 @@ public class DefaultNoticeService implements NoticeService {
 
     private final NoticeQueryRepository noticeQueryRepository;
 
+    // 공지사항 페이지 열기
     @Override
     public Page<List<NoticeResponse>> getNoticeList(Searchable searchable) {
 
@@ -43,6 +44,16 @@ public class DefaultNoticeService implements NoticeService {
     @Override
     public List<NoticeResponse> getNoticeListDetail(HttpServletRequest req) {
         return null;
+    }
+
+    // 공지사항 상세페이지 열기
+    @Override
+    @Transactional
+    public NoticeResponse getNoticeDetail(Long id) {
+        Notice notice = noticeQueryRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("찾을 수 없는 공지사항입니다."));
+        notice.increaseViewCount();
+        return new NoticeResponse(notice);
     }
 
     /**

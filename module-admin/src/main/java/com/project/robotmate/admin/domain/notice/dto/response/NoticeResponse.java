@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -22,6 +23,9 @@ public class NoticeResponse {
 
     private LocalDateTime createDate;
 
+    private String displayCreateDate;
+    private String displayModDate;
+
     public NoticeResponse(Notice notice) {
         this.id = notice.getId();
         this.title = notice.getTitle();
@@ -33,5 +37,7 @@ public class NoticeResponse {
         }
 
         this.createDate = notice.getCreatedDate();
+        this.displayCreateDate = notice.getCreatedDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        this.displayModDate = notice.getModDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 }

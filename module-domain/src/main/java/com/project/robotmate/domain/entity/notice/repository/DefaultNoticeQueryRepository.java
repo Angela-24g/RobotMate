@@ -2,7 +2,6 @@ package com.project.robotmate.domain.entity.notice.repository;
 
 import com.project.robotmate.core.types.NoticeType;
 import com.project.robotmate.domain.common.dto.Pageable;
-import com.project.robotmate.domain.entity.gallery.Gallery;
 import com.project.robotmate.domain.common.dto.Searchable;
 import com.project.robotmate.domain.entity.notice.Notice;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -11,11 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
-import static com.project.robotmate.domain.entity.gallery.QGallery.gallery;
 import static com.project.robotmate.domain.entity.notice.QNotice.notice;
 
 
@@ -31,6 +28,7 @@ public class DefaultNoticeQueryRepository implements NoticeQueryRepository{
                 .where(notDelete())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
+                .orderBy(notice.modDate.desc())
                 .fetch();
     }
 
@@ -46,6 +44,10 @@ public class DefaultNoticeQueryRepository implements NoticeQueryRepository{
         return notice.delYn.eq("N");
     }
 
+    private BooleanExpression publicY() {
+        return notice.publicYn.eq("Y");
+    }
+
     @Override
     public Optional<Notice> findById(Long id) {
         return Optional.ofNullable(
@@ -59,11 +61,12 @@ public class DefaultNoticeQueryRepository implements NoticeQueryRepository{
     @Override
     public List<Notice> findAllBySearchable(Pageable pageable, Searchable searchable) {
         return queryFactory.selectFrom(notice)
+                .where(typeEq(searchable.getType()), notDelete(), publicY())
                 .where(typeEq(searchable.getType()))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
+                .orderBy(notice.modDate.desc())
                 .fetch();
-        // notDelete 는 뭔지?
 
     }
 
@@ -71,7 +74,7 @@ public class DefaultNoticeQueryRepository implements NoticeQueryRepository{
     @Override
     public Long countAllBySearchable(Searchable searchable){
         return queryFactory.select(notice.count())
-                .where(typeEq(searchable.getType()))
+                .where(typeEq(searchable.getType()), notDelete(), publicY())
                 .from(notice)
                 .fetchOne();
     }

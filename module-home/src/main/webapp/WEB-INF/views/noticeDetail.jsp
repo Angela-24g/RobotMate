@@ -34,12 +34,12 @@
 
       gtag('config', 'G-68Y1BSKSW1');
   </script>
-  <script>
-      // if (document.location.protocol == 'http:') {
-      //     document.location.href = document.location.href.replace('http:', 'https:');
-      // }
-
-  </script>
+<style>
+    #editorContent img{
+        max-width: 400px;
+    }
+    a {text-decoration: none}
+</style>
 </head>
 <body>
 <!-- Body Inner -->
@@ -85,21 +85,23 @@
               <div class="col-lg-12">
                 <div class="form-group">
                   <label>제목</label>
-                  <input type="text" id="notify_title" value="Notification Title"
+                  <input type="text" id="notify_title" value="${notice.title}"
                          class="form-control notification-message">
                 </div>
                 <div class="form-group">
                   <label>내용</label>
-                  <textarea id="notify_message" class="form-control notification-message"
-                            placeholder="Type your message here" required="" rows="5">This notification looks so perfect!</textarea>
+                  <div style="min-height:400px; height: 100%" id="editorContent"
+                       class="form-control notification-message">${notice.contents}
+                    <%--                  <textarea id="notify_message" class="form-control notification-message"--%>
+                    <%--                            required="" rows="5">${notice.contents}</textarea>--%>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="row mt-5">
-              <div class="col-lg-12 text-center">
-                <a href="notice" id="notify_btn" class="btn btn-primary">목록으로</a>
+              <div class="row mt-5" style="text-align: center; width:100%">
+                <div class="col-lg-12 text-center">
+                  <a href="/notice" id="notify_btn" class="btn btn-primary">목록으로</a>
+                </div>
               </div>
-            </div>
           </form>
           <!--end::Form-->
         </div>
@@ -123,33 +125,5 @@
   <script src='/assets/plugins/datatables.min.js'></script>
   <!--Bootstrap switch files-->
   <script src="plugins/bootstrap-switch/bootstrap-switch.min.js"></script>
-
-  <script>
-      var id = "<%=id%>";
-      $(document).ready(function () {
-          fn_search();
-
-      });
-
-      function fn_search() {
-          var data = {"id" : id};
-
-          $.ajax({
-              url: '/notice/noticeListDetail',
-              method :"get",
-              data: data,
-              cache: false,
-              async: false,
-              contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-              pagingYn: false,
-              success: function (jsonView) {
-                  var resultData = jsonView;
-
-              }
-
-          });
-      }
-  </script>
-
 
 </html>

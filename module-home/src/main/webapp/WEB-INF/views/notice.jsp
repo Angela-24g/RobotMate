@@ -89,12 +89,13 @@
       </div>
       <div class="row">
         <div class="col-lg-12">
-          <table id="datatable" class="table table-bordered table-hover" style="width:100%">
+          <table id="" class="table table-bordered table-hover" style="width:100%">
             <thead>
             <tr>
               <th>등록번호</th>
               <th>제목</th>
               <th>작성자</th>
+              <th>작성날짜</th>
               <th>조회수</th>
             </tr>
             </thead>
@@ -102,8 +103,10 @@
             <c:forEach var="list" items="${noticeList}">
               <tr>
                 <td>${list.id}</td>
-                <td>${list.title}</td>
-                <td>${list.admin}</td>
+                <td><a style="color:black" href="/noticeDetail/${list.id}">${list.title}</a></td>
+
+                <td>${list.admin.name}</td>
+                <td>${list.displayCreateDate}</td>
                 <td>${list.viewCount}</td>
               </tr>
             </c:forEach>
@@ -111,6 +114,35 @@
           </table>
         </div>
       </div>
+
+      <div class="card-footer bg-white">
+        <nav>
+          <ul class="pagination justify-content-end mb-0">
+            <c:choose>
+              <c:when test="${pageable.page > 1}">
+                <li class="page-item">
+                  <a class="page-link" aria-label="Previous" href="/notice?page=${pageable.prevBlock}">
+                    <span aria-hidden="true">이전</span>
+                  </a>
+                </li>
+              </c:when>
+            </c:choose>
+            <li class="page-item">
+              <a class="page-link" style="color:black">${pageable.page}</a>
+            </li>
+            <c:choose>
+              <c:when test="${pageable.endPage > pageable.page}">
+                <li class="page-item">
+                  <a class="page-link" aria-label="Next" href="/notice?page=${pageable.nextBlock}">
+                    <span aria-hidden="true">다음</span>
+                  </a>
+                </li>
+              </c:when>
+            </c:choose>
+          </ul>
+        </nav>
+      </div>
+
       <!-- end: DataTable -->
     </div>
   </section>
@@ -129,7 +161,7 @@
 <!--Template functions-->
 <script src="/assets/js/functions.js"></script>
 <!--Datatables plugin files-->
-<script src='/assets/plugins/datatables.min.js'></script>
+<%--<script src='/assets/plugins/datatables.min.js'></script>--%>
 
 <script>
     $(document).ready(function () {

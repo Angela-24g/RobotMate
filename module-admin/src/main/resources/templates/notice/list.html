@@ -20,9 +20,10 @@
       <table class="table table-borderless" style="min-width: 768px;">
         <colgroup>
           <col width="10%"/>
-          <col width="50%"/>
+          <col width="40%"/>
           <col width="10%"/>
-          <col width="30%"/>
+          <col width="20%"/>
+          <col width="20%"/>
         </colgroup>
         <thead>
             <tr>
@@ -30,6 +31,7 @@
               <th>제목</th>
               <th class="text-center">조회수</th>
               <th class="text-center">작성일</th>
+              <th class="text-center">수정일</th>
             </tr>
         </thead>
         <tbody>
@@ -38,9 +40,10 @@
           </tr>
           <tr th:each="notice : ${notices}" th:object="${notice}">
             <td class="text-center" th:text="${notice?.id}"></td>
-            <td ><a style="width:100%" th:href="|@{/notices/edit/}${notice?.id}|" th:text="${notice?.title}"></a></td>
+            <td ><a style="width:100%; color: black" th:href="|@{/notices/edit/}${notice?.id}|" th:text="${notice?.title}"></a></td>
             <td class="text-center" th:text="${notice?.viewCount}"></td>
-            <td class="text-center" th:text="${notice?.createDate}"></td>
+            <td class="text-center" th:text="${notice?.displayCreateDate}"></td>
+            <td class="text-center" th:text="${notice?.displayModDate}"></td>
           </tr>
         </tbody>
       </table>

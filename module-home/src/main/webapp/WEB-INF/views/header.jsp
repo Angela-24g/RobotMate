@@ -35,9 +35,9 @@
               <li><a href="https://cafe.naver.com/breshit0" target="_blank">공식 카페</a>
 
               </li>
-              <li class="dropdown"><a href="#">교육과정</a>
-              </li>
               <li class=""><a href="gallery">갤러리</a>
+              </li>
+              <li class=""><a href="notice">공지사항</a>
               </li>
               <li class="dropdown"><a href="#" style="color:red;">031-385-4236</a>
 
