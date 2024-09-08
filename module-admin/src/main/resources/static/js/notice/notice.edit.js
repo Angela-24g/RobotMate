@@ -27,10 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const formData = new FormData(noticeForm);
 
-        for (const [key, value] of formData.entries()) {
-            console.log(key, value);
-        };
-
         const noticeData = {
             title: formData.get("title"),
             contents: editor.getHTML(),
@@ -46,8 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 data: JSON.stringify(noticeData),
                 contentType: "application/json",
                 success: (data) => {
-                    console.log(data);
                     location.href = "/notices/edit/" + noticeId;
+                    alert("수정 성공");
                 },
                 error: (error) => {
                     const data = JSON.parse(error.responseText)
@@ -64,9 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 data: JSON.stringify(noticeData),
                 contentType: "application/json",
                 success: (res) => {
-                    console.log(res);
                     location.href = "/notices/edit/" + res.data;
-                    alert(res);
+                    alert("등록 성공");
                 },
                 error: (error, textStatus, a) => {
                     const data = JSON.parse(error.responseText)

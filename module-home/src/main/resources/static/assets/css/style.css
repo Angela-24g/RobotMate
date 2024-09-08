@@ -839,7 +839,7 @@ h6:not(:last-child), .h6:not(:last-child) { margin-bottom: 6px; }
   .lead { font-size: 1.35714286em; line-height: 1.68421053em; } }
 .display-4 { font-weight: 400; }
 
-p { font-size: 1rem; font-style: normal; font-weight: 400; text-transform: none; line-height: 1.7; letter-spacing: 0; color: #777777; font-family: "Poppins", sans-serif; }
+p { font-size: 0.9rem; font-style: normal; font-weight: 400; text-transform: none; line-height: 1.7; letter-spacing: 0; color: #000000; font-family: "Poppins", sans-serif; }
 
 ul.bullets { list-style: inside; }
 
@@ -4158,7 +4158,7 @@ input:not(.is-invalid):not(.is-valid):not([type="checkbox"]):not([type="radio"])
 select:not(.is-invalid):not(.is-valid),
 .form-control-plaintext:not(.is-invalid):not(.is-valid) { border-radius: 0; box-shadow: none; border-top-left-radius: $border-radius; border-bottom-left-radius: $border-radius; border-top-right-radius: $border-radius; border-bottom-right-radius: $border-radius; border: 1px solid $border-color; &:focus { background-color: $background-light; border-color: $color-theme; box-shadow: none; }
 } */
-input:not([type="checkbox"]):not([type="radio"]), select { line-height: 18px; padding: 10px 16px; min-height: 40px; font-size: .9rem; }
+input:not([type="checkbox"]):not([type="radio"]), select { line-height: 18px; padding: 10px 16px; min-height: 40px; font-size: 0.9rem; }
 
 .input-group-append { margin-left: -4px; }
 .input-group-append .btn, .input-group-append button { border-top-left-radius: 0 !important; border-bottom-left-radius: 0 !important; height: 40px; }

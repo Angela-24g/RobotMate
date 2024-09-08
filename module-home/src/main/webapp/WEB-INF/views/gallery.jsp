@@ -74,7 +74,7 @@
 
 
             <div class="page-title">
-                <h1></h1>
+                <h1>갤러리</h1>
             </div>
 
         </div>
@@ -132,7 +132,7 @@
 
                 </form>
 
-                <div class="grid-active-title" style="z-index: -1">Show All</div>
+                <div class="grid-active-title" style="z-index: -1"></div>
             </nav>
             <!-- end: Portfolio Filter -->
             <!-- Portfolio -->

@@ -85,12 +85,12 @@
               <div class="col-lg-12">
                 <div class="form-group">
                   <label>제목</label>
-                  <input type="text" id="notify_title" value="${notice.title}"
+                  <input type="text" style="color: black" id="notify_title" value="${notice.title}"
                          class="form-control notification-message">
                 </div>
                 <div class="form-group">
                   <label>내용</label>
-                  <div style="min-height:400px; height: 100%" id="editorContent"
+                  <div style="min-height:400px; height: 100%;" id="editorContent"
                        class="form-control notification-message">${notice.contents}
                     <%--                  <textarea id="notify_message" class="form-control notification-message"--%>
                     <%--                            required="" rows="5">${notice.contents}</textarea>--%>
