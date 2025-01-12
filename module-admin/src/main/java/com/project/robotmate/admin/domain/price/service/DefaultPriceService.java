@@ -5,10 +5,12 @@ import com.project.robotmate.admin.domain.price.dto.PriceDto;
 import com.project.robotmate.domain.entity.price.Price;
 import com.project.robotmate.domain.entity.price.repository.PriceRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +23,7 @@ public class DefaultPriceService implements PriceService{
 
     @Override
     public List<PriceDto> getPrices() {
-        return priceRepository.findAll().stream()
+        return priceRepository.findAll(Sort.by(Sort.Direction.ASC, "ordr")).stream()
                 .map(PriceDto::new)
                 .collect(Collectors.toList());
     }
@@ -45,18 +47,13 @@ public class DefaultPriceService implements PriceService{
     public void update(Long id, EditPriceDto request) {
         Price price = findPrice(id);
 
-        price.changeTeachingCourse(request.getTeachingCourse());
-        price.changeTeachingExpenses(String.valueOf(request.getTeachingExpenses()));
-        price.changeTeachingHour(request.getTeachingHour());
-        price.changeType(request.getType().equals("로봇") ? request.getType() : null);
-        price.changeCollectionUnit(request.getCollectionUnit());
+        price.changeTarget(request.getTarget());
+        price.changeContents(request.getContents());
         price.changeCost(
-                zeroToEmpty(request.getMockTestCost()),
-                zeroToEmpty(request.getMaterialCost()),
-                zeroToEmpty(request.getClothesCost()),
-                zeroToEmpty(request.getLunchMoney()),
-                zeroToEmpty(request.getBoardingExpenses()),
-                zeroToEmpty(request.getCarCost())
+                request.getW1(),
+                request.getW2(),
+                request.getW3(),
+                request.getOrdr()
         );
     }
 
@@ -67,6 +64,19 @@ public class DefaultPriceService implements PriceService{
         priceRepository.delete(price);
     }
 
+    @Override
+    @Transactional
+    public void reorders(List<Long> ids) {
+        List<Price> prices = priceRepository.findByIdIn(ids);
+        prices.sort(Comparator.comparingLong(price -> ids.indexOf(price.getId())));
+        for (int i = 0 ; i < prices.size(); i++) {
+            Price price = prices.get(i);
+            System.out.println(prices.get(i).getId());
+            price.reoreder(i + 1);
+            System.out.println(price.getOrdr());
+        }
+
+    }
     private Price findPrice(Long id) {
         return priceRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("찾을 수 없는 가격정보입니다."));
@@ -82,20 +92,19 @@ public class DefaultPriceService implements PriceService{
 
     private Price buildPrice(EditPriceDto request) {
         Price price = Price.builder()
-                .teachingCourse(request.getTeachingCourse())
-                .teachingExpenses(String.valueOf(request.getTeachingExpenses()))
-                .teachingHour(request.getTeachingHour())
-                .type(request.getType().equals("로봇") ? request.getType() : null)
-                .collectionUnit(request.getCollectionUnit())
+                .target(request.getTarget())
+                .contents(request.getContents())
+                .w1(request.getW2())
+                .w2(request.getW3())
+                .w3(request.getW3())
+                .ordr(request.getOrdr())
                 .build();
 
         price.changeCost(
-                zeroToEmpty(request.getMockTestCost()),
-                zeroToEmpty(request.getMaterialCost()),
-                zeroToEmpty(request.getClothesCost()),
-                zeroToEmpty(request.getLunchMoney()),
-                zeroToEmpty(request.getBoardingExpenses()),
-                zeroToEmpty(request.getCarCost())
+                (request.getW1()),
+                (request.getW2()),
+                (request.getW3()),
+                (request.getOrdr())
         );
 
         return price;

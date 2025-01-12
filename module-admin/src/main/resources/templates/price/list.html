@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html  xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/default}">
 <head>
-  <title>가격표</title>
+    <script>
+            document.addEventListener("DOMContentLoaded", (event) => {
+                document.querySelectorAll("[data-price-id]").forEach(element => {
+                    element.addEventListener("click", event => {
+
+                        const priceId = event.target.id;
+                        confirm("아이디 " + priceId + "를 삭제하시겠습니까?")
+                        $.ajax({
+                            url: "/api/prices/" + priceId,
+                            type: "DELETE",
+                            success: (res) => {
+                                console.log(res);
+                                location.href = "/prices/";
+                            },
+                            error: (error, textStatus, a) => {
+                                const data = JSON.parse(error.responseText)
+                                alert(data.errorMessage);
+                            },
+                            complete: () => {
+                                e.target.disabled = false;
+                            }
+                        })
+                    })
+                })
+            })
+    </script>
+    <title>가격표</title>
 </head>
 <!-- Content -->
 <div layout:fragment="content">
@@ -12,42 +38,30 @@
         <span class="h4 me-2 fw-bold">가격표 목록</span>
         <a th:href="@{/prices/edit}" class="btn btn-primary small">추가</a>
     </div>
-
     <div class="card">
         <div class="row card-body">
             <div class="col-3 col-md-6 col-sm-12 mb-3" th:each="price : ${prices}" th:object="${price}">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title" >
-                            <span th:text="${price?.teachingCourse}" class="fw-bold"></span>
-                            <spen th:if="${not #strings.isEmpty(price?.type)}" th:text="|(${price?.type})|"></spen>
-                        </div>
+                        <span th:text="${price.target}"></span><br>
+                        <span th:text="${price.contents}"></span>
                     </div>
                     <div class="card-body">
                         <div class="mb-2">
-                            <div class="text-muted small">총 교습시간 (분/월)</div>
-                            <div>
-                                <span th:text="|${price?.teachingHour}시간|"></span>
-                                <span th:text="|(${price?.monthToMin}/1개월)|"></span>
+                            <div class="text-muted small">
+                                주 1회: <span th:text="${price.W1}"></span>원<br>
+                                주 2회: <span th:text="${price.W2}"></span>원<br>
+                                주 3회: <span th:text="${price.W3}"></span>원<br>
                             </div>
                         </div>
-                        <div class="mb-2">
-                            <span class="text-muted small me-1">교습비 |</span>
-                            <span th:text="${#numbers.formatInteger(price?.teachingExpenses, 3, 'COMMA')}"></span>
-                        </div>
-                        <div>
-                            <span class="text-muted small me-1">합계 |</span>
-                            <span th:text="${#numbers.formatInteger(price?.totalCost, 3, 'COMMA')}"></span>
+                        <div class="card-footer">
+                            <a th:href="@{/prices/edit/{id}(id=${price.id})}"  CLASS="btn btn-primary">수정</a>
+                            <button th:id="${price.id}" data-price-id="${price.id}" CLASS="btn btn-warning me-2">삭제</button>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <div>
-                            <a th:href="|/prices/edit/${price?.id}|" class="btn btn-warning" >수정</a>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-</div>
 </html>

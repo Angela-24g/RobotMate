@@ -5,6 +5,7 @@ import com.project.robotmate.domain.entity.price.repository.PriceRepository;
 import com.project.robotmate.home.domain.price.dto.EditPriceDto;
 import com.project.robotmate.home.domain.price.dto.PriceDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
@@ -21,7 +22,7 @@ public class DefaultPriceService implements PriceService {
 
     @Override
     public List<PriceDto> getPrices() {
-        return priceRepository.findAll().stream()
+        return priceRepository.findAll(Sort.by(Sort.Direction.ASC, "ordr")).stream()
                 .map(PriceDto::new)
                 .collect(Collectors.toList());
     }
@@ -36,19 +37,12 @@ public class DefaultPriceService implements PriceService {
     public void update(Long id, EditPriceDto request) {
         Price price = findPrice(id);
 
-        price.changeTeachingCourse(request.getTeachingCourse());
-        price.changeTeachingExpenses(request.getTeachingExpenses().toString());
-        price.changeTeachingHour(request.getTeachingHour());
-        price.changeType(request.getType().equals("로봇") ? request.getType() : null);
-        price.changeCollectionUnit(request.getCollectionUnit());
-        price.changeCost(
-                zeroToEmpty(request.getMockTestCost()),
-                zeroToEmpty(request.getMaterialCost()),
-                zeroToEmpty(request.getClothesCost()),
-                zeroToEmpty(request.getLunchMoney()),
-                zeroToEmpty(request.getBoardingExpenses()),
-                zeroToEmpty(request.getCarCost())
-        );
+        price.changeTarget(request.getTarget());
+        price.changeContents(request.getContents());
+        price.changeW1(request.getW1());
+        price.changeW2(request.getW2());
+        price.changeW3(request.getW3());
+
     }
 
     private Price findPrice(Long id) {

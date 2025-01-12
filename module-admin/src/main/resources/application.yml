@@ -4,6 +4,13 @@ server:
 spring:
   profiles:
     active: local
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+  thymeleaf:
+    cache: false
 
 # log 설정
 logging:

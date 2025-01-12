@@ -20,84 +20,67 @@ public class Price {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "teaching_course")
-    private String teachingCourse;
+    @Column(name = "target")
+    private String target;
 
-    @Column(name = "teaching_expenses")
-    private String teachingExpenses;
+    @Column(name = "contents")
+    private String contents;
 
-    @Column(name = "teaching_hour")
-    private String teachingHour;
+    @Column(name = "w1")
+    private Integer w1;
 
-    @Column(name = "collection_unit")
-    private String collectionUnit;
+    @Column(name = "w2")
+    private Integer w2;
 
-    @Column(name = "mock_test_cost")
-    private String mockTestCost;
+    @Column(name = "w3")
+    private Integer w3;
 
-    @Column(name = "material_cost")
-    private String materialCost;
-
-    @Column(name = "clothes_cost")
-    private String clothesCost;
-
-    @Column(name = "lunch_money")
-    private String lunchMoney;
-
-    @Column(name = "boarding_expenses")
-    private String boardingExpenses;
-
-    @Column(name = "car_cost")
-    private String carCost;
-
-    private String type;
-
-    @LastModifiedBy
-    @Column(name = "mod_dt")
-    private LocalDateTime modDate;
+    @Column(name = "ordr")
+    private Integer ordr;
 
     @Builder
-    public Price(Long id, String teachingCourse, String teachingExpenses, String teachingHour, String collectionUnit, String mockTestCost, String materialCost, String clothesCost, String lunchMoney, String boardingExpenses, String carCost, String type) {
+    public Price(Long id, String target, String contents, Integer w1, Integer w2, Integer w3, Integer ordr) {
         this.id = id;
-        this.teachingCourse = teachingCourse;
-        this.teachingExpenses = teachingExpenses;
-        this.teachingHour = teachingHour;
-        this.collectionUnit = collectionUnit;
-        this.mockTestCost = mockTestCost;
-        this.materialCost = materialCost;
-        this.clothesCost = clothesCost;
-        this.lunchMoney = lunchMoney;
-        this.boardingExpenses = boardingExpenses;
-        this.carCost = carCost;
-        this.type = type;
+        this.target = target;
+        this.contents = contents;
+        this.w1 = w1;
+        this.w2 = w2;
+        this.w3 = w3;
+        this.ordr = ordr;
     }
 
-    public void changeTeachingCourse(String teachingCourse) {
-        this.teachingCourse = teachingCourse;
+    public void changeTarget(String target) {
+        this.target = target;
     }
 
-    public void changeTeachingExpenses(String teachingExpenses) {
-        this.teachingExpenses = teachingExpenses;
+    public void changeContents(String contents) {
+        this.contents = contents;
     }
 
-    public void changeTeachingHour(String teachingHour) {
-        this.teachingHour = teachingHour;
+    public void changeW1(Integer w1) {
+        this.w1 = w1;
     }
 
-    public void changeCollectionUnit(String collectionUnit) {
-        this.collectionUnit = collectionUnit;
+    public void changeW2(Integer w2) {
+        this.w2 = w2;
     }
 
-    public void changeCost(String mockTestCost, String materialCost, String clothesCost, String lunchMoney, String boardingExpenses, String carCost) {
-        this.mockTestCost = mockTestCost;
-        this.materialCost = materialCost;
-        this.clothesCost = clothesCost;
-        this.lunchMoney = lunchMoney;
-        this.boardingExpenses = boardingExpenses;
-        this.carCost = carCost;
+    public void changeW3(Integer w3) {
+        this.w3 = w3;
     }
 
-    public void changeType(String type) {
-        this.type = type;
+    public void changeOrdr(Integer ordr) { this.ordr = ordr; }
+
+    public void changeCost( Integer w1, Integer w2, Integer w3, Integer ordr) {
+
+        this.w1 = w1;
+        this.w2 = w2;
+        this.w3 = w3;
+        this.ordr = ordr;
+
+    }
+
+    public void reoreder(int ordr) {
+        this.ordr = ordr;
     }
 }

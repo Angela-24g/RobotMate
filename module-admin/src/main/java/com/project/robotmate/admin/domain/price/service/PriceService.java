@@ -16,7 +16,8 @@ public interface PriceService {
     Long create(EditPriceDto request);
 
     void update(Long id, EditPriceDto request);
-
     @Transactional
     void remove(Long id);
+
+    void reorders(List<Long> ids);
 }
