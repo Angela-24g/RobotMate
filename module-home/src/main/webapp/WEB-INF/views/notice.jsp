@@ -51,19 +51,19 @@
   <section id="page-title" class="text-light" data-bg-parallax="" style="padding:0 !important;">
     <div class="" style="">
       <!-- portfolio item -->
-      <div class="portfolio-item img-zoom">
-        <div class="portfolio-item-wrap">
-          <div class="portfolio-image">
-            <a href="#"><img src="images/gallery/main.png" alt=""/></a>
-          </div>
-          <div class="portfolio-description">
-            <a href="portfolio-page-grid-gallery.html">
-              <h3>카이스트 주관 2020 AI축구 고등부</h3>
-              <span>장관상 수상</span>
-            </a>
-          </div>
-        </div>
-      </div>
+<%--      <div class="portfolio-item img-zoom">--%>
+<%--        <div class="portfolio-item-wrap">--%>
+<%--          <div class="portfolio-image">--%>
+<%--            <a href="#"><img src="images/gallery/main.png" alt=""/></a>--%>
+<%--          </div>--%>
+<%--          <div class="portfolio-description">--%>
+<%--            <a href="portfolio-page-grid-gallery.html">--%>
+<%--              <h3>카이스트 주관 2020 AI축구 고등부</h3>--%>
+<%--              <span>장관상 수상</span>--%>
+<%--            </a>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--      </div>--%>
       <!-- end: portfolio item -->
 
 

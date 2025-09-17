@@ -35,4 +35,8 @@ public class Admin extends BaseEntity {
     public boolean isSame(Long id) {
         return this.id.equals(id);
     }
+
+    public void changePassword(String password ) {
+        this.password = password;
+    }
 }

@@ -25,45 +25,45 @@
 <div class="body-inner">
     <jsp:include page="header.jsp" flush="false"/>
     <!-- Page title -->
-    <section id="page-title" class="text-light" data-bg-parallax="" style="padding:0 !important;">
-        <div>
-            <!-- portfolio item -->
-            <div class="portfolio-item img-zoom">
-                <div class="portfolio-item-wrap">
-                    <div class="portfolio-image">
-                        <a href="#"><img src="images/gallery/main.png" alt=""/></a>
-                    </div>
-                    <div class="portfolio-description">
-                        <a href="portfolio-page-grid-gallery.html">
-                            <h3>카이스트 주관 2020 AI축구 고등부</h3>
-                            <span>장관상 수상</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- end: portfolio item -->
-            <div class="page-title">
-                <h1></h1>
-            </div>
+<%--    <section id="page-title" class="text-light" data-bg-parallax="" style="padding:0 !important;">--%>
+<%--        <div>--%>
+<%--            <!-- portfolio item -->--%>
+<%--            <div class="portfolio-item img-zoom">--%>
+<%--                <div class="portfolio-item-wrap">--%>
+<%--                    <div class="portfolio-image">--%>
+<%--                        <a href="#"><img src="images/gallery/main.png" alt=""/></a>--%>
+<%--                    </div>--%>
+<%--                    <div class="portfolio-description">--%>
+<%--                        <a href="portfolio-page-grid-gallery.html">--%>
+<%--                            <h3>카이스트 주관 2020 AI축구 고등부</h3>--%>
+<%--                            <span>장관상 수상</span>--%>
+<%--                        </a>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <!-- end: portfolio item -->--%>
+<%--            <div class="page-title">--%>
+<%--                <h1></h1>--%>
+<%--            </div>--%>
 
-        </div>
-    </section>
+<%--        </div>--%>
+<%--    </section>--%>
     <!-- end: Page title -->
     <!-- Content -->
     <section id="page-content">
         <div class="container">
             <!-- Pricing Table -->
             <div class="heading-text heading-line text-center pb-5">
-                <h4>가격표</h4>
+                <h4>수강료</h4>
             </div>
             <div class="row pricing-table">
-                <div class="col-md-12 col-12" style="display: flex !important;">
-                    <c:forEach var="list" items="${price}">
-                        <div class="plan" style="flex: 1;">
+                <c:forEach var="list" items="${price}">
+                <div class="col-lg-4 col-md-12 col-12" style="">
+                        <div class="plan" style="">
                             <div class="plan-header">
                                 <h4>${list.contents}</h4>
-                                <p class="text-muted">${list.target}</p>
-                                <div class="plan-price"><sup>₩</sup>${list.intW1}<span>만원/월</span></div>
+                                <p class="text-muted" style="color:black !important">${list.target}</p>
+                                <div class="plan-price"><sup>₩</sup>${list.intW1}<span style="color:black">만원/월</span></div>
                             </div>
                             <div class="plan-list">
                                 <ul>
@@ -73,8 +73,8 @@
                                 </ul>
                             </div>
                         </div>
-                    </c:forEach>
                 </div>
+                </c:forEach>
                 <!-- end: Pricing Table -->
             </div>
         </div>
